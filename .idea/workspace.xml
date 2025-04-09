@@ -5,20 +5,151 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86aa431-e0f3-4018-83ce-109380ddc291" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BacPlus/resources/views/partiale/Footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BacPlus/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/resources/views/Pages/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/BacPlus/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe" />
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "imrane-ait-dahmade"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/imrane-ait-dahmade/Bac-plus-FilRouge.git",
+    "accountId": "ca974fcd-d6a3-4619-b691-962b704ee24c"
+  }
+}]]></component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
+    <include_path>
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/carbonphp/carbon-doctrine-types" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/composer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/commonmark" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/config" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/staabm/side-effects-detector" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/pail" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/pint" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/prompts" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/sail" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/serializable-closure" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/symfony/routing" />
+    </include_path>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -42,11 +173,15 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\imrane\Desktop\Bac-plus-FilRouge\BacPlus\resources\views\Pages" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
-        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
       </set>
     </attachedChunks>
   </component>
@@ -59,6 +194,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744110858615</updated>
       <workItem from="1744110860042" duration="748000" />
+      <workItem from="1744196838512" duration="263000" />
     </task>
     <servers />
   </component>
