@@ -8,7 +8,7 @@
         <i class="fa-brands fa-discord fa-2xl" style="color: #B3DCA0"></i>
     </div>
 </div>
-   
+
 
 
 

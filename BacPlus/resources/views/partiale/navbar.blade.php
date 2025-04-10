@@ -1,3 +1,4 @@
+
 <nav class="w-[93%]  flex justify-between justify-self-center items-center px-6 py-4 bg-transparent">
 
     <div class="flex items-center">
