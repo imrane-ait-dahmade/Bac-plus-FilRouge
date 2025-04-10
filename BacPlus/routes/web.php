@@ -8,4 +8,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('Pages.login');
 });
+Route::get('/register', function () {
+    return view('Pages.signup');
+});
 

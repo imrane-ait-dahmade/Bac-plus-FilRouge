@@ -72,7 +72,6 @@
                 <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohamed5.png')}}" alt=""></div>
                 <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMoulaySmail.png')}}" alt=""></div>
                 <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohammedPremier.png')}}" alt=""></div>
-
             </div>
 
         </div>
