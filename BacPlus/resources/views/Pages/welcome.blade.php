@@ -56,27 +56,24 @@
         </div>
     </section>
     <section class="w-full">
-        <div class="flex flex-col justify-center w-full">
-            <span>
+        <div class="flex flex-col justify-center items-center w-full gap-4 py-6">
+            <span class="text-4xl text-[#8ebe74] font-semibold">
             Universites marocaines
             </span>
-            <div class="grid grid-col-2 justify-self-center gap-2 w[90%]">
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="w-10 h-10"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-
+            <div class="grid grid-cols-5 grid-rows-2 justify-self-center gap-6 w-[70%] ">
+                <div class="flex justify-center items-center"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/Ensam.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/Ensgmrackech.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/EST.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/OFPPT-logo.jpg')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/universiteCadiAyyad.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteHassan2.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohamed5.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMoulaySmail.png')}}" alt=""></div>
+                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohammedPremier.png')}}" alt=""></div>
 
             </div>
-            <div class="grid grid-cols-2 grid-rows-2 gap-4">
-            </div>
+
         </div>
 
     </section>
