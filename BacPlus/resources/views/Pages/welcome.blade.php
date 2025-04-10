@@ -1,6 +1,6 @@
 @extends('Layouts.App')
 @section('content')
-    <section class="w-[93%] flex flex-row justify-self-center p-4">
+    <section class="w-[93%] h-screen flex flex-row justify-self-center items-center p-4">
         <div class="w-[50%] flex flex-col ">
             <div class=" flex justify-center items-center flex-col gap-4">
                 <p class="text-6xl" style="font-family: 'Mirza' ,Serif ;">
@@ -23,7 +23,7 @@
             <img src="{{asset('../images/HomeFront.svg')}}" alt="hello">
         </div>
     </section>
-    <section class="w-full h-content bg-white flex flex-row p-12  ">
+    <section class="w-full h-screen bg-white flex flex-row  items-center p-12   ">
         <div class="w-[60%] h-fit justify-center justify-self-center items-center ">
       <span class="text-3xl text-center font-serif" style="font-family: 'Shanti', Serif;">
   <p class="mb-4">143 établissements publics d’enseignement supérieur t’attendent au Maroc...</p>
@@ -34,10 +34,11 @@
 
   <p class="text-5xl font-bold text-[#8ebe74]">✨ Trouve ce qui t’anime. Suis ta passion. Bâtis ton futur.</p>
 </span>
+            <div class="w-[80%] mt-12 justify-self-center">
             <x-button>
                 sign up
             </x-button>
-
+            </div>
         </div>
         <div class="flex flex-col items-center  w-[40%] ">
             <!-- Main circle with cutout -->
@@ -55,7 +56,7 @@
 
         </div>
     </section>
-    <section class="w-full">
+    <section class="w-full h-screen">
         <div class="flex flex-col justify-center items-center w-full gap-4 py-6">
             <span class="text-4xl text-[#8ebe74] font-semibold">
             Universites marocaines
