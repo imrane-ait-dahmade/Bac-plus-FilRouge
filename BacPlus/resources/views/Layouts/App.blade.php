@@ -12,14 +12,7 @@
         body{
             background: #F5F8F3;
         }
-        button{
-            background: #B3DCA0;
-            font-family: 'Overpass Mono',Serif;
-            border-radius: 14px;
-        }
-        button:hover{
-            background: #72AE55;
-        }
+
 
 
     </style>

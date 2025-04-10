@@ -7,12 +7,15 @@
                 Votre futur commence ici :<br> découvrez les meilleures écoles pour vous.
             </p>
             <div class="w-[70%] py-6  ">
-                <button class=" w-full flex justify-center p-4 text-3xl my-4  ">
-                <span>Decouvert les Ecoles</span>
-                </button>
-                <button class=" w-full flex justify-center p-4 text-3xl  ">
-                <span>Dernieres Nouvelle</span>
-                </button>
+{{--                <button class=" w-full flex justify-center p-4 text-3xl my-4  ">--}}
+{{--                <span>Decouvert les Ecoles</span>--}}
+{{--                </button>--}}
+{{--                <button class=" w-full flex justify-center p-4 text-3xl  ">--}}
+{{--                <span>Dernieres Nouvelle</span>--}}
+{{--                </button>--}}
+                <x-button >Decouvert les Ecoles</x-button>
+                <x-button >Dernieres Nouvelle</x-button>
+
             </div>
         </div>
         </div>
@@ -20,7 +23,7 @@
             <img src="{{asset('../images/HomeFront.svg')}}" alt="hello">
         </div>
     </section>
-    <section class="">
+    <section>
 
     </section>
 
