@@ -16,7 +16,7 @@
             value="{{ request('query') }}"
         >
         <div type="submit" class="p-2 rounded-full hover:bg-gray-100 transition">
-            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #63E6BE;"></i>
+            <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #72AE55;"></i>
         </div>
     </form>
 </nav>

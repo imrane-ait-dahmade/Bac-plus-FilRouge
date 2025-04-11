@@ -1,82 +1,76 @@
 @extends('Layouts.App')
 @section('content')
-    <section class="w-[93%] h-screen flex flex-row justify-self-center items-center p-4">
-        <div class="w-[50%] flex flex-col ">
-            <div class=" flex justify-center items-center flex-col gap-4">
-                <p class="text-6xl" style="font-family: 'Mirza' ,Serif ;">
+    <!-- Hero Section -->
+    <section class="w-full min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 py-8 md:py-0">
+        <div class="w-full lg:w-1/2 flex flex-col mb-8 lg:mb-0">
+            <div class="flex justify-center items-center flex-col gap-4 px-4">
+                <p class="text-3xl md:text-4xl lg:text-6xl text-center lg:text-left" style="font-family: 'Mirza', Serif;">
                     Votre futur commence ici :<br> découvrez les meilleures écoles pour vous.
                 </p>
-                <div class="w-[70%] py-6  ">
-                    {{--                <button class=" w-full flex justify-center p-4 text-3xl my-4  ">--}}
-                    {{--                <span>Decouvert les Ecoles</span>--}}
-                    {{--                </button>--}}
-                    {{--                <button class=" w-full flex justify-center p-4 text-3xl  ">--}}
-                    {{--                <span>Dernieres Nouvelle</span>--}}
-                    {{--                </button>--}}
-                    <x-button>Decouvert les Ecoles</x-button>
-                    <x-button>Dernieres Nouvelle</x-button>
-
+                <div class="w-full md:w-[70%] py-6 space-y-4">
+                    <x-button class="w-full text-lg md:text-xl">Découvrez les Écoles</x-button>
+                    <x-button class="w-full text-lg md:text-xl">Dernières Nouvelles</x-button>
                 </div>
             </div>
         </div>
-        <div class="h-fit ">
-            <img src="{{asset('../images/HomeFront.svg')}}" alt="hello">
+        <div class="w-full lg:w-1/2 flex justify-center">
+            <img src="{{asset('../images/HomeFront.svg')}}" alt="Illustration d'accueil" class="w-full max-w-lg h-auto">
         </div>
     </section>
-    <section class="w-full h-screen bg-white flex flex-row  items-center p-12   ">
-        <div class="w-[60%] h-fit justify-center justify-self-center items-center ">
-      <span class="text-3xl text-center font-serif" style="font-family: 'Shanti', Serif;">
-  <p class="mb-4">143 établissements publics d’enseignement supérieur t’attendent au Maroc...</p>
 
-  <p class="mb-4">Ce sont 143 opportunités de grandir, d’apprendre, de créer... et de te révéler.</p>
-
-  <p class="mb-4">Que tu rêves d’ingénierie, d’art, de médecine, d’économie ou de sciences humaines — il y a une place pour toi.</p>
-
-  <p class="text-5xl font-bold text-[#8ebe74]">✨ Trouve ce qui t’anime. Suis ta passion. Bâtis ton futur.</p>
-</span>
-            <div class="w-[80%] mt-12 justify-self-center">
-            <x-button>
-                sign up
-            </x-button>
+    <!-- Info Section -->
+    <section class="w-full min-h-screen bg-white flex flex-col lg:flex-row items-center p-4 md:p-8 lg:p-12">
+        <div class="w-full lg:w-[60%] mb-12 lg:mb-0">
+            <div class="text-xl md:text-2xl lg:text-3xl text-center font-serif" style="font-family: 'Shanti', Serif;">
+                <p class="mb-4">143 établissements publics d'enseignement supérieur t'attendent au Maroc...</p>
+                <p class="mb-4">Ce sont 143 opportunités de grandir, d'apprendre, de créer... et de te révéler.</p>
+                <p class="mb-4">Que tu rêves d'ingénierie, d'art, de médecine, d'économie ou de sciences humaines — il y a une place pour toi.</p>
+                <p class="text-2xl md:text-3xl lg:text-5xl font-bold text-[#8ebe74]">✨ Trouve ce qui t'anime. Suis ta passion. Bâtis ton futur.</p>
+            </div>
+            <div class="w-full md:w-[80%] mt-12 mx-auto">
+                <x-button class="w-full text-lg md:text-xl">
+                    S'inscrire
+                </x-button>
             </div>
         </div>
-        <div class="flex flex-col items-center  w-[40%] ">
+        <div class="flex flex-col items-center w-full lg:w-[40%] mt-8 lg:mt-0">
             <!-- Main circle with cutout -->
-            <div class=" w-64 h-64  rounded-full bg-[#8ebe74] flex items-center justify-center">
-                <div class="text-white text-3xl font-bold z-10">
-                    12 university
+            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-[#8ebe74] flex items-center justify-center">
+                <div class="text-white text-2xl md:text-3xl font-bold z-10">
+                    12 universités
                 </div>
             </div>
-            <div
-                class=" relative left-8  top-[-12%] w-64 h-64 rounded-full bg-white flex items-center justify-center opacity-75 ">
-                <div class="  text-[#8ebe74] text-3xl font-bold z-10">
-                    143 etablisement
+            <div class="relative left-4 md:left-8 top-[-12%] w-48 h-48 md:w-64 md:h-64 rounded-full bg-white flex items-center justify-center opacity-75">
+                <div class="text-[#8ebe74] text-2xl md:text-3xl font-bold z-10">
+                    143 établissements
                 </div>
             </div>
-
         </div>
     </section>
-    <section class="w-full h-screen">
+
+    <!-- Universities Section -->
+    <section class="w-full py-16 px-4">
         <div class="flex flex-col justify-center items-center w-full gap-4 py-6">
-            <span class="text-4xl text-[#8ebe74] font-semibold">
-            Universites marocaines
+            <span class="text-3xl md:text-4xl text-[#8ebe74] font-semibold text-center mb-8">
+                Universités marocaines
             </span>
-            <div class="grid grid-cols-5 grid-rows-2 justify-self-center gap-6 w-[70%] ">
-                <div class="flex justify-center items-center"><img src="{{asset('Images/Ens.jpg')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/Ensam.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/Ensgmrackech.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/EST.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/OFPPT-logo.jpg')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/universiteCadiAyyad.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteHassan2.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohamed5.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMoulaySmail.png')}}" alt=""></div>
-                <div class="flex justify-center items-center"><img src="{{asset('Images/UniversiteMohammedPremier.png')}}" alt=""></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full md:w-[90%] lg:w-[70%] mx-auto">
+                <div class="flex justify-center items-center p-2">
+                    <img src="{{asset('Images/universiteCadiAyyad.png')}}" alt="Université Cadi Ayyad" class="max-h-24 md:max-h-32 w-auto">
+                </div>
+                <div class="flex justify-center items-center p-2">
+                    <img src="{{asset('Images/UniversiteHassan2.png')}}" alt="Université Hassan II" class="max-h-24 md:max-h-32 w-auto">
+                </div>
+                <div class="flex justify-center items-center p-2">
+                    <img src="{{asset('Images/UniversiteMohamed5.png')}}" alt="Université Mohamed V" class="max-h-24 md:max-h-32 w-auto">
+                </div>
+                <div class="flex justify-center items-center p-2">
+                    <img src="{{asset('Images/UniversiteMoulaySmail.png')}}" alt="Université Moulay Smail" class="max-h-24 md:max-h-32 w-auto">
+                </div>
+                <div class="flex justify-center items-center p-2 col-span-2 md:col-span-1">
+                    <img src="{{asset('Images/UniversiteMohammedPremier.png')}}" alt="Université Mohammed Premier" class="max-h-24 md:max-h-32 w-auto">
+                </div>
             </div>
-
         </div>
-
     </section>
-
 @endsection
-
