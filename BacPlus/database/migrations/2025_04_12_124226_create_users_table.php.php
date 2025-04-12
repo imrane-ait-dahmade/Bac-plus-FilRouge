@@ -11,7 +11,18 @@ class  CreationUser extends Migration
      */
     public function up(): void
     {
-
+        schema::create('users', function (Blueprint $table) {
+        $table->id();
+        $table->string('NomUser');
+        $table->string('EmailUser')->unique();
+        $table->string('Password');
+        $table->string('api_token')->unique();
+        $table->rememberToken();
+        $table->boolean('statut')->default(false);
+        $table->timestamps();
+        $table->softDeletes();
+        $table->enum('TypeUser',['admin' , 'Equipement' , 'Etudiant'])->default('Etudiant');
+        });
     }
 
     /**
@@ -19,6 +30,6 @@ class  CreationUser extends Migration
      */
     public function down(): void
     {
-        //
+        schema::drop('users');
     }
 };
