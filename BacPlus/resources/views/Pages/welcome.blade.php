@@ -5,7 +5,7 @@
         <div class="w-full lg:w-1/2 flex flex-col mb-8 lg:mb-0">
             <div class="flex justify-center items-center flex-col gap-4 px-4">
                 <p class="text-3xl md:text-4xl lg:text-6xl text-center lg:text-left" style="font-family: 'Mirza', Serif;">
-                    Votre futur commence ici :<br> découvrez les meilleures écoles pour vous.
+                  <span class="font-bold">Votre futur commence ici :</span><br> découvrez les meilleures écoles pour vous.
                 </p>
                 <div class="w-full md:w-[70%] py-6 space-y-4">
                     <x-button class="w-full text-lg md:text-xl">Découvrez les Écoles</x-button>
