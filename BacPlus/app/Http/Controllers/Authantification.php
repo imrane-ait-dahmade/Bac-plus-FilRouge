@@ -7,6 +7,16 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @OA\Info(
+ *     title="BacPlus",
+ *     version="1.0.0",
+ *     description="Ce API est pour mon projet de filerouge"
+ * )
+ */
+
+
+
 class Authantification extends Controller
 {
     /**
@@ -16,6 +26,24 @@ class Authantification extends Controller
     {
         //
     }
+
+
+    /**
+     * @OA\Get(
+     *     path="/api/Auth/register",
+     *     operationId="showRegisterForm",
+     *     tags={"Authentication"},
+     *     summary="Display the user registration form",
+     *     description="Returns the registration form view for new users.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response. Returns registration form.",
+     *         @OA\MediaType(
+     *             mediaType="text/html"
+     *         )
+     *     )
+     * )
+     */
     public function showRegisterForm(){
         return view('Pages.Auth.register');
     }
@@ -29,7 +57,7 @@ class Authantification extends Controller
 
     /**
      * @OA\Post(
-     *     path="/CreeUser",
+     *     path="/api/Auth/CreeUser",
      *     summary="Register a new user",
      *     tags={"Authentication"},
      *     @OA\RequestBody(

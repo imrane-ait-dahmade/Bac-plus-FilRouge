@@ -8,7 +8,7 @@ use App\Http\Controllers\Authantification;
 route::prefix('Auth')->group(function(){
     Route::middleware(['guest'])->group(function () {
         Route::get('/register',[Authantification::class, 'showRegisterForm'])->name('Auth.showRegisterForm');
-        Route::post('/CreeUser',[Authantification::class, 'register']);
+        Route::post('/CreeUser',[Authantification::class, 'register'])->name('Auth.CreeUser');
     });
 });
 ////route::get('/', function(){
