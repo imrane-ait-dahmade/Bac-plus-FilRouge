@@ -8,7 +8,7 @@
                   <span class="font-bold">Votre futur commence ici :</span><br> découvrez les meilleures écoles pour vous.
                 </p>
                 <div class="w-full md:w-[70%] py-6 space-y-4">
-                    <x-button class="w-full text-lg md:text-xl">Découvrez les Écoles</x-button>
+                    <x-button class="w-full text-lg md:text-xl"><a href="{{route('Auth.showRegisterForm')}}">Découvrez les Écoles</a> </x-button>
                     <x-button class="w-full text-lg md:text-xl">Dernières Nouvelles</x-button>
                 </div>
             </div>

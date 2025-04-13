@@ -16,6 +16,9 @@ class Authantification extends Controller
     {
         //
     }
+    public function showRegisterForm(){
+        return view('Pages.Auth.register');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -26,7 +29,7 @@ class Authantification extends Controller
 
 public function register(Request $request){
 
-$vaide =$request->validate([
+$request->validate([
     'name' => 'required|string|max:255',
     'email' => 'required|email|unique:users|max:255',
     'password' => 'required|string|min:6|confirmed',
