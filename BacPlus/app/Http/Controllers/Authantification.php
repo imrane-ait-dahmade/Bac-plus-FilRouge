@@ -26,19 +26,19 @@ class Authantification extends Controller
 
 public function register(Request $request){
 
+$vaide =$request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|unique:users|max:255',
+    'password' => 'required|string|min:6|confirmed',
+]);
 
-     $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
 
-          $user = new User();
-          $user->name = $request['name'];
-          $user->email = $request['email'];
-          $user->password = Hash::make($request['password']);
-          dd($user);
-          return $user->save();
+User::create([
+    'name' => $request->input('name'),
+    'email' => $request->input('email'),
+    'password' => Hash::make($request->input('password')),
+]);
+
 
 
 
