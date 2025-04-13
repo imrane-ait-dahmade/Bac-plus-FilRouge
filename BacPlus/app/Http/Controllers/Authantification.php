@@ -27,7 +27,43 @@ class Authantification extends Controller
     {
     }
 
-public function register(Request $request){
+    /**
+     * @OA\Post(
+     *     path="/CreeUser",
+     *     summary="Register a new user",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name","email","password"},
+     *             @OA\Property(property="name", type="string", example="John Doe"),
+     *             @OA\Property(property="email", type="string", format="email", example="johndoe@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="secret123")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User Created Successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="User Created Successfully")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation Error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="The given data was invalid."),
+     *             @OA\Property(
+     *                 property="errors",
+     *                 type="object",
+     *                 example={"email": {"The email field is required."}}
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    public function register(Request $request){
 
 $request->validate([
     'name' => 'required|string|max:255',

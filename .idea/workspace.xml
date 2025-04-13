@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86aa431-e0f3-4018-83ce-109380ddc291" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BacPlus/app/Http/Controllers/Authantification.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/app/Http/Controllers/Authantification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/resources/views/Pages/Auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/resources/views/Pages/Auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BacPlus/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BacPlus/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,11 @@
       <path value="$PROJECT_DIR$/BacPlus/vendor/lcobucci/clock" />
       <path value="$PROJECT_DIR$/BacPlus/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/BacPlus/vendor/tymon/jwt-auth" />
-      <path value="$PROJECT_DIR$/BacPlus/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/swagger-api/swagger-ui" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/darkaonline/l5-swagger" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/BacPlus/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
