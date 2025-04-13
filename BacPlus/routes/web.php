@@ -12,3 +12,4 @@ Route::get('/register', function () {
     return view('Pages.signup');
 });
 
+Route::Post('/register', [\App\Http\Controllers\Authantification::class, 'register']);

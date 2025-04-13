@@ -25,23 +25,23 @@ class Authantification extends Controller
     }
 
 public function register(Request $request){
-       $requestValid = $request->validate([
+
+
+     $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string',
             'password' => 'required|string|confirmed|min:8',
         ]);
-       return response()->json($requestValid);
-//       if($requestValid){
-//           User::create([
-//               'name' => $requestValid['name'],
-//               'email' => $requestValid['email'],
-//               'password' => Hash::make($requestValid['password']),
-//           ]);
-//           return response()->json(['message' => 'User Created Successfully'],200);
-//       }
-//       else{
-//           return response()->json(['message' => 'User Created Failed'],400);
-//       }
+
+          $user = new User();
+          $user->name = $request['name'];
+          $user->email = $request['email'];
+          $user->password = Hash::make($request['password']);
+          dd($user);
+          return $user->save();
+
+
+
 
 }
     /**
