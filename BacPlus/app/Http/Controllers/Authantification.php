@@ -197,7 +197,7 @@ public function ShowLoginForm(){
         $user = User::where('email' ,$validate['email'])->first();
         if($user){
             if(Hash::check($validate['password'],$user->password)){
-                $tocken = Auth::attempt($user);
+                $tocken = JWTAuth::fromUser($user);
                 return response()->json([
                     'user'=>$user,
                     'tocken' => $tocken,
