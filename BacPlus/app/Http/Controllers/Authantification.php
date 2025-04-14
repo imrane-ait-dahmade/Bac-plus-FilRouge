@@ -213,42 +213,6 @@ public function ShowLoginForm(){
 
 }
 
-    /**
-     * @OA\Post(
-     *     path="/api/Auth/logout",
-     *     summary="Déconnexion d'un utilisateur après vérification du mot de passe",
-     *     tags={"Authentication"},
-     *     security={{"bearerAuth":{}}},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"password"},
-     *             @OA\Property(property="password", type="string", format="password", example="secret123")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Déconnecté avec succès",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Déconnecté avec succès")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Mot de passe incorrect",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Mot de passe incorrect")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Non authentifié",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Unauthenticated")
-     *         )
-     *     )
-     * )
-     */
 
 
 public function logout(request $request){
@@ -259,7 +223,7 @@ public function logout(request $request){
             $password = $request->input('password');
           $user =  \Illuminate\Support\Facades\Auth::user();
           if(Hash::check($password , $user->password)){
-              JWTAuth::invalidate(JWTAuth::getTocken());
+              JWTAuth::invalidate(JWTAuth::getToken());
             return response()->json(['message' => ' deconnecter '],200);
           }
           else{

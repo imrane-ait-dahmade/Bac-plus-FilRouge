@@ -13,7 +13,7 @@ route::prefix('Auth')->group(function(){
         Route::post('/login',[Authantification::class, 'login'])->name('Auth.login');
 
     });
-    Route::middleware(['auth::api'])->group(function () {
+    Route::middleware(['auth:api'])->group(function () {
         Route::get('/logout',[Authantification::class, 'showLogoutForm'])->name('Auth.showLogoutForm');
         Route::post('/logout',[Authantification::class, 'logout'])->name('Auth.logout');
     });
