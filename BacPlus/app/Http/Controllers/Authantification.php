@@ -133,10 +133,63 @@ $user = User::create([
 
 
 }
+    /**
+     * @OA\Get(
+     *     path="/api/Auth/logi",
+     *     operationId="ShowLoginForm",
+     *     tags={"Authentication"},
+     *     summary="Display the user login form",
+     *     description="Returns the login form view for new users.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response. Returns login form.",
+     *         @OA\MediaType(
+     *             mediaType="text/html"
+     *         )
+     *     )
+     * )
+     */
 public function ShowLoginForm(){
         return view('Pages.Auth.login');
 }
-public function login(request $request){
+
+    /**
+     * @OA\Post(
+     *     path="/api/Auth/login",
+     *     summary="Connexion utilisateur",
+     *     description="Permet à un utilisateur de se connecter avec email et mot de passe, et retourne un token JWT.",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email", "password"},
+     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="secret123")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Connexion réussie",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="user", type="object",
+     *                 @OA\Property(property="id", type="integer", example=1),
+     *                 @OA\Property(property="name", type="string", example="John Doe"),
+     *                 @OA\Property(property="email", type="string", example="user@example.com")
+     *             ),
+     *             @OA\Property(property="tocken", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGci...")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Email ou mot de passe incorrect",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="votre mot de passe incorrect")
+     *         )
+     *     )
+     * )
+     */
+
+    public function login(request $request){
      $validate=   $request->validate([
             'email' => 'required|string|email|max:255|exists:users,email',
             'password' => 'required|string|min:6',
