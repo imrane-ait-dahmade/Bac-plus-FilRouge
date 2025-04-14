@@ -137,10 +137,26 @@ public function ShowLoginForm(){
         return view('Pages.Auth.login');
 }
 public function login(request $request){
-        $request->validate([
-            'email' => 'required|string|email|max:255',
+     $validate=   $request->validate([
+            'email' => 'required|string|email|max:255|exists:users,email',
             'password' => 'required|string|min:6',
         ]);
+        $user = User::where('email' ,$validate['email'])->first();
+        if($user){
+            if(Hash::check($validate['password'],$user->password)){
+                $tocken = Auth::attempt($user);
+                return response()->json([
+                    'user'=>$user,
+                    'tocken' => $tocken,
+                ],200);
+            }
+            else{
+                return response()->json(['massage','votre mot de passe incorrect'],422);
+            }
+        }
+        else{
+            return response()->json(['massage','votre mot de passe incorrect'],422);
+            }
 
 }
     /**
