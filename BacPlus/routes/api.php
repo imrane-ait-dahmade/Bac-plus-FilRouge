@@ -11,7 +11,13 @@ route::prefix('Auth')->group(function(){
         Route::post('/CreeUser',[Authantification::class, 'register'])->name('Auth.CreeUser');
         Route::get('/login',[Authantification::class, 'showLoginForm'])->name('Auth.showLoginForm');
         Route::post('/login',[Authantification::class, 'login'])->name('Auth.login');
+
     });
+    Route::middleware(['auth::api'])->group(function () {
+        Route::get('/logout',[Authantification::class, 'showLogoutForm'])->name('Auth.showLogoutForm');
+        Route::post('/logout',[Authantification::class, 'logout'])->name('Auth.logout');
+    });
+
 
 });
 ////route::get('/', function(){
