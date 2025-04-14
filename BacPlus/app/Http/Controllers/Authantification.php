@@ -6,6 +6,10 @@ use App\Models\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Contracts\Providers\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
 
 /**
  * @OA\Info(
@@ -13,9 +17,14 @@ use Illuminate\Support\Facades\Hash;
  *     version="1.0.0",
  *     description="Ce API est pour mon projet de filerouge"
  * )
+ *
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT"
+ * )
  */
-
-
 
 class Authantification extends Controller
 {
@@ -59,6 +68,7 @@ class Authantification extends Controller
      * @OA\Post(
      *     path="/api/Auth/CreeUser",
      *     summary="Register a new user",
+     *     security={{"bearerAuth":{}}},
      *     tags={"Authentication"},
      *     @OA\RequestBody(
      *         required=true,
@@ -73,7 +83,8 @@ class Authantification extends Controller
      *         response=200,
      *         description="User Created Successfully",
      *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="User Created Successfully")
+     *             @OA\Property(property="message", type="string", example="User Created Successfully"),
+     *             @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOi...")
      *         )
      *     ),
      *     @OA\Response(
@@ -100,13 +111,37 @@ $request->validate([
 ]);
 
 
-User::create([
+$user = User::create([
     'name' => $request->input('name'),
     'email' => $request->input('email'),
     'password' => Hash::make($request->input('password')),
 ]);
 
-return \response()->json(['message' => 'User Created Successfully']);
+        try {
+            if (! $token = JWTAuth::fromUser($user)) {
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'token_creation_failed'], 500);
+        }
+
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+        ]);
+
+
+
+}
+public function ShowLoginForm(){
+        return view('Pages.Auth.login');
+}
+public function login(request $request){
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
 }
     /**
      * Display the specified resource.
