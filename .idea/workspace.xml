@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86aa431-e0f3-4018-83ce-109380ddc291" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Bac-plus-FilRouge.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/app/Http/Controllers/Authantification.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/app/Http/Controllers/Authantification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BacPlus/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BacPlus/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BacPlus/resources/views/Pages/Etudiant/Home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/BacPlus/resources/views/Pages/Etudiant/Home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
