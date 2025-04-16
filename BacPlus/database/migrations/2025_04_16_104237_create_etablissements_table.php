@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nomEtablissement');
             $table->string('villeEtablissement');
+            $table->string('DescirptionEtablissement');
             $table->string('adresseEtablissement');
             $table->string('Universite');
             $table->string('resau');
             $table->integer('nombreEtudiant');
-            $table->foreignId('');
+            $table->foreignId('region_id')->constrained();
             $table->enum('TypeEcole',['Public','Private'])->default('Public');
-            $table->foreignId('Region_id')->constrained()->onDelete('cascade');
+            $table->foreignId('region_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();
         });
