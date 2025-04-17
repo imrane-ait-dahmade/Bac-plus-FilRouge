@@ -77,7 +77,7 @@
     </section>
 
     <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-auto">
-        <div class="bg-gray-800 border border-gray-600 rounded-lg max-w-md mx-auto my-24 p-8">
+        <div- class="bg-gray-800 border border-gray-600 rounded-lg max-w-md mx-auto my-24 p-8">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-white">Login</h2>
                 <span class="text-gray-400 text-3xl font-bold cursor-pointer hover:text-white">&times;</span>
@@ -98,6 +98,6 @@
                     Login
                 </button>
             </form>
-        </div>
+        </div->
     </div>
 @endsection
