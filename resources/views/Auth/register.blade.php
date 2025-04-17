@@ -20,7 +20,8 @@
         <!-- Right Side - Form -->
         <div class="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
             <div class="w-full max-w-md">
-                <form  method="Post" action="{{route('Auth.CreeUser')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
+                <form  method="Post" action="{{route('Auth.register')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
+                    @csrf
                     <!-- Full Name Input -->
                     <div class="mb-5">
                         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
