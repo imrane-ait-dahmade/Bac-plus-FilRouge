@@ -21,6 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'statut',
+        'role',
     ];
 
     /**
@@ -45,8 +47,5 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-//    public function getTypeUser(){
-//     return  $this->TypeUser;
-//    }
 
 }

@@ -1,3 +1,4 @@
+
 <nav class="sticky top-0 z-50  backdrop-blur-sm border-b  shadow-lg">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center h-16">
@@ -9,20 +10,19 @@
                 </a>
             </div>
 
+
             <!-- Navigation principale - visible sur desktop -->
             <div class="hidden md:flex items-center space-x-4">
                 <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('home') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
                     Accueil
                 </a>
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('schools') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
+                <a href="{{route('Etablissements')}}" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('schools') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
                     Établissements
                 </a>
                 <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('programs') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
                     Formations
                 </a>
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('applications') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Candidatures
-                </a>
+
             </div>
 
             <!-- Barre de recherche -->
@@ -42,6 +42,7 @@
                     </button>
                 </form>
             </div>
+            @auth
 
             <!-- Actions utilisateur -->
             <div class="flex items-center space-x-3">
@@ -174,12 +175,14 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
-                                    Déconnexion
+                                    <a href="{{route('Deconnexion')}}"> Déconnexion</a>
+
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
+                @endauth
 
                 <!-- Menu hamburger pour mobile -->
                 <button id="mobileMenuBtn" class="md:hidden p-2 rounded-full text-gray-400 hover:text-custom-primary hover:bg-gray-700 transition-colors duration-200">

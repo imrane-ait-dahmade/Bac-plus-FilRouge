@@ -66,6 +66,7 @@
     </style>
 </head>
 <body>
+
 @include('Partials.navbar')
 @yield('content')
 @include('Partials.footer')

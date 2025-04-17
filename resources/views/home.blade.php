@@ -4,7 +4,7 @@
     <section class=" py-16 px-8 text-center rounded-lg mb-8 border-l-4 border-custom-primary">
         <h1 class="text-4xl font-bold text-primary mb-4">Find the Best School for You</h1>
         <p class="text-xl text-light mb-6">Explore our recommendations and make an informed decision.</p>
-        <a href="{{url('Auth/login')}}"><button class="bg-custom-primary hover:bg-custom-dark text-black font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">
+        <a href="{{url('auth/login')}}"><button class="bg-custom-primary hover:bg-custom-dark text-black font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">
             Get Started
         </button></a>
     </section>

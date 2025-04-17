@@ -13,15 +13,14 @@ return  new class  extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('NomUser');
-            $table->string('EmailUser')->unique();
-            $table->string('Password');
-            $table->string('api_token')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->rememberToken();
             $table->boolean('statut')->default(false);  // Utilise un booléen pour activer/désactiver le compte
             $table->timestamps();
             $table->softDeletes();  // Permet la suppression douce
-            $table->enum('TypeUser', ['admin', 'Equipement', 'Etudiant'])->default('Etudiant');
+            $table->enum('role', ['admin', 'etudiant'])->default('etudiant');
         });
     }
 

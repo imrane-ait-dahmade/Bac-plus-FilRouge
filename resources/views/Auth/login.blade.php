@@ -7,7 +7,7 @@
                 <h1 class="text-4xl font-bold text-[#72AE55]" style="font-family: 'Overpass Mono', Serif;">Se Connecter</h1>
                 <p class="text-lg font-medium text-gray-600 text-center" style="font-family: 'Overpass Mono', Serif;">
                     j'ai besoin d'un compte
-                    <a class="text-[#72AE55] hover:text-[#5c9244] transition-colors underline" href="{{url('Auth/register')}}">
+                    <a class="text-[#72AE55] hover:text-[#5c9244] transition-colors underline" href="{{route('register')}}">
                         S'inscrire
                     </a>
                 </p>
@@ -20,7 +20,7 @@
         <!-- Right Side - Form -->
         <div class="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
             <div class="w-full max-w-md">
-                <form method="Post" action="{{route('Auth.login')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
+                <form method="Post" action="{{route('login_post')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
                     @csrf
                     <!-- Email Input -->
                     <div class="mb-6">

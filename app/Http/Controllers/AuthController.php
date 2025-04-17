@@ -16,43 +16,38 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
-        // Validate the input
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $request->session()->regenerate();
-
-
-            $userType = Auth::user()->TypeUser;
-
-
-            if ($userType === 'admin') {
-                return view('Backoffice.Dashboard');
-            } elseif ($userType === 'etudiant') {
-                return view('Frontoffice.ProfilEtudiant');
-            }
-
-
-            return redirect()->intended('/');
+        if (!Auth::attempt($credentials)) {
+            return redirect()->back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
 
+        $user = User::where('email', $request->email)->first();
 
+        Auth::login($user);
+
+        $role = $user->role;
+
+        switch ($role) {
+            case 'etudiant':
+                return to_route('etudiant_dashboard');
+            case 'admin':
+                return to_route('admin_dashboard');
+        }
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'role' => 'The provided credentials do not match our records.',
         ]);
-
     }
-
 
 
     public function showRegistrationForm()
     {
-        return view('Auth.register');
+        return view('auth.register');
     }
 
     public function register(Request $request)
@@ -71,17 +66,13 @@ class AuthController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
-      return view('Auth.login');
+        return to_route('login');
 
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+      Auth::logout();
+return redirect()->route('login');
     }
 }

@@ -11,17 +11,36 @@ class EtablissementController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        return Etablissement::paginate(10);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $cardinale = $request->validate([
+            "nom" => "required",
+            "adresseEtablissement" => "required",
+            "DescriptionEtablissement" => "required",
+            "Universite" => "required",
+            "reseau" => "required",
+            "image" => "required",
+            "nombreEtudiant" => "required",
+            "Region_id" => "required",
+            "TypeEcole" => "required",
+            "Tags" => "required",
+            "Categorie_id" => "required",
+
+        ]);
+
+        $etablissement = new Etablissement();
+        return to_route('etablissements.infos',$etablissement);
+
     }
 
     /**
@@ -37,7 +56,7 @@ class EtablissementController extends Controller
      */
     public function show(Etablissement $etablissement)
     {
-        //
+        return to_route('etablissements.infos',$etablissement);
     }
 
     /**
