@@ -16,18 +16,38 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
+        // Validate the input
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-     if(Auth::attempt($credentials)) {
-         $request->session()->regenerate();
-         return redirect()->intended('/');
-     }
 
-     return back()->withErrors(['email' => 'Email ou mot de passe incorrect.']);
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
+
+
+            $userType = Auth::user()->TypeUser;
+
+
+            if ($userType === 'admin') {
+                return view('Backoffice.Dashboard');
+            } elseif ($userType === 'etudiant') {
+                return view('Frontoffice.ProfilEtudiant');
+            }
+
+
+            return redirect()->intended('/');
+        }
+
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+
     }
+
 
 
     public function showRegistrationForm()
@@ -37,11 +57,13 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
 
         $user = User::create([
             'name' => $validatedData['name'],
@@ -49,9 +71,8 @@ class AuthController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
-        Auth::login($user);
+      return view('Auth.login');
 
-        return redirect()->intended('/');
     }
 
     public function logout(Request $request)

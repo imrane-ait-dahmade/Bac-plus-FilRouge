@@ -45,13 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-    public function getJWTIdentifier()
-    {
-        return $this->getKey(); // généralement l'ID
-    }
+//    public function getTypeUser(){
+//     return  $this->TypeUser;
+//    }
 
-    public function getJWTCustomClaims()
-    {
-        return []; // tu peux ajouter des infos ici si besoin
-    }
 }
