@@ -29,7 +29,7 @@
             </p>
 
             <div class="space-y-4">
-                <a href="{{ route('etablissements.index') }}" class="block w-full py-3 px-4 bg-custom-primary hover:bg-custom-dark text-white rounded-md transition duration-150 ease-in-out">
+                <a href="/" class="block w-full py-3 px-4 bg-custom-primary hover:bg-custom-dark text-white rounded-md transition duration-150 ease-in-out">
                     Retour à la liste des établissements
                 </a>
 
@@ -38,7 +38,7 @@
                         Retour à la page précédente
                     </a>
                     <span class="text-gray-300">|</span>
-                    <a href="{{ url('/') }}" class="text-custom-primary hover:text-custom-dark transition duration-150 ease-in-out">
+                    <a href="" class="text-custom-primary hover:text-custom-dark transition duration-150 ease-in-out">
                         Page d'accueil
                     </a>
                 </div>

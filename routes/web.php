@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissements', function () {
             return view('Backoffice.Etablissements');
         })->name('Etablissements');
-        Route::get('/etablissements/create', [EtablissementController::class, 'create']);
+        Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements', [EtablissementController::class, 'store'])->name('etablissements.store');
     });
 
@@ -51,7 +51,9 @@ Route::prefix('auth')->group(function () {
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 
+//if(Request(401)){
+//    Route::get('/404page', function () {
+//        return view('404');
+//    });
+//}
 
-Route::get('/404page', function () {
-    return view('404Page');
-})->name('404');
