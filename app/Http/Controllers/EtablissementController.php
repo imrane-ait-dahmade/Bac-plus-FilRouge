@@ -16,7 +16,6 @@ class EtablissementController extends Controller
     public function index()
     {
         $etablissements = Etablissement::all();
-//        dd($etablissements);
         return view('Frontoffice.Etablissements', compact('etablissements'));
 
     }

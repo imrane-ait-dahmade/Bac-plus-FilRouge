@@ -39,186 +39,43 @@
         </div>
 
         <!-- Liste des établissements -->
-
-        @foreach($etablissements as $etablissement)
-            <!-- Établissement 1 -->
-            <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                <div class="relative">
-                    <img src="https://placehold.co/600x300/e2e8f0/475569?text={{$etablissement['resau']}}" alt="ENSA" class="w-full h-40 object-cover">
-                    <button class="absolute top-2 right-2 p-2 bg-gray-800/70 rounded-full text-gray-300 hover:text-custom-primary transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium text-white mb-1">{{$etablissement['nomEtablissement']}}</h3>
-                    <p class="text-sm text-gray-300 mb-3">{{$etablissement['DescriptionEtablissement']}}</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex">
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{ $etablissement['Universite'] }}</span>
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{$etablissement['adresseEtablissement']}}</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-custom-primary">{{ $etablissement['TypeEcole'] }}</span>
-                        <a href="#" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-        @endforeach
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Établissement 1 -->
-            <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                <div class="relative">
-                    <img src="https://placehold.co/600x300/e2e8f0/475569?text=ENSA" alt="ENSA" class="w-full h-40 object-cover">
-                    <button class="absolute top-2 right-2 p-2 bg-gray-800/70 rounded-full text-gray-300 hover:text-custom-primary transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium text-white mb-1">ENSA Marrakech</h3>
-                    <p class="text-sm text-gray-300 mb-3">École Nationale des Sciences Appliquées</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex">
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-400 ml-2">4.7 (85 avis)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Ingénierie</span>
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Marrakech</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-custom-primary">Correspondance: 90%</span>
-                        <a href="#" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
-                    </div>
-                </div>
-            </div>
+            @foreach($etablissements as $etablissement)
+                <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+{{--                        @if($etablissement->image && file_exists(public_path($etablissement->image))--}}
 
-            <!-- Établissement 2 -->
-            <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                <div class="relative">
-                    <img src="https://placehold.co/600x300/e2e8f0/475569?text=ENCG" alt="ENCG" class="w-full h-40 object-cover">
-                    <button class="absolute top-2 right-2 p-2 bg-gray-800/70 rounded-full text-gray-300 hover:text-custom-primary transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium text-white mb-1">ENCG Casablanca</h3>
-                    <p class="text-sm text-gray-300 mb-3">École Nationale de Commerce et de Gestion</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex">
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07  personally.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57
+{{--                        @else--}}
+{{--    <img src="{{ asset('images/default.jpg') }}" alt="Image non disponible" />--}}
+{{--@endif      --}}
+                    @if($etablissement['image'] )
+                        <img src="/Images/{{$etablissement['image']}}" alt="{{ $etablissement['nometablissement'] }}" class="w-full h-40 object-cover" />
+                        @else
+                            <img src="https://placehold.co/600x300/e2e8f0/475569?text={{$etablissement['resau']}}" alt="{{ $etablissement['resau'] }}" class="w-full h-40 object-cover">
+                        @endif
 
-                        </svg>
-                        <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        <button class="absolute top-2 right-2 p-2 bg-gray-800/70 rounded-full text-gray-300 hover:text-custom-primary transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
-                        </div>
-                        <span class="text-sm text-gray-400 ml-2">4.8 (120 avis)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Commerce</span>
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Casablanca</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-custom-primary">Correspondance: 88%</span>
-                        <a href="#" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
-                    </div>
-                </div>
-            </div>
+                        </button>
 
-            <!-- Établissement 3 -->
-            <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
-                <div class="relative">
-                    <img src="https://placehold.co/600x300/e2e8f0/475569?text=INPT" alt="INPT" class="w-full h-40 object-cover">
-                    <button class="absolute top-2 right-2 p-2 bg-gray-800/70 rounded-full text-gray-300 hover:text-custom-primary transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="text-lg font-medium text-white mb-1">INPT Rabat</h3>
-                    <p class="text-sm text-gray-300 mb-3">Institut National des Postes et Télécommunications</p>
-                    <div class="flex items-center mb-3">
-                        <div class="flex">
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
-                            <svg class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3 .921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784 .57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81 .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                            </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium text-white mb-1">{{$etablissement['nometablissement']}}</h3>
+                        <p class="text-sm text-gray-300 mb-3">{{$etablissement['descirptionetablissement']}}</p>
+
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{ $etablissement['Universite'] }}</span>
+                            <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{$etablissement['adresseetablissement']}}</span>
                         </div>
-                        <span class="text-sm text-gray-400 ml-2">4.9 (150 avis)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Télécommunications</span>
-                        <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">Rabat</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-custom-primary">Correspondance: 95%</span>
-                        <a href="#" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-custom-primary">{{ $etablissement['typeecole'] }}</span>
+                            <a href="#" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
