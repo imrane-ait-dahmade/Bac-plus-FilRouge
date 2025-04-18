@@ -22,8 +22,6 @@ return new class extends Migration
             $table->integer('nombreEtudiant');
             $table->foreignId('region_id')->constrained();
             $table->enum('TypeEcole',['Public','Private'])->default('Public');
-//            $table->foreignId('region_id')->constrained()->onDelete('cascade');
-
             $table->timestamps();
         });
     }

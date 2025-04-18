@@ -5,6 +5,7 @@ use illuminate\http\Request;
 use Illuminate\Support\Facades\Route;
 use http\Env\Response;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleAuthController;
 
 
 Route::get('/', function () {
@@ -23,14 +24,12 @@ Route::middleware('auth')->group(function () {
             return view('Frontoffice.home');
         })->name('etudiant_dashboard');
 
-        Route::get('/etablissements', function () {
-            return view('Frontoffice.Etablissements');
-        });
+        Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
     });
 });
 
 
-});
+
 
 
 Route::prefix('auth')->group(function () {
@@ -44,4 +43,6 @@ Route::prefix('auth')->group(function () {
 
 });
 
+Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 

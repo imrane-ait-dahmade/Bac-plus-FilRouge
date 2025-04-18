@@ -104,7 +104,7 @@
                         <a href="" class="flex items-center justify-center w-12 h-12 rounded-full bg-[#1877F2] text-white shadow-md hover:shadow-lg transition-all duration-300">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="" class="flex items-center justify-center w-12 h-12 rounded-full bg-white text-[#EA4335] shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300">
+                        <a href="/google/redirect" class="flex items-center justify-center w-12 h-12 rounded-full bg-white text-[#EA4335] shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300">
                             <i class="fab fa-google text-lg"></i>
                         </a>
                     </div>
