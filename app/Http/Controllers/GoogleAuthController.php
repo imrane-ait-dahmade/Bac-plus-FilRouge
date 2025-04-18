@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RoleMiddleware;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,25 +32,30 @@ class GoogleAuthController extends Controller
         }
 
         // Check if the user already exists in the database
-        $existingUser = User::where('email', $user->email)->first();
+        $user = User::where('email', $user->email)->first();
 
-        if ($existingUser) {
+        if ($user) {
             // Log the user in if they already exist
-            Auth::login($existingUser);
+            Auth::login($user);
         } else {
             // Otherwise, create a new user and log them in
-            $newUser = User::updateOrCreate([
-                'email' => $user->email
-            ], [
+            $user = User::create([
                 'name' => $user->name,
                 'password' => bcrypt(Str::random(16)), // Set a random password
                 'email_verified_at' => now()
             ]);
-            Auth::login($newUser);
+            Auth::login($user);
         }
 
         // Redirect the user to the dashboard or any other secure page
-        return redirect('/home');
+
+        switch ($user->role) {
+            case 'admin':
+                return to_route('admin_dashboard');
+                case 'etudiant':
+                    return to_route('etudiant_dashboard');
+
+        }
     }
 
 }

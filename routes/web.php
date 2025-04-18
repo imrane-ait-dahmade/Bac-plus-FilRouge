@@ -17,9 +17,10 @@ Route::middleware('auth')->group(function () {
         Route::get('admin', function () {
             return view('Backoffice.Dashboard');
         })->name('admin_dashboard');
-        Route::get('/etablissementsCrud', function () {
+        Route::get('/etablissements', function () {
             return view('Backoffice.Etablissements');
-        });
+        })->name('Etablissements');
+        Route::get('/etablissements/create', [EtablissementController::class, 'create']);
     });
 
     Route::middleware('role:etudiant')->group(function () {
@@ -43,7 +44,6 @@ Route::prefix('auth')->group(function () {
         Route::post('/register', [AuthController::class, 'register'])->name('register_post');
     });
     Route::get('/logout', [AuthController::class, 'logout'])->name('Deconnexion');
-
 });
 
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
