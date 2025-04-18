@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etablissement;
 use App\Http\Requests\StoreEtablissementRequest;
 use App\Http\Requests\UpdateEtablissementRequest;
+use Termwind\Components\Dd;
 
 class EtablissementController extends Controller
 {
@@ -14,42 +15,30 @@ class EtablissementController extends Controller
 
     public function index()
     {
-        return Etablissement::paginate(10);
-    }
+        $etablissements = Etablissement::all();
+        return view('etablissements.index', compact('etablissements'));
 
+    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $cardinale = $request->validate([
-            "nom" => "required",
-            "adresseEtablissement" => "required",
-            "DescriptionEtablissement" => "required",
-            "Universite" => "required",
-            "reseau" => "required",
-            "image" => "required",
-            "nombreEtudiant" => "required",
-            "Region_id" => "required",
-            "TypeEcole" => "required",
-            "Tags" => "required",
-            "Categorie_id" => "required",
-
-        ]);
-
-        $etablissement = new Etablissement();
-        return to_route('etablissements.infos',$etablissement);
-
+        return view('etablissements.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreEtablissementRequest $request)
     {
-        //
+        $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+        $etablissement = Etablissement::create($data);
+        return to_route('etablissements.infos', $etablissement);
     }
+
+
 
     /**
      * Display the specified resource.

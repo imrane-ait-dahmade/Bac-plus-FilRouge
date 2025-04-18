@@ -11,12 +11,24 @@ Route::get('/', function () {
     return view('home');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('admin',function(){
-        return view('Backoffice.Dashboard');
-    })->middleware('role:admin')->name('admin_dashboard');
-    Route::get('etudiant',function(){
-        return view('Frontoffice.home');
-    })->middleware('role:etudiant')->name('etudiant_dashboard');
+
+    Route::middleware('role:admin')->group(function () {
+        Route::get('admin', function () {
+            return view('Backoffice.Dashboard');
+        })->name('admin_dashboard');
+    });
+
+    Route::middleware('role:etudiant')->group(function () {
+        Route::get('etudiant', function () {
+            return view('Frontoffice.home');
+        })->name('etudiant_dashboard');
+
+        Route::get('/etablissements', function () {
+            return view('Frontoffice.Etablissements');
+        });
+    });
+});
+
 
 });
 
@@ -31,7 +43,5 @@ Route::prefix('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('Deconnexion');
 
 });
-Route::middleware('auth')->group(function () {
-    Route::get('/Etablissements',[EtablissementController::class,'index'])->name('Etablissements');
-});
+
 
