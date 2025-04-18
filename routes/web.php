@@ -27,10 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:etudiant')->group(function () {
         Route::get('etudiant', function () {
             return view('Frontoffice.home');
-        })->name('etudiant_dashboard');
 
+        })->name('etudiant_dashboard');
         Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
-        Route::get('/etablissements',[EtablissementController::class , 'show'])->name('etablissement.show');
+        Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.show');
     });
 });
 

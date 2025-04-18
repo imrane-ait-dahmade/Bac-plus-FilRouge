@@ -53,18 +53,20 @@ class EtablissementController extends Controller
      * Display the specified resource.
      */
 
-    public function FindEcole(request $request){
-        $etablissement = Etablissement::with('region')->find($request->id);
-        if($etablissement){
-         $this->show($etablissement);
-        }
-        else{
-            return to_route('404');
-        }
-
-    }
+//    public function FindEcole(request $request){
+//        $etablissement = Etablissement::with('region')->find($request->id);
+//        if($etablissement){
+//            dd($etablissement);
+//         $this->show($etablissement);
+//        }
+//        else{
+//            return to_route('404');
+//        }
+//
+//    }
     public function show(Etablissement $etablissement)
     {
+
 
         return view('Frontoffice.EtablissementInfos', compact('etablissement'));
     }
