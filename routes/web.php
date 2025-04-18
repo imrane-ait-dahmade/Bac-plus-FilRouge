@@ -17,6 +17,9 @@ Route::middleware('auth')->group(function () {
         Route::get('admin', function () {
             return view('Backoffice.Dashboard');
         })->name('admin_dashboard');
+        Route::get('/etablissementsCrud', function () {
+            return view('Backoffice.Etablissements');
+        });
     });
 
     Route::middleware('role:etudiant')->group(function () {

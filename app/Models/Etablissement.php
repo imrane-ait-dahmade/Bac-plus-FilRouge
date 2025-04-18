@@ -9,4 +9,8 @@ class Etablissement extends Model
 {
     /** @use HasFactory<\Database\Factories\EtablissementFactory> */
     use HasFactory;
+
+    public function region(){
+        return $this->belongsTo(Region::class , 'region_id');
+    }
 }

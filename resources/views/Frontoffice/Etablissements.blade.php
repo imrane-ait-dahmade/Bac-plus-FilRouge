@@ -43,13 +43,8 @@
             @foreach($etablissements as $etablissement)
                 <div class="bg-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                     <div class="relative">
-{{--                        @if($etablissement->image && file_exists(public_path($etablissement->image))--}}
-
-{{--                        @else--}}
-{{--    <img src="{{ asset('images/default.jpg') }}" alt="Image non disponible" />--}}
-{{--@endif      --}}
                     @if($etablissement['image'] )
-                        <img src="/Images/{{$etablissement['image']}}" alt="{{ $etablissement['nometablissement'] }}" class="w-full h-40 object-cover" />
+                        <img src="/Images/PhotoEcoles/{{$etablissement['image']}}" alt="{{ $etablissement['nometablissement'] }}" class="w-full h-40 object-cover" />
                         @else
                             <img src="https://placehold.co/600x300/e2e8f0/475569?text={{$etablissement['resau']}}" alt="{{ $etablissement['resau'] }}" class="w-full h-40 object-cover">
                         @endif
@@ -67,6 +62,8 @@
 
                         <div class="flex flex-wrap gap-2 mb-3">
                             <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{ $etablissement['Universite'] }}</span>
+                            <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded"> {{ $etablissement->region->nom_region ?? 'Non défini' }}</span>
+
                             <span class="px-2 py-1 bg-gray-600 text-xs text-gray-300 rounded">{{$etablissement['adresseetablissement']}}</span>
                         </div>
                         <div class="flex justify-between items-center">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etablissement;
 use App\Http\Requests\StoreEtablissementRequest;
 use App\Http\Requests\UpdateEtablissementRequest;
+use App\Models\Region;
 use Termwind\Components\Dd;
 
 class EtablissementController extends Controller
@@ -15,7 +16,7 @@ class EtablissementController extends Controller
 
     public function index()
     {
-        $etablissements = Etablissement::all();
+        $etablissements = Etablissement::with('region')->get();
         return view('Frontoffice.Etablissements', compact('etablissements'));
 
     }
