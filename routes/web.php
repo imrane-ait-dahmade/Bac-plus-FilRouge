@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
         })->name('etudiant_dashboard');
 
         Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
+        Route::get('/etablissements',[EtablissementController::class , 'show'])->name('etablissement.show');
     });
 });
 
@@ -50,3 +51,7 @@ Route::prefix('auth')->group(function () {
 Route::get('/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
 Route::get('/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 
+
+Route::get('/404page', function () {
+    return view('404Page');
+})->name('404');

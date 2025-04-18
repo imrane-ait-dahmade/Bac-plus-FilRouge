@@ -33,7 +33,13 @@ class EtablissementController extends Controller
 
     public function store(StoreEtablissementRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+    'nomEtablissement' => 'required',
+            'region_id' => 'required',
+            'villeEtablissement' => 'required',
+            'adresseEtablissement' => 'required',
+            'TypeEcole' => 'required',
+        ]);
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');
         }
@@ -46,9 +52,21 @@ class EtablissementController extends Controller
     /**
      * Display the specified resource.
      */
+
+    public function FindEcole(request $request){
+        $etablissement = Etablissement::with('region')->find($request->id);
+        if($etablissement){
+         $this->show($etablissement);
+        }
+        else{
+            return to_route('404');
+        }
+
+    }
     public function show(Etablissement $etablissement)
     {
-        return to_route('etablissements.infos',$etablissement);
+
+        return view('Frontoffice.EtablissementInfos', compact('etablissement'));
     }
 
     /**
