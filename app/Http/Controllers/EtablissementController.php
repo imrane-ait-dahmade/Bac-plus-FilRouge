@@ -26,7 +26,9 @@ class EtablissementController extends Controller
      */
     public function create()
     {
-        return view('etablissements.create');
+        $regions = Region::all();
+//        dd($regions->toArray());
+        return view('Backoffice.Etablissement.Ajoute', compact('regions'));
     }
 
     public function store(StoreEtablissementRequest $request)

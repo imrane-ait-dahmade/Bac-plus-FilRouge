@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
             return view('Backoffice.Etablissements');
         })->name('Etablissements');
         Route::get('/etablissements/create', [EtablissementController::class, 'create']);
+        Route::post('/etablissements', [EtablissementController::class, 'store'])->name('etablissements.store');
     });
 
     Route::middleware('role:etudiant')->group(function () {
