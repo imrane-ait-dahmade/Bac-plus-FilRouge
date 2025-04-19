@@ -21,6 +21,15 @@
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div>
+                                    <label for="domaine" class="block text-sm font-medium text-gray-700">Domaine</label>
+                                    <input type="text" name="domaine" id="domaine"
+                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                           placeholder="Ex: Sciences, Ingénierie, Commerce, etc." value="{{ old('domaine') }}">
+                                    @error('domaine')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
@@ -61,14 +70,20 @@
                                 </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+{{--                                    <div>--}}
+{{--                                        <label for="Universite" class="block text-sm font-medium text-gray-700">Université</label>--}}
+{{--                                        <input type="text" name="Universite" id="Universite"--}}
+{{--                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"--}}
+{{--                                               placeholder="Entrez l'université" value="{{ old('Universite') }}">--}}
+{{--                                        @error('Universite')--}}
+{{--                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
                                     <div>
                                         <label for="Universite" class="block text-sm font-medium text-gray-700">Université</label>
-                                        <input type="text" name="Universite" id="Universite"
-                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                               placeholder="Entrez l'université" value="{{ old('Universite') }}">
-                                        @error('Universite')
-                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                        @enderror
+                                 <select name="Univrsite" id="Universite_id"  >
+
+                                 </select>
                                     </div>
 
                                     <div>
