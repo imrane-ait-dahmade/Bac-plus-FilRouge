@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Universite;
 use App\Models\Etablissement;
 use App\Http\Requests\StoreEtablissementRequest;
 use App\Http\Requests\UpdateEtablissementRequest;
@@ -27,8 +28,11 @@ class EtablissementController extends Controller
     public function create()
     {
         $regions = Region::all();
+
+        $universites = Universite::cases();
+//        dd($universites);
 //        dd($regions->toArray());
-        return view('Backoffice.Etablissement.Ajoute', compact('regions'));
+        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites'));
     }
 
     public function store(StoreEtablissementRequest $request)

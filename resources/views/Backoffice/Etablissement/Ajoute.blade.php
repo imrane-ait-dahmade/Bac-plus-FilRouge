@@ -81,7 +81,13 @@
 {{--                                    </div>--}}
                                     <div>
                                         <label for="Universite" class="block text-sm font-medium text-gray-700">Université</label>
-                                 <select name="Univrsite" id="Universite_id"  >
+                                        <select name="Unversite" id="Universite"
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50">
+                                            <option value="">Sélectionnez Universite</option>
+                                            @foreach($universites as $universite)
+                                         <option value="{{$universite->name}}">{{$universite->value}}</option>
+
+                                     @endforeach
 
                                  </select>
                                     </div>

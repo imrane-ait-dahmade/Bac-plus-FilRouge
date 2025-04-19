@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EtablissementController;
+use App\Http\Controllers\UniversiteController;
 use illuminate\http\Request;
 use Illuminate\Support\Facades\Route;
 use http\Env\Response;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
         })->name('Etablissements');
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements', [EtablissementController::class, 'store'])->name('etablissements.store');
+//        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
     });
 
     Route::middleware('role:etudiant')->group(function () {
@@ -33,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.show');
     });
 });
+
 
 
 
