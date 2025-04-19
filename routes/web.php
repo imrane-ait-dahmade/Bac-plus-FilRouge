@@ -22,7 +22,8 @@ Route::middleware('auth')->group(function () {
             return view('Backoffice.Etablissements');
         })->name('Etablissements');
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
-        Route::post('/etablissements', [EtablissementController::class, 'store'])->name('etablissements.store');
+        Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
+        Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.infos');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
     });
 

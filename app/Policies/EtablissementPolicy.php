@@ -27,8 +27,11 @@ class EtablissementPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user ): bool
     {
+        if($user->getRole() === 'admin'){
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +40,7 @@ class EtablissementPolicy
      */
     public function update(User $user, Etablissement $etablissement): bool
     {
+
         return false;
     }
 

@@ -11,6 +11,9 @@ class UpdateEtablissementRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if($user->getRole() === 'admin'){
+            return true;
+        }
         return false;
     }
 

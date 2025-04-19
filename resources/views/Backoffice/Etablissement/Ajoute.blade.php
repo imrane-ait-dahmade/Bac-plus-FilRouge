@@ -14,10 +14,10 @@
                             <div class="space-y-6">
                                 <div>
                                     <label for="nomEtablissement" class="block text-sm font-medium text-gray-700">Nom de l'Établissement</label>
-                                    <input type="text" name="nomEtablissement" id="nomEtablissement"
+                                    <input type="text" name="nometablissement" id="nomEtablissement"
                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                           placeholder="Entrez le nom de l'établissement" value="{{ old('nomEtablissement') }}">
-                                    @error('nomEtablissement')
+                                           placeholder="Entrez le nom de l'établissement" value="{{ old('nometablissement') }}">
+                                    @error('nometablissement')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -249,7 +249,7 @@
 
                     <div class="mt-6">
                         <label for="DescirptionEtablissement" class="block text-sm font-medium text-gray-700">Description de l'Établissement</label>
-                        <textarea name="DescirptionEtablissement" id="DescirptionEtablissement" rows="4"
+                        <textarea name="descirptionetablissement" id="descirptionetablissement" rows="4"
                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
                                   placeholder="Décrivez l'établissement...">{{ old('DescirptionEtablissement') }}</textarea>
                         @error('DescirptionEtablissement')
