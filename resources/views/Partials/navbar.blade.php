@@ -9,7 +9,7 @@
 
                 </a>
             </div>
-
+@if(Auth()->user()?->role === 'etudiant')
 
             <!-- Navigation principale - visible sur desktop -->
             <div class="hidden md:flex items-center space-x-4">
@@ -24,6 +24,7 @@
                 </a>
 
             </div>
+            @endif
 
             <!-- Barre de recherche -->
             <div class="hidden md:block flex-1 max-w-xl mx-4">
@@ -230,6 +231,45 @@
         </div>
     </div>
 </nav>
+{{--@if(auth()->user()?->role === 'admin')--}}
+{{--    <div class="flex h-screen">--}}
+{{--        <!-- Sidebar -->--}}
+{{--        <nav class="w-1/4 max-w-xs bg-gray-800 border-r border-gray-700 p-4 space-y-2">--}}
+{{--            <div class="mb-6">--}}
+{{--                <a href="/home" class="text-white text-xl font-bold">--}}
+{{--                    MonApp--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <a href="/home"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('home') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Accueil--}}
+{{--            </a>--}}
+
+{{--            <a href="/schools"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('schools') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Établissements--}}
+{{--            </a>--}}
+
+{{--            <a href="/programs"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Formations--}}
+{{--            </a>--}}
+
+{{--            <a href="/applications"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('applications') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Candidatures--}}
+{{--            </a>--}}
+{{--        </nav>--}}
+
+{{--        <!-- Main Content -->--}}
+{{--        <main class="w-3/4 p-6 overflow-y-auto">--}}
+{{--            @yield('content')--}}
+{{--        </main>--}}
+{{--    </div>--}}
+{{--@endif--}}
+
+
 
 <script>
     // Gestion des dropdowns et menus mobiles

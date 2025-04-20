@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
         Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
-//        Route::get('/etablissements/{etablissement}', [EtablissementController::class, 'update'])->name('etablissement.update');
+        Route::get('/etablissements/{etablissement}', [EtablissementController::class, 'update'])->name('etablissement.update');
 //        Route::put('/etablissements/{etablissement->id}', [EtablissementController::class, 'update'])->name('etablissement.update');
     });
 

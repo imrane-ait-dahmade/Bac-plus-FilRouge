@@ -50,7 +50,7 @@ class EtablissementController extends Controller
             'fax' => 'nullable|string',
             'siteWeb' => 'nullable|url',
             'siteInscription' => 'nullable|url',
-            'Unversite' => 'nullable|string',
+            'universite' => 'nullable|string',
             'resau' => 'nullable|string',
             'email' => 'nullable|email',
             'nombreEtudiant' => 'nullable|integer',
@@ -70,7 +70,7 @@ class EtablissementController extends Controller
             $logo = $request->file('logo');
 
             $logoName = $logo->getClientOriginalName();
-
+            $logoName = time() . '_' . $logo->getClientOriginalName();
             $logo->move(public_path('Images/LogoEcoles'), $logoName);
         }
         if ($request->hasFile('image')) {
@@ -78,7 +78,7 @@ class EtablissementController extends Controller
                 $image = $request->file('image');
 
                  $imageName = $image->getClientOriginalName();
-
+            $imageName = time() . '_' . $image->getClientOriginalName();
                  $image->move(public_path('/Images/PhotoEcoles'), $imageName);
         }
 
