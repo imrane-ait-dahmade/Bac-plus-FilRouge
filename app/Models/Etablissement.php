@@ -36,4 +36,9 @@ class Etablissement extends Model
     public function region(){
         return $this->belongsTo(Region::class , 'region_id');
     }
+//    public function getRouteKeyName()
+//    {
+//        return 'slug'; // <- Si tu as ça, Laravel va chercher par 'slug' au lieu de 'id'
+//    }
+
 }

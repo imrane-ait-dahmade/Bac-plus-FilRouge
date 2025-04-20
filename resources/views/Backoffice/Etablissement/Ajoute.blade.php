@@ -194,7 +194,7 @@
                                 </div>
                                 <label for="photo" class="cursor-pointer text-center text-sm text-custom-primary block">
                                     Ajouter Photo
-                                    <input id="photo" name="photo" type="file" accept="image/*" class="hidden">
+                                    <input id="photo" name="image" type="file" accept="image/*" class="hidden">
                                 </label>
                                 @error('photo')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

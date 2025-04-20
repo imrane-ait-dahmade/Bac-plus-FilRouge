@@ -7,6 +7,7 @@ use App\Models\Etablissement;
 
 use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Region;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Termwind\Components\Dd;
@@ -20,6 +21,7 @@ class EtablissementController extends Controller
     public function index()
     {
         $etablissements = Etablissement::with('region')->get();
+
         return view('Frontoffice.Etablissements', compact('etablissements'));
     }
 
@@ -57,7 +59,7 @@ class EtablissementController extends Controller
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -95,14 +97,15 @@ class EtablissementController extends Controller
             'email' => $request->email,
             'nombreetudiant' => $request->nombreEtudiant,
             'Typeecole' => $request->TypeEcole,
-            'descirptionetablissement' => $request->DescirptionEtablissement,
+            'descirptionetablissement' => $request->descirptionetablissement,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
             'linkedin' => $request->linkedin,
             'photo' => $imageName,
             'logo' => $logoName,
         ]);
-               return to_route('etablissements.infos', $etablissement);
+
+               return to_route('etablisement_infos', $etablissement);
     }
 
 
@@ -111,30 +114,30 @@ class EtablissementController extends Controller
      * Display the specified resource.
      */
 
-    //    public function FindEcole(request $request){
-    //        $etablissement = Etablissement::with('region')->find($request->id);
-    //        if($etablissement){
-    //            dd($etablissement);
-    //         $this->show($etablissement);
-    //        }
-    //        else{
-    //            return to_route('404');
-    //        }
-    //
-    //    }
-    public function show(Etablissement $etablissement)
+
+    public function show($id)
     {
+        // Récupérer l'établissement avec l'ID
+        $etablissement = Etablissement::find($id);
 
+        // Vérifier si l'établissement existe
+        if (!$etablissement) {
+            // Gérer le cas où l'établissement n'est pas trouvé (par exemple, afficher une erreur)
+           to_route('404') ;
+        }
 
-        return view('Frontoffice.EtablissementInfos', compact('etablissement'));
+        // Si l'établissement existe, afficher les infos
+        return view('Backoffice.Etablissement.Infos', compact('etablissement'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Etablissement $etablissement)
     {
-        //
+  return view('Frontoffice.Etablissement.Modifier', compact('etablissement'));
     }
 
     /**
@@ -142,7 +145,7 @@ class EtablissementController extends Controller
      */
     public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
     {
-        //
+
     }
 
     /**

@@ -40,7 +40,9 @@ class EtablissementPolicy
      */
     public function update(User $user, Etablissement $etablissement): bool
     {
-
+        if($user->getRole() === 'admin'){
+            return true;
+        }
         return false;
     }
 
