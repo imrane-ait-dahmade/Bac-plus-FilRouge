@@ -26,14 +26,17 @@
             <a href="{{ route('filiere.edit' ,$filiere->id) }}" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                 Edit
             </a>
+            <form  action="{{ route('filiere.delete',$filiere->id) }}" method="Post" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                @csrf
+                @method('DELETE')
+                <button> Suprimer</button>
 
+            </form>
         </div>
     </div>
 @endsection
 
-{{--            <a href="{{ route('filiere.suprimer') }}" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">--}}
-{{--                Suprimer--}}
-{{--            </a>--}}
+{{--
 {{--            <button id="BtnForm">--}}
 {{--    hello click--}}
 {{--            </button>--}}

@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
         Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
         Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
+        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.delete');
 
     });
 

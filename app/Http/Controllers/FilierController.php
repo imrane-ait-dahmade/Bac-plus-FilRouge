@@ -36,4 +36,9 @@ class FilierController extends Controller
      return to_route('filieres');
 
    }
+   public function destroy($id){
+       $filiere = Filiere::find($id);
+       $filiere->delete();
+       return to_route('filieres');
+   }
 }
