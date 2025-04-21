@@ -135,16 +135,51 @@ class EtablissementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-//    public function edit(Etablissement $etablissement)
-//    {
-//  return view('Frontoffice.Etablissement.Modifier', compact('etablissement'));
-//    }
+    public function edit($id)
+    {
+       $etablissement = Etablissement::find($id);
+       $region = $etablissement->region;
+       $regions = Region::all();
+       $universites = Universite::cases();
+  return view('Backoffice.Etablissement.Modifier', compact('etablissement', 'regions','region', 'universites'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($id)
+    public function update($id ,request $request)
     {
+
+     $valideData =  $request->validate([
+            'nometablissement' => 'required|string|max:255',
+            'villeEtablissement' => 'nullable|string',
+            'region_id' => 'nullable|exists:regions,id',
+            'adresseEtablissement' => 'nullable|string',
+            'telephone' => 'nullable|string',
+            'fax' => 'nullable|string',
+            'siteWeb' => 'nullable|url',
+            'siteInscription' => 'nullable|url',
+            'universite' => 'nullable|string',
+            'resau' => 'nullable|string',
+            'email' => 'nullable|email',
+            'nombreEtudiant' => 'nullable|integer',
+            'TypeEcole' => 'nullable|string',
+            'descirptionetablissement' => 'nullable|string',
+            'facebook' => 'nullable|url',
+            'instagram' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+     dd($valideData);
+$etablissement = Etablissement::find($id);
+
+
+        $etablissement->Update([$valideData]);
+
+        $modifs = $etablissement->getChanges();
+        dd($modifs);
 
     }
 

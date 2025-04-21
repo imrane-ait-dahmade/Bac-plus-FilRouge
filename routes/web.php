@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
         Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
-//        Route::get('/etablissements/{etablisement}', [EtablissementController::class, 'update'])->name('etablissement.update');
-//        Route::put('/etablissements/{etablissement->id}', [EtablissementController::class, 'update'])->name('etablissement.update');
+        Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
+        Route::put('/etablissementsUpdate/{etablissement}', [EtablissementController::class, 'update'])->name('etablissement.update');
     });
 
 

@@ -1,152 +1,195 @@
-@extends('layouts.app')
+@extends('Layouts.App')
+ @section('content')
 
-@section('content')
-    <div class="max-w-4xl mx-auto p-6">
-        <div class="bg-white shadow-sm rounded-lg">
-            <div class="p-6">
-                <h2 class="text-xl font-semibold mb-6">Modifier l'Établissement</h2>
 
-                <form action="{{ route('etablissements.update', $etablissement->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="md:col-span-2">
-                            <div class="space-y-6">
-                                <div>
-                                    <label for="nomEtablissement">Nom de l'Établissement</label>
-                                    <input type="text" name="nometablissement" id="nomEtablissement" value="{{ old('nometablissement') ?? $etablissement->nometablissement }}" class="input">
-                                </div>
-
-                                <div>
-                                    <label for="domaine">Domaine</label>
-                                    <input type="text" name="domaine" id="domaine" value="{{ old('domaine') ?? $etablissement->domaine }}" class="input">
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="villeEtablissement">Ville</label>
-                                        <input type="text" name="villeEtablissement" id="villeEtablissement" value="{{ old('villeEtablissement') ?? $etablissement->villeEtablissement }}" class="input">
-                                    </div>
-                                    <div>
-                                        <label for="region_id">Région</label>
-                                        <select name="region_id" id="region_id" class="input">
-                                            @foreach($regions as $region)
-                                                <option value="{{ $region->id }}" {{ (old('region_id') ?? $etablissement->region_id) == $region->id ? 'selected' : '' }}>
-                                                    {{ $region->nom_region }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label for="adresseEtablissement">Adresse</label>
-                                    <input type="text" name="adresseEtablissement" id="adresseEtablissement" value="{{ old('adresseEtablissement') ?? $etablissement->adresseEtablissement }}" class="input">
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="telephone">Téléphone</label>
-                                        <input type="tel" name="telephone" id="telephone" value="{{ old('telephone') ?? $etablissement->telephone }}" class="input">
-                                    </div>
-                                    <div>
-                                        <label for="fax">Fax</label>
-                                        <input type="tel" name="fax" id="fax" value="{{ old('fax') ?? $etablissement->fax }}" class="input">
-                                    </div>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="siteWeb">Site Web</label>
-                                        <input type="url" name="siteWeb" id="siteWeb" value="{{ old('siteWeb') ?? $etablissement->siteWeb }}" class="input">
-                                    </div>
-                                    <div>
-                                        <label for="siteInscription">Site d'Inscription</label>
-                                        <input type="url" name="siteInscription" id="siteInscription" value="{{ old('siteInscription') ?? $etablissement->siteInscription }}" class="input">
-                                    </div>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="Universite">Université</label>
-                                        <select name="Unversite" id="Universite" class="input">
-                                            @foreach($universites as $universite)
-                                                <option value="{{ $universite->name }}" {{ (old('Unversite') ?? $etablissement->Unversite) == $universite->name ? 'selected' : '' }}>
-                                                    {{ $universite->value }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label for="resau">Réseau</label>
-                                        <input type="text" name="resau" id="resau" value="{{ old('resau') ?? $etablissement->resau }}" class="input">
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" value="{{ old('email') ?? $etablissement->email }}" class="input">
-                                </div>
-
-                                <div>
-                                    <label for="nombreEtudiant">Nombre d'Étudiants</label>
-                                    <input type="number" name="nombreEtudiant" id="nombreEtudiant" value="{{ old('nombreEtudiant') ?? $etablissement->nombreEtudiant }}" class="input">
-                                </div>
-
-                                <div>
-                                    <label>Type d'École</label>
-                                    <div class="flex gap-4">
-                                        <label><input type="radio" name="TypeEcole" value="Public" {{ (old('TypeEcole') ?? $etablissement->TypeEcole) == 'Public' ? 'checked' : '' }}> Public</label>
-                                        <label><input type="radio" name="TypeEcole" value="Private" {{ (old('TypeEcole') ?? $etablissement->TypeEcole) == 'Private' ? 'checked' : '' }}> Privé</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col items-center space-y-6">
-                            <!-- Photo preview -->
-                            <div>
-                                <label>Photo de l'établissement</label>
-                                <div class="preview-img">
-                                    <img src="{{ asset('storage/photos/' . $etablissement->photo) }}" class="object-cover w-32 h-32 rounded-full">
-                                </div>
-                                <input type="file" name="photo" class="mt-2">
-                            </div>
-
-                            <!-- Logo preview -->
-                            <div>
-                                <label>Logo de l'établissement</label>
-                                <div class="preview-img">
-                                    <img src="{{ asset('storage/logos/' . $etablissement->logo) }}" class="object-contain w-32 h-32">
-                                </div>
-                                <input type="file" name="logo" class="mt-2">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <label for="facebook">Facebook</label>
-                        <input type="url" name="facebook" id="facebook" value="{{ old('facebook') ?? $etablissement->facebook }}" class="input">
-
-                        <label for="instagram">Instagram</label>
-                        <input type="url" name="instagram" id="instagram" value="{{ old('instagram') ?? $etablissement->instagram }}" class="input">
-
-                        <label for="linkedin">LinkedIn</label>
-                        <input type="url" name="linkedin" id="linkedin" value="{{ old('linkedin') ?? $etablissement->linkedin }}" class="input">
-                    </div>
-
-                    <div class="mt-6">
-                        <label for="descirptionetablissement">Description</label>
-                        <textarea name="descirptionetablissement" id="descirptionetablissement" rows="4" class="input">{{ old('descirptionetablissement') ?? $etablissement->descirptionetablissement }}</textarea>
-                    </div>
-
-                    <div class="mt-8 text-center">
-                        <button type="submit" class="btn-primary">Mettre à jour</button>
-                    </div>
-                </form>
-            </div>
+<form id="FormEdit" action="{{ route('etablissement.update', $etablissement->id) }}" method="post" enctype="multipart/form-data" class="my-8 bg-white p-8 rounded-xl shadow-xl w-full max-w-4xl">
+    @csrf
+    @method('PUT')
+    <div class="flex items-center mb-6">
+        <img src="{{ $etablissement->logo ?? 'https://via.placeholder.com/50' }}" alt="Logo" class="mr-4 w-12 h-12 object-cover">
+        <h2 class="text-2xl font-bold text-gray-800">Modifier les Informations de l'Établissement</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="InputsIdDiv">
+        <div>
+            <label for="nometablissement" class="block text-sm font-medium text-gray-700">Nom de l'Établissement</label>
+            <input id="nometablissement" name="nometablissement" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('nometablissement', $etablissement->nometablissement) }}">
+            @error('nometablissement')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="villeetablissement" class="block text-sm font-medium text-gray-700">Ville</label>
+            <input id="villeetablissement" name="villeetablissement" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('villeetablissement', $etablissement->villeetablissement) }}">
+            @error('villeetablissement')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="descirptionetablissement" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea id="descirptionetablissement" name="descirptionetablissement" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('descirptionetablissement', $etablissement->descirptionetablissement) }}</textarea>
+            @error('descirptionetablissement')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="adresseetablissement" class="block text-sm font-medium text-gray-700">Adresse</label>
+            <input id="adresseetablissement" name="adresseetablissement" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('adresseetablissement', $etablissement->adresseetablissement) }}">
+            @error('adresseetablissement')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="universite_id" class="block text-sm font-medium text-gray-700">Université</label>
+            <select id="universite_id" name="universite_id" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+{{--                @foreach($universites as $universite)--}}
+{{--                    <option value="{{ $universite->id }}" {{ old('universite_id', $etablissement->universite_id) == $universite->id ? 'selected' : '' }}>--}}
+{{--                        {{ $universite->nom_universite ?? $universite->name }}--}}
+{{--                    </option>--}}
+{{--                @endforeach--}}
+            </select>
+            @error('universite_id')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- New Fields Before resau -->
+        <div>
+            <label for="email_contact" class="block text-sm font-medium text-gray-700">Email de Contact</label>
+            <input id="email_contact" type="email" name="email_contact" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('email_contact', $etablissement->email_contact ?? 'contact@exemple.com') }}">
+            @error('email_contact')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="annee_fondation" class="block text-sm font-medium text-gray-700">Année de Fondation</label>
+            <input id="annee_fondation" type="number" name="annee_fondation" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('annee_fondation', $etablissement->annee_fondation ?? 1900) }}">
+            @error('annee_fondation')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="directeur" class="block text-sm font-medium text-gray-700">Directeur</label>
+            <input id="directeur" name="directeur" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('directeur', $etablissement->directeur ?? 'Nom du Directeur') }}">
+            @error('directeur')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <!-- End New Fields -->
+        <div>
+            <label for="resau" class="block text-sm font-medium text-gray-700">Réseau</label>
+            <input id="resau" name="resau" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('resau', $etablissement->resau) }}">
+            @error('resau')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="nombreetudiant" class="block text-sm font-medium text-gray-700">Nombre d'Étudiants</label>
+            <input id="nombreetudiant" type="number" name="nombreetudiant" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('nombreetudiant', $etablissement->nombreetudiant ?? 5000) }}">
+            @error('nombreetudiant')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="region_id" class="block text-sm font-medium text-gray-700">Région</label>
+            <select id="region_id" name="region_id" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                @foreach($regions as $region)
+                    <option value="{{ $region->id }}" {{ old('region_id', $etablissement->region_id) == $region->id ? 'selected' : '' }}>
+                        {{ $region->nom_region ?? $region->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('region_id')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="typeecole_id" class="block text-sm font-medium text-gray-700">Type d'École</label>
+            <select id="typeecole_id" name="typeecole_id" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+{{--                @foreach($types as $type)--}}
+{{--                    <option value="{{ $type->id }}" {{ old('typeecole_id', $etablissement->typeecole_id) == $type->id ? 'selected' : '' }}>--}}
+{{--                        {{ $type->nom_type ?? $type->name }}--}}
+{{--                    </option>--}}
+{{--                @endforeach--}}
+            </select>
+            @error('typeecole_id')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="telephone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+            <input id="telephone" name="telephone" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('telephone', $etablissement->telephone ?? '+33123456789') }}">
+            @error('telephone')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="fax" class="block text-sm font-medium text-gray-700">Fax</label>
+            <input id="fax" name="fax" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('fax', $etablissement->fax ?? '+33123456788') }}">
+            @error('fax')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="site_web" class="block text-sm font-medium text-gray-700">Site Web</label>
+            <input id="site_web" type="url" name="site_web" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('site_web', $etablissement->site_web ?? 'https://www.exemple.com') }}">
+            @error('site_web')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="site_inscription" class="block text-sm font-medium text-gray-700">Site d'Inscription</label>
+            <input id="site_inscription" type="url" name="site_inscription" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('site_inscription', $etablissement->site_inscription ?? 'https://inscription.exemple.com') }}">
+            @error('site_inscription')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="facebook" class="block text-sm font-medium text-gray-700">Facebook</label>
+            <input id="facebook" type="url" name="facebook" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('facebook', $etablissement->facebook ?? 'https://facebook.com/exemple') }}">
+            @error('facebook')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram</label>
+            <input id="instagram" type="url" name="instagram" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('instagram', $etablissement->instagram ?? 'https://instagram.com/exemple') }}">
+            @error('instagram')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn</label>
+            <input id="linkedin" type="url" name="linkedin" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('linkedin', $etablissement->linkedin ?? 'https://linkedin.com/company/exemple') }}">
+            @error('linkedin')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="logo" class="block text-sm font-medium text-gray-700">Logo</label>
+            <input id="logo" type="file" accept="image/*" name="logo" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <img src="{{ $etablissement->logo ?? 'https://via.placeholder.com/100' }}" alt="Current Logo" class="mt-2 w-24 h-24 object-cover">
+            @error('logo')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+            <input id="image" type="file" accept="image/*" name="image" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <img src="{{ $etablissement->image ?? 'https://via.placeholder.com/100' }}" alt="Current Image" class="mt-2 w-24 h-24 object-cover">
+            @error('image')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div>
+            <label for="abreviation" class="block text-sm font-medium text-gray-700">Abréviation</label>
+            <input id="abreviation" name="abreviation" class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="{{ old('abreviation', $etablissement->abreviation ?? 'EX') }}">
+            @error('abreviation')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
     </div>
-@endsection
+    <div class="mt-6 flex justify-end space-x-4">
+        <button type="button" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">Annuler</button>
+        <button type="submit" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Enregistrer les Modifications</button>
+    </div>
+</form>
+ @endsection
