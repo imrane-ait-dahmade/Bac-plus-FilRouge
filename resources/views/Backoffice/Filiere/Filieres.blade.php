@@ -15,6 +15,9 @@
             </div>
         @endforeach
 
+        <a href="{{route('filiere.create')}}" class="bg-black rounded-2xl text-2xl text-amber-50">
+            Ajouter un nouveau filier
+        </a>
     </div>
     </div>
 @endsection

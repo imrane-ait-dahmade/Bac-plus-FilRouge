@@ -12,6 +12,25 @@ class FilierController extends Controller
             return view('Backoffice.Filiere.Filieres',compact('filieres'));
    }
 
+   public function create(){
+       return view('Backoffice.Filiere.Ajoute');
+   }
+   public function store(Request $request){
+       $request->validate([
+           'nomfiliere'=>'required',
+           'Niveau'=>'required',
+           'ConditionsAdmission'=>'required',
+           'description'=>'required',
+       ]);
+       $filiere = Filiere::create([
+           'nomfiliere' =>$request->input('nomfiliere'),
+           'Niveau' => $request->input('Niveau'),
+           'ConditionsAdmission' => $request->input('ConditionsAdmission'),
+           'description' => $request->input('description'),
+       ]);
+       return to_route('filiere.show',$filiere->id);
+   }
+
    public function show($id){
        $filiere = Filiere::find($id);
        return view('Backoffice.Filiere.Filiere',compact('filiere'));
