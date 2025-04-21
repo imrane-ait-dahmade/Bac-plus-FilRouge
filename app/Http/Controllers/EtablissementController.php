@@ -174,10 +174,9 @@ class EtablissementController extends Controller
 
 $etablissement = Etablissement::find($id);
 
-if(  $etablissement->Update([$valideData])){
-    dd('i am happy');
-}
-dd('tfoo makhdamache');
+ $etablissement->Update([$valideData]);
+
+ return to_route('etablissement_infos', $etablissement);
 
 
 //        $modifs = $etablissement->getChanges();

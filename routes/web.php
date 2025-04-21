@@ -35,8 +35,10 @@ Route::middleware('auth')->group(function () {
 
 
         //Filiere Crud
-        Route::get('/Filieres',[FilierController::class , 'index'])->name('filieres');
-        Route::get('/Filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
+        Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
+        Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
+        Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
+        Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
 
     });
 

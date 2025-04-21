@@ -10,9 +10,10 @@ class Filiere extends Model
 
     use HasFactory;
     protected $fillable = [
-        'nomFiliere',
+        'nomfiliere',
         'Niveau',
         'ConditionsAdmission',
+        'description'
     ];
 
 

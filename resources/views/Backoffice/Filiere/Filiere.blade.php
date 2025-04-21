@@ -23,6 +23,46 @@
             <a href="{{ route('filieres') }}" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                 ← Retour à la liste
             </a>
+            <a href="{{ route('filiere.edit' ,$filiere->id) }}" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                Edit
+            </a>
+
         </div>
     </div>
 @endsection
+
+{{--            <a href="{{ route('filiere.suprimer') }}" class="inline-block mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">--}}
+{{--                Suprimer--}}
+{{--            </a>--}}
+{{--            <button id="BtnForm">--}}
+{{--    hello click--}}
+{{--            </button>--}}
+
+{{--            <div  id="Form">--}}
+
+{{--            </div>--}}
+
+{{--    <script src="{{asset('js/Event.js')}}"></script>--}}
+{{--    <script>--}}
+
+
+{{--       document.addEventListener('DOMContentLoaded',function (){--}}
+{{--           const Myevent = new Event();--}}
+
+{{--           Myevent.poppap("Form","BtnForm","click");--}}
+{{--       });--}}
+{{--       const Form = new Event();--}}
+
+{{--       let Inputs = [--}}
+{{--           'nomfiliere',--}}
+{{--           'Niveau',--}}
+{{--           'description',--}}
+{{--           'ConditionsAdmission'--}}
+{{--       ];--}}
+
+{{--       Form.ComponentDivInputs("Form",Inputs,"mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500");--}}
+
+
+
+{{--    </script>--}}
+
