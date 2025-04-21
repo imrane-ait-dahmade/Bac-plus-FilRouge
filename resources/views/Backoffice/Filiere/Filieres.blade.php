@@ -7,9 +7,10 @@
 
         @foreach ($filieres as $filiere)
             <div class="bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition">
-                <h2 class="text-xl font-semibold text-gray-800">{{ $filiere->name }}</h2>
-                <p class="text-gray-600 mt-2">{{ $filiere->description }}</p>
-                <a href="{{ route('filiere.details', $filiere->id) }}" class="block text-blue-600 mt-4 hover:text-blue-800">Voir Détails</a>
+                <h2 class="text-xl font-semibold text-gray-800">{{ $filiere->nomFiliere }}</h2>
+{{--                <p class="text-gray-600 mt-2">{{ $filiere->}}</p>--}}
+                <p class="text-gray-600 mt-2">{{$filiere->Niveau}}</p>
+                <a href="" class="block text-blue-600 mt-4 hover:text-blue-800">Voir Détails</a>
             </div>
         @endforeach
 
