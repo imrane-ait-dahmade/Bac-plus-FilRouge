@@ -15,13 +15,12 @@ class Event {
     }
 
 
-
-    CreateForm(DivParent, classe, Id, action, method, Inputs, classInput,FormulaireDeQuoi) {
+    CreateForm(DivParent, classe, Id, action, method, Inputs, classInput, FormulaireDeQuoi) {
         const Div = document.getElementById(DivParent);
 
         // Crée le formulaire dans le parent
         Div.innerHTML = `
-      <form id="${Id}" action="${action}" method="${method}" class="${classe}">
+      <form id="${Id}" action="" method="${method}" class="${classe}">
 
             <input type="hidden" name="_token" value="CSRF_TOKEN_HERE">
 
@@ -49,14 +48,22 @@ class Event {
 
     CreateInput(FormId, name, classInput) {
         const Form = document.getElementById(FormId);
-        Form.innerHTML += `
-      <div>
+        const div = document.createElement("div");
+        div.innerHTML += `
              <label for="${name}" class="block text-sm font-medium text-gray-700">${name}</label>
       <input id="${name}" class="${classInput}" placeholder="${name}" name="${name}">
-   </div>
     `;
+        Form.appendChild(div);
+
+
     }
 
+    ComponentDivInputs(IdDiv, Inputs, InputsClass) {
+        const Div = document.getElementById(IdDiv);
+        for (let i = 0; i < Inputs.length; i++) {
+            this.CreateInput(IdDiv, Inputs[i], InputsClass);
+        }
+    }
 
 
 

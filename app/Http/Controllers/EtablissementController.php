@@ -135,15 +135,15 @@ class EtablissementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Etablissement $etablissement)
-    {
-  return view('Frontoffice.Etablissement.Modifier', compact('etablissement'));
-    }
+//    public function edit(Etablissement $etablissement)
+//    {
+//  return view('Frontoffice.Etablissement.Modifier', compact('etablissement'));
+//    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
+    public function update($id)
     {
 
     }
@@ -151,8 +151,12 @@ class EtablissementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Etablissement $etablissement)
+    public function destroy($id)
     {
-        //
+
+        $etablissement = Etablissement::find($id);
+        $etablissement->delete();
+
+        return redirect('/etablissementsAccesAdmin');
     }
 }

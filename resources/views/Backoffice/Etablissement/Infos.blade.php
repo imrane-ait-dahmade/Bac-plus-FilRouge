@@ -14,8 +14,8 @@
                     </svg>
                     Retour
                 </a>
-                <button  id="popForm"
-                   class="px-4 py-2 bg-custom-light hover:bg-custom-primary text-gray-700 rounded-md transition duration-150 ease-in-out flex items-center">
+                <button id="popForm"
+                        class="px-4 py-2 bg-custom-light hover:bg-custom-primary text-gray-700 rounded-md transition duration-150 ease-in-out flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -23,6 +23,11 @@
                     </svg>
                     Modifier
                 </button>
+                <form action="{{ route('etablissement.destroy', $etablissement->id) }}" method="POST" onsubmit="return confirm('Es-tu sûr de vouloir supprimer cette école ?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
             </div>
         </div>
 
@@ -125,9 +130,18 @@
 
 
 
-    <div id="FormEdit" class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-white p-6 rounded-lg shadow-lg ">
 
-    </div>
+    <form id="FormEdit" action="" method="post"
+          class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-white p-6 rounded-lg shadow-lg  ">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-white rounded-xl shadow" id="InputsIdDiv">
+
+        </div>
+        <button type="submit" class="w-full bg-green-300 text-white py-2 rounded-lg hover:bg-green-600">
+            Modifier
+        </button>
+
+    </form>
+
     <script src="{{asset('js/Event.js')}}"></script>
     <script>
 
@@ -139,7 +153,7 @@
 
             // Call the poppap method with the correct form, button IDs, and the event type "click"
             myEvent.poppap("FormEdit", "popForm", "click");
-let myForm = new Event();
+            let myForm = new Event();
             let inputs = [
                 "nometablissement",
                 "villeetablissement",
@@ -164,20 +178,10 @@ let myForm = new Event();
                 "abreviation"
             ];
 
-            myForm.CreateForm(
-                "FormEdit",      // ID du div parent
-                "space-y-4 grid grid-cols-4 grid-rows-4 gap-4 ",     // classe du formulaire
-                "formTest",       // ID du formulaire
-                "/submit",        // action (vide ici)
-                "post",           // méthode
-               inputs,           // tableau des champs
-                "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" ,    // classe des inputs
-                "Modification"
-            );
+            myForm.ComponentDivInputs("InputsIdDiv", inputs, "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500");
+
 
         });
-
-
 
 
     </script>
