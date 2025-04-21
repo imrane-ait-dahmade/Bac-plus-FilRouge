@@ -123,53 +123,61 @@
         </div>
     </div>
 
-    <div
-        class=" hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-white p-6 rounded-lg shadow-lg w-96"
-        id="FormModification">
-        <h2 class="text-2xl font-semibold mb-4 text-center">Ajouter une École</h2>
 
-        <form action="#" method="POST" class="space-y-4">
-            <div>
-                <label for="nom" class="block text-sm font-medium text-gray-700">Nom de l'école</label>
-                <input type="text" id="nom" name="nomEtablessement" placeholder="{{$etablissement->nometablissement}}"  required
-                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-            <div>
-                <label for="nom" class="block text-sm font-medium text-gray-700">Adresse</label>
-                <input type="text" id="adresse" name="adresseetablisssement" placeholder="{{$etablissement->adressseetablissement}}"  required
-                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
 
-            <div>
-                <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse</label>
-                <input type="text" id="adresse" name="villeetablissement" required
-                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
+    <div id="FormEdit" class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-white p-6 rounded-lg shadow-lg ">
 
-            <div>
-                <label for="ville" class="block text-sm font-medium text-gray-700">Ville</label>
-                <input type="text" id="ville" name="ville" required
-                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-
-            <div class="text-center">
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                    Ajouter
-                </button>
-            </div>
-        </form>
     </div>
-
     <script src="{{asset('js/Event.js')}}"></script>
     <script>
 
+
+        // Wait for the DOM to be fully loaded before executing the code
         document.addEventListener("DOMContentLoaded", function () {
-            // Créer une instance de ta classe
+            // Create an instance of the Event class
             const myEvent = new Event();
 
-            // Appeler ta méthode avec les bons IDs et l'événement "click"
-            myEvent.poppap("FormModification", "popForm", "click");
+            // Call the poppap method with the correct form, button IDs, and the event type "click"
+            myEvent.poppap("FormEdit", "popForm", "click");
+let myForm = new Event();
+            let inputs = [
+                "nometablissement",
+                "villeetablissement",
+                "descirptionetablissement",
+                "adresseetablissement",
+                "universite",
+                "resau",
+                "nombreetudiant",
+                "region_id",
+                "typeecole",
+                "created_at",
+                "updated_at",
+                "telephone",
+                "fax",
+                "site_web",
+                "site_inscription",
+                "facebook",
+                "instagram",
+                "linkedin",
+                "logo",
+                "image",
+                "abreviation"
+            ];
+
+            myForm.CreateForm(
+                "FormEdit",      // ID du div parent
+                "space-y-4 grid grid-cols-4 grid-rows-4 gap-4 ",     // classe du formulaire
+                "formTest",       // ID du formulaire
+                "/submit",        // action (vide ici)
+                "post",           // méthode
+               inputs,           // tableau des champs
+                "mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" ,    // classe des inputs
+                "Modification"
+            );
+
         });
+
+
 
 
     </script>
