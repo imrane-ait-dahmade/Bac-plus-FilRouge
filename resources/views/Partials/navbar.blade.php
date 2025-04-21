@@ -9,22 +9,7 @@
 
                 </a>
             </div>
-@if(Auth()->user()?->role === 'etudiant')
 
-            <!-- Navigation principale - visible sur desktop -->
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('home') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Accueil
-                </a>
-                <a href="{{route('Etablissements')}}" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('schools') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Établissements
-                </a>
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('programs') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Formations
-                </a>
-
-            </div>
-            @endif
 
             <!-- Barre de recherche -->
             <div class="hidden md:block flex-1 max-w-xl mx-4">
@@ -222,8 +207,8 @@
             <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('schools') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
                 Établissements
             </a>
-            <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
-                Formations
+            <a href="{{route('filieres')}}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                Filieres
             </a>
             <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('applications') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
                 Candidatures

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EtablissementController;
+use App\Http\Controllers\FilierController;
 use App\Http\Controllers\UniversiteController;
 use Illuminate\http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
         Route::get('admin', function () {
             return view('Backoffice.Dashboard');
         })->name('admin_dashboard');
+
+        //Etablissement Crud
         Route::get('/etablissementsAccesAdmin', [EtablissementController::class , 'index'])->name('etablissementsAccesAdmin');
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
@@ -29,6 +32,10 @@ Route::middleware('auth')->group(function () {
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
         Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
         Route::put('/etablissementsUpdate/{id}', [EtablissementController::class, 'update'])->name('etablissement.update');
+
+
+        //Filiere Crud
+        Route::get('/Filieres',[FilierController::class , 'index'])->name('filieres');
     });
 
 
