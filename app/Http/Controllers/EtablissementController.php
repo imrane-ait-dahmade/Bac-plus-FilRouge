@@ -152,18 +152,18 @@ class EtablissementController extends Controller
 
      $valideData =  $request->validate([
             'nometablissement' => 'required|string|max:255',
-            'villeEtablissement' => 'nullable|string',
+            'villeetablissement' => 'nullable|string',
             'region_id' => 'nullable|exists:regions,id',
-            'adresseEtablissement' => 'nullable|string',
+            'adresseetablissement' => 'nullable|string',
             'telephone' => 'nullable|string',
             'fax' => 'nullable|string',
-            'siteWeb' => 'nullable|url',
-            'siteInscription' => 'nullable|url',
+            'site_web' => 'nullable|url',
+            'site_inscription' => 'nullable|url',
             'universite' => 'nullable|string',
             'resau' => 'nullable|string',
             'email' => 'nullable|email',
-            'nombreEtudiant' => 'nullable|integer',
-            'TypeEcole' => 'nullable|string',
+            'nombreetudiant' => 'nullable|integer',
+            'eypeecole' => 'nullable|string',
             'descirptionetablissement' => 'nullable|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
@@ -172,14 +172,16 @@ class EtablissementController extends Controller
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-     dd($valideData);
 $etablissement = Etablissement::find($id);
 
+if(  $etablissement->Update([$valideData])){
+    dd('i am happy');
+}
+dd('tfoo makhdamache');
 
-        $etablissement->Update([$valideData]);
 
-        $modifs = $etablissement->getChanges();
-        dd($modifs);
+//        $modifs = $etablissement->getChanges();
+//        dd($modifs);
 
     }
 
