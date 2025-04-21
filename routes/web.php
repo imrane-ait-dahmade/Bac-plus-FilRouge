@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
         //Filiere Crud
         Route::get('/Filieres',[FilierController::class , 'index'])->name('filieres');
+        Route::get('/Filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
+
     });
 
 
