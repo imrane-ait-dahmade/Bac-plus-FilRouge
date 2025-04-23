@@ -52,8 +52,15 @@ Route::middleware('auth')->group(function () {
             return view('Frontoffice.home');
 
         })->name('etudiant_dashboard');
+        // Etablissement affichage
         Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
         Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.show');
+
+        // Profile Etudiant
+        Route::get('/profile',function(){
+            return view('Frontoffice.Profile');
+        }) ;
+
     });
 });
 

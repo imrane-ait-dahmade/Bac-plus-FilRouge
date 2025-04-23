@@ -1,13 +1,13 @@
 class Event {
     poppap(NameForm, BtnOfAfficherPoppap, EventType) {
-        const Form = document.getElementById(NameForm);  // Get the form element by its ID
-        const Button = document.getElementById(BtnOfAfficherPoppap);  // Get the button element by its ID
+        const Form = document.getElementById(NameForm);
+        const Button = document.getElementById(BtnOfAfficherPoppap);
 
-        // Check if both the form and button elements exist
+
         if (Form && Button) {
-            // Add an event listener to the button
+
             Button.addEventListener(EventType, function () {
-                Form.classList.toggle('hidden');  // Toggle the 'hidden' class on the form
+                Form.classList.toggle('hidden');
             });
         } else {
             console.error("Form or Button element not found!");
@@ -18,7 +18,7 @@ class Event {
     CreateForm(DivParent, classe, Id, action, method, Inputs, classInput, FormulaireDeQuoi) {
         const Div = document.getElementById(DivParent);
 
-        // Crée le formulaire dans le parent
+
         Div.innerHTML = `
       <form id="${Id}" action="" method="${method}" class="${classe}">
 
@@ -65,6 +65,28 @@ class Event {
         }
     }
 
+    AnalyseInput(div) {
+        isvide = document.getElementById(div);
 
+        if (isvide.innerText.trim() === '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    DonneReponceInputs(Divs){
+        for(let i = 0 ;i<Divs.length;i++){
+            if(this.AnalyseInput(Divs[i] === false)){
+                return false;
+            }
+        }
+    }
+    FormValid(valideAll, form) {
+        document.getElementById(form).addEventListener('submit', function (e) {
+            if (valideAll === false) {
+                e.preventDefault();
+            }
+        })
 
+    }
 }

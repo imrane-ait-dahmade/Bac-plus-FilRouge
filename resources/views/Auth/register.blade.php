@@ -20,7 +20,7 @@
         <!-- Right Side - Form -->
         <div class="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
             <div class="w-full max-w-md">
-                <form  method="Post" action="{{route('register_post')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
+                <form id="login" method="Post" action="{{route('register_post')}}" class="bg-white rounded-2xl shadow-lg p-8 md:p-10 w-full">
                     @csrf
                     <!-- Full Name Input -->
                     <div class="mb-5">
@@ -168,7 +168,7 @@
             </div>
         </div>
     </section>
-
+<script src="{{asset('js/validationForm.js')}}"></script>
     <script>
         function togglePasswordVisibility(inputId, eyeIconId, eyeOffIconId) {
             const passwordInput = document.getElementById(inputId);
@@ -185,5 +185,9 @@
                 eyeOffIcon.classList.add('hidden');
             }
         }
+
+
+        
+
     </script>
 @endsection
