@@ -104,10 +104,10 @@
                 <!-- Menu utilisateur -->
                 <div class="relative">
                     <button id="userMenuBtn" class="flex items-center space-x-2 focus:outline-none">
-                        <div class="relative">
+                        <a href="{{route('profile')}}" class="relative">
                             <img src="https://placehold.co/100x100/e2e8f0/475569?text=SM" alt="Photo de profil" class="h-8 w-8 rounded-full object-cover border-2 border-custom-primary">
                             <div class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
-                        </div>
+                        </a>
                         <span class="hidden md:block text-white">Samir</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="hidden md:block h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

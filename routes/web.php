@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
         // Profile Etudiant
         Route::get('/profile',function(){
             return view('Frontoffice.Profile');
-        }) ;
+        })->name('profile') ;
 
     });
 });
