@@ -19,9 +19,7 @@ Route::middleware('auth')->group(function () {
 
     //admin
     Route::middleware('role:admin')->group(function () {
-        Route::get('admin', function () {
-            return view('Backoffice.Dashboard');
-        })->name('admin_dashboard');
+        Route::get('admin',[\App\Http\Controllers\Statistiques::class , 'StatistiquesAdmin']);
 
         //Etablissement Crud
         Route::get('/etablissementsAccesAdmin', [EtablissementController::class , 'index'])->name('etablissementsAccesAdmin');

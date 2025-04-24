@@ -33,12 +33,11 @@
 
         <!-- Statistiques rapides -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            {{-- Stat Cards with white background and dark text --}}
             <div class="bg-white rounded-lg p-6 shadow-md border-b-4 border-custom-primary">
                 <div class="flex justify-between items-start">
                     <div>
                         <p class="text-gray-500 text-sm mb-1">Total Étudiants</p>
-                        <h3 class="text-3xl font-bold text-gray-800">{{ $totalStudents ?? '1,248' }}</h3>
+                        <h3 class="text-3xl font-bold text-gray-800">{{ $CountEtudiants ?? '0' }}</h3>
                         {{-- Use primary text color for positive indicator --}}
                         <p class="text-custom-primary text-sm mt-2">{{-- +12% ce mois --}}</p>
                     </div>
@@ -52,7 +51,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <p class="text-gray-500 text-sm mb-1">Établissements</p>
-                        <h3 class="text-3xl font-bold text-gray-800">{{ $totalEstablishments ?? '143' }}</h3>
+                        <h3 class="text-3xl font-bold text-gray-800">{{ $CountEtablissements  }}</h3>
                         <p class="text-blue-500 text-sm mt-2">{{-- +3 cette semaine --}}</p> {{-- Keep color --}}
                     </div>
                     <div class="p-3 bg-gray-100 rounded-full">
@@ -64,23 +63,11 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <p class="text-gray-500 text-sm mb-1">Formations</p>
-                        <h3 class="text-3xl font-bold text-gray-800">{{ $totalFormations ?? '526' }}</h3>
+                        <h3 class="text-3xl font-bold text-gray-800">{{ $CountFilieres ?? '526' }}</h3>
                         <p class="text-purple-500 text-sm mt-2">{{-- +8 ce mois --}}</p> {{-- Keep color --}}
                     </div>
                     <div class="p-3 bg-gray-100 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" /></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-lg p-6 shadow-md border-b-4 border-yellow-500">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="text-gray-500 text-sm mb-1">Candidatures</p>
-                        <h3 class="text-3xl font-bold text-gray-800">{{ $totalApplications ?? '872' }}</h3>
-                        <p class="text-yellow-500 text-sm mt-2">{{-- +24% ce mois --}}</p> {{-- Keep color --}}
-                    </div>
-                    <div class="p-3 bg-gray-100 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     </div>
                 </div>
             </div>

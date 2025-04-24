@@ -1,20 +1,20 @@
 @extends('Layouts.App')
 
 @section('content')
-    {{-- Container principal pour la page --}}
+
     <div class="container mx-auto px-4 py-8">
 
-        {{-- Carte des Paramètres du Profil --}}
+
         <div class="flex justify-center mb-8">
-            {{-- Ajustement de la largeur pour différents écrans --}}
+
             <div class="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 bg-white rounded-lg shadow-lg p-8">
-                {{-- En-tête de la carte --}}
+
                 <div class="text-center mb-6">
                     <h4 class="text-2xl font-semibold text-custom-dark">Paramètres du Profil</h4>
                 </div>
 
-                {{-- Formulaire de Profil --}}
-                <form method="POST" action="{{-- {{ route('profile.update') }} --}}"> {{-- Ajoutez votre route de mise à jour --}}
+
+                <form method="POST" action="{{-- {{ route('profile.update') }} --}}">
                     @csrf
                     @method('PATCH') {{-- Ou PUT selon votre route --}}
 
