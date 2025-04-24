@@ -77,8 +77,10 @@ class EtablissementController extends Controller
 
                 $image = $request->file('image');
 
-                 $imageName = $image->getClientOriginalName();
+//                 $imageName = $image->getClientOriginalName();
+
             $imageName = time() . '_' . $image->getClientOriginalName();
+//            dd($imageName);
                  $image->move(public_path('/Images/PhotoEcoles'), $imageName);
         }
 
@@ -101,9 +103,10 @@ class EtablissementController extends Controller
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
             'linkedin' => $request->linkedin,
-            'photo' => $imageName,
+            'image' => $imageName,
             'logo' => $logoName,
         ]);
+
 
                return to_route('etablisement_infos', $etablissement);
     }

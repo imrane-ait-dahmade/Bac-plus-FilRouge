@@ -48,7 +48,7 @@
                     {{-- Establishment Header --}}
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                         @if($etablissement->logo)
-                            <img src="{{ asset('Images/logos/' . $etablissement->logo) }}" alt="Logo {{ $etablissement->nometablissement }}" class="w-16 h-16 object-contain flex-shrink-0 rounded-md border border-gray-200 p-1">
+                            <img src="{{ asset('Images/LogoEcoles/' . $etablissement->logo) }}" alt="Logo {{ $etablissement->nometablissement }}" class="w-16 h-16 object-contain flex-shrink-0 rounded-md border border-gray-200 p-1">
                         @else
                             <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center flex-shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>
