@@ -11,20 +11,6 @@
             </div>
 
 
-            <!-- Navigation principale - visible sur desktop -->
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('home') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Accueil
-                </a>
-                <a href="{{route('Etablissements')}}" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('schools') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Établissements
-                </a>
-                <a href="" class="px-3 py-2 text-gray-300 hover:text-custom-primary transition-colors duration-200 {{ request()->routeIs('programs') ? 'text-custom-primary border-b-2 border-custom-primary' : '' }}">
-                    Formations
-                </a>
-
-            </div>
-
             <!-- Barre de recherche -->
             <div class="hidden md:block flex-1 max-w-xl mx-4">
                 <form method="GET" action="" class="relative group">
@@ -118,10 +104,15 @@
                 <!-- Menu utilisateur -->
                 <div class="relative">
                     <button id="userMenuBtn" class="flex items-center space-x-2 focus:outline-none">
-                        <div class="relative">
-                            <img src="https://placehold.co/100x100/e2e8f0/475569?text=SM" alt="Photo de profil" class="h-8 w-8 rounded-full object-cover border-2 border-custom-primary">
-                            <div class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
-                        </div>
+                  @if(auth()->user()?->role === 'etudiant')
+
+                            <a href="{{route('profile')}}" class="relative">
+                                <img src="https://placehold.co/100x100/e2e8f0/475569?text=m" alt="Photo de profil" class="h-8 w-8 rounded-full object-cover border-2 border-custom-primary">
+                                <div class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
+                            </a>
+
+                  @endif
+
                         <span class="hidden md:block text-white">Samir</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="hidden md:block h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -221,8 +212,8 @@
             <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('schools') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
                 Établissements
             </a>
-            <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
-                Formations
+            <a href="{{route('filieres')}}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+                Filieres
             </a>
             <a href="" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('applications') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
                 Candidatures
@@ -230,6 +221,45 @@
         </div>
     </div>
 </nav>
+{{--@if(auth()->user()?->role === 'admin')--}}
+{{--    <div class="flex h-screen">--}}
+{{--        <!-- Sidebar -->--}}
+{{--        <nav class="w-1/4 max-w-xs bg-gray-800 border-r border-gray-700 p-4 space-y-2">--}}
+{{--            <div class="mb-6">--}}
+{{--                <a href="/home" class="text-white text-xl font-bold">--}}
+{{--                    MonApp--}}
+{{--                </a>--}}
+{{--            </div>--}}
+
+{{--            <a href="/home"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('home') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Accueil--}}
+{{--            </a>--}}
+
+{{--            <a href="/schools"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('schools') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Établissements--}}
+{{--            </a>--}}
+
+{{--            <a href="/programs"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('programs') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Formations--}}
+{{--            </a>--}}
+
+{{--            <a href="/applications"--}}
+{{--               class="block px-3 py-2 rounded-md text-sm font-medium {{ request()->is('applications') ? 'bg-gray-700 text-custom-primary' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">--}}
+{{--                Candidatures--}}
+{{--            </a>--}}
+{{--        </nav>--}}
+
+{{--        <!-- Main Content -->--}}
+{{--        <main class="w-3/4 p-6 overflow-y-auto">--}}
+{{--            @yield('content')--}}
+{{--        </main>--}}
+{{--    </div>--}}
+{{--@endif--}}
+
+
 
 <script>
     // Gestion des dropdowns et menus mobiles
