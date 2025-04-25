@@ -68,7 +68,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-custom-primary">{{ $etablissement['typeecole'] }}</span>
-                            <a href="{{ route('etablissement.show', ['id' => $etablissement['id']]) }}" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
+                            <a href="{{ route('etablissement.show',$etablissement) }}" class="text-sm text-white bg-custom-primary hover:bg-custom-dark px-3 py-1 rounded transition duration-300">Voir détails</a>
                         </div>
                     </div>
                 </div>

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
-           $table->string('nomMatiere');
-           $table->integer('Confficient');
+            $table->string('nom');
+            $table->string('langue');
+            $table->timestamps();
         });
     }
 

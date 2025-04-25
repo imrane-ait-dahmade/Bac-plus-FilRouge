@@ -14,10 +14,19 @@
                             <div class="space-y-6">
                                 <div>
                                     <label for="nomEtablissement" class="block text-sm font-medium text-gray-700">Nom de l'Établissement</label>
-                                    <input type="text" name="nomEtablissement" id="nomEtablissement"
+                                    <input type="text" name="nometablissement" id="nomEtablissement"
                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                           placeholder="Entrez le nom de l'établissement" value="{{ old('nomEtablissement') }}">
-                                    @error('nomEtablissement')
+                                           placeholder="Entrez le nom de l'établissement" value="{{ old('nometablissement') }}">
+                                    @error('nometablissement')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="domaine" class="block text-sm font-medium text-gray-700">Domaine</label>
+                                    <input type="text" name="domaine" id="domaine"
+                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                           placeholder="Ex: Sciences, Ingénierie, Commerce, etc." value="{{ old('domaine') }}">
+                                    @error('domaine')
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -60,15 +69,60 @@
                                     @enderror
                                 </div>
 
+                                <!-- Nouveaux champs: Téléphone et Fax -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="telephone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                                        <input type="tel" name="telephone" id="telephone"
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                               placeholder="Ex: +212 5XX XX XX XX" value="{{ old('telephone') }}">
+                                        @error('telephone')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <label for="fax" class="block text-sm font-medium text-gray-700">Fax</label>
+                                        <input type="tel" name="fax" id="fax"
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                               placeholder="Ex: +212 5XX XX XX XX" value="{{ old('fax') }}">
+                                        @error('fax')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <!-- Nouveaux champs: Site Web et Site d'Inscription -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="siteWeb" class="block text-sm font-medium text-gray-700">Site Web</label>
+                                        <input type="url" name="siteWeb" id="siteWeb"
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                               placeholder="https://www.exemple.com" value="{{ old('siteWeb') }}">
+                                        @error('siteWeb')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <label for="siteInscription" class="block text-sm font-medium text-gray-700">Site d'Inscription</label>
+                                        <input type="url" name="siteInscription" id="siteInscription"
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                               placeholder="https://inscription.exemple.com" value="{{ old('siteInscription') }}">
+                                        @error('siteInscription')
+                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="Universite" class="block text-sm font-medium text-gray-700">Université</label>
-                                        <input type="text" name="Universite" id="Universite"
-                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                               placeholder="Entrez l'université" value="{{ old('Universite') }}">
-                                        @error('Universite')
-                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                        @enderror
+                                        <select name="Unversite" id="Universite"
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50">
+                                            <option value="">Sélectionnez Universite</option>
+                                            @foreach($universites as $universite)
+                                                <option value="{{$universite->name}}">{{$universite->value}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div>
@@ -80,6 +134,17 @@
                                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                </div>
+
+                                <!-- Nouveau champ: Email -->
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" name="email" id="email"
+                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                           placeholder="contact@etablissement.com" value="{{ old('email') }}">
+                                    @error('email')
+                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div>
@@ -115,28 +180,76 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col items-center">
-                            <div class="w-32 h-32 rounded-full bg-custom-primary flex items-center justify-center mb-2 relative overflow-hidden">
-                                <img id="preview-image" src="{{ asset('images/placeholder.jpg') }}" alt="Photo de l'établissement"
-                                     class="w-full h-full object-cover hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" id="camera-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
+                        <div class="flex flex-col items-center space-y-6">
+                            <!-- Photo de l'établissement -->
+                            <div>
+                                <span class="block text-sm font-medium text-gray-700 mb-2 text-center">Photo de l'établissement</span>
+                                <div class="w-32 h-32 rounded-full bg-custom-primary flex items-center justify-center mb-2 relative overflow-hidden">
+                                    <img id="preview-image" src="{{ asset('images/placeholder.jpg') }}" alt="Photo de l'établissement"
+                                         class="w-full h-full object-cover hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" id="camera-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <label for="photo" class="cursor-pointer text-center text-sm text-custom-primary block">
+                                    Ajouter Photo
+                                    <input id="photo" name="image" type="file" accept="image/*" class="hidden">
+                                </label>
+                                @error('photo')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
-                            <label for="photo" class="cursor-pointer text-center text-sm text-custom-primary">
-                                Ajouter Photo
-                                <input id="photo" name="photo" type="file" accept="image/*" class="hidden">
-                            </label>
-                            @error('photo')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
+
+                            <!-- Nouveau: Logo de l'établissement -->
+                            <div>
+                                <span class="block text-sm font-medium text-gray-700 mb-2 text-center">Logo de l'établissement</span>
+                                <div class="w-32 h-32 rounded-lg bg-gray-100 flex items-center justify-center mb-2 relative overflow-hidden border-2 border-dashed border-gray-300">
+                                    <img id="preview-logo" src="{{ asset('images/placeholder-logo.jpg') }}" alt="Logo de l'établissement"
+                                         class="w-full h-full object-contain hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" id="logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <label for="logo" class="cursor-pointer text-center text-sm text-custom-primary block">
+                                    Ajouter Logo
+                                    <input id="logo" name="logo" type="file" accept="image/*" class="hidden">
+                                </label>
+                                @error('logo')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nouveaux champs: Réseaux sociaux -->
+                    <div class="mt-6">
+                        <h3 class="text-lg font-medium text-gray-700 mb-3">Réseaux sociaux</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="facebook" class="block text-sm font-medium text-gray-700">Facebook</label>
+                                <input type="url" name="facebook" id="facebook"
+                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                       placeholder="https://facebook.com/..." value="{{ old('facebook') }}">
+                            </div>
+                            <div>
+                                <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram</label>
+                                <input type="url" name="instagram" id="instagram"
+                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                       placeholder="https://instagram.com/..." value="{{ old('instagram') }}">
+                            </div>
+                            <div>
+                                <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn</label>
+                                <input type="url" name="linkedin" id="linkedin"
+                                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
+                                       placeholder="https://linkedin.com/..." value="{{ old('linkedin') }}">
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-6">
                         <label for="DescirptionEtablissement" class="block text-sm font-medium text-gray-700">Description de l'Établissement</label>
-                        <textarea name="DescirptionEtablissement" id="DescirptionEtablissement" rows="4"
+                        <textarea name="descirptionetablissement" id="descirptionetablissement" rows="4"
                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
                                   placeholder="Décrivez l'établissement...">{{ old('DescirptionEtablissement') }}</textarea>
                         @error('DescirptionEtablissement')
@@ -165,6 +278,21 @@
                     previewImage.src = e.target.result;
                     previewImage.classList.remove('hidden');
                     document.getElementById('camera-icon').classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Script pour prévisualiser le logo
+        document.getElementById('logo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewLogo = document.getElementById('preview-logo');
+                    previewLogo.src = e.target.result;
+                    previewLogo.classList.remove('hidden');
+                    document.getElementById('logo-icon').classList.add('hidden');
                 }
                 reader.readAsDataURL(file);
             }
