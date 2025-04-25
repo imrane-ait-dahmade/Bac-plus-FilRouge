@@ -179,7 +179,7 @@ $etablissement = Etablissement::find($id);
 
  $etablissement->Update([$valideData]);
 
- return to_route('etablissement_infos', $etablissement);
+ return to_route('etablisement_infos', $etablissement);
 
 
 //        $modifs = $etablissement->getChanges();
