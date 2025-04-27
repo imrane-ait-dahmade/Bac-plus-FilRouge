@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -13,8 +15,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+
     }
+
 
     /**
      * Show the form for creating a new resource.

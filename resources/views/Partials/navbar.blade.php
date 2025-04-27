@@ -10,7 +10,7 @@
                 </a>
             </div>
 
-
+@auth
             <!-- Barre de recherche -->
             <div class="hidden md:block flex-1 max-w-xl mx-4">
                 <form method="GET" action="" class="relative group">
@@ -28,7 +28,7 @@
                     </button>
                 </form>
             </div>
-            @auth
+
 
             <!-- Actions utilisateur -->
             <div class="flex items-center space-x-3">
@@ -113,7 +113,7 @@
 
                   @endif
 
-                        <span class="hidden md:block text-white">Samir</span>
+
                         <svg xmlns="http://www.w3.org/2000/svg" class="hidden md:block h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -134,6 +134,7 @@
                                     Mon profil
                                 </div>
                             </a>
+                            @if(auth()->user()?->role === 'etudiant')
                             <a href="" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -142,6 +143,8 @@
                                     Mes candidatures
                                 </div>
                             </a>
+
+
                             <a href="" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -150,6 +153,7 @@
                                     Favoris
                                 </div>
                             </a>
+                            @endif
                             <a href="" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -159,14 +163,16 @@
                                     Paramètres
                                 </div>
                             </a>
+
                         </div>
+
                         <div class="py-1 border-t border-gray-700">
                             <a href="" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
-                                    <a href="{{route('Deconnexion')}}"> Déconnexion</a>
+                                    <a href="{{route('Deconnexion')}}" class="text-white"> Déconnexion</a>
 
                                 </div>
                             </a>

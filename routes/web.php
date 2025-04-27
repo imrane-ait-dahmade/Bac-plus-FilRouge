@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EtablissementController;
 use App\Http\Controllers\FilierController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UniversiteController;
 use Illuminate\http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile',function(){
             return view('Frontoffice.Profile');
         })->name('profile') ;
+        Route::get('/profileupdate',[ProfileController::class , 'update'])->name('profile.update') ;
+        // change Password
+        Route::get('/Password',function(){})->name('password.change');
 
+        // setting
+        Route::get('/settings' , function (){})->name('account.settings');
+
+
+        //Historique
+
+        Route::get('/Historiques',function(){
+        view('Frontoffice.Historiques');
+        })->name('history.index');
+
+        // Favoirs
+        Route::get('/favorites',function(){
+            return view('Frontoffice.favorites');
+        })->name('favorites.index');
     });
 });
 
