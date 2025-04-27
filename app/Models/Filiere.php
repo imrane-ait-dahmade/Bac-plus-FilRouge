@@ -16,6 +16,9 @@ class Filiere extends Model
         'description'
     ];
 
+    public function Domaine(){
+        $this->belongsTo(Domaine::class);
+    }
 
 
 
