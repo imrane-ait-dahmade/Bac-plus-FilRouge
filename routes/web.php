@@ -57,9 +57,7 @@ Route::middleware('auth')->group(function () {
 
 
         // Profile Etudiant
-        Route::get('/profile',function(){
-            return view('Frontoffice.Profile');
-        })->name('profile') ;
+        Route::get('/profile',[ProfileController::class ,'index'])->name('profile') ;
         Route::get('/profileupdate',[ProfileController::class , 'update'])->name('profile.update') ;
         // change Password
         Route::get('/Password',function(){})->name('password.change');

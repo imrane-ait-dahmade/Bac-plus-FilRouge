@@ -64,29 +64,17 @@
                                     <option value="{{ $region->id }}" {{ old('region', $user->profile->region_id ?? '') == $region->id ? 'selected' : '' }}>{{ $region->name }}</option>
                                 @endforeach --}}
                                 {{-- Exemple statique --}}
-                                <option value="casablanca-settat" {{ old('region', optional(auth()->user()->profile)->region) == 'casablanca-settat' ? 'selected' : '' }}>Casablanca-Settat</option>
                                 <option value="rabat-sale-kenitra" {{ old('region', optional(auth()->user()->profile)->region) == 'rabat-sale-kenitra' ? 'selected' : '' }}>Rabat-Salé-Kénitra</option>
+                                <option value="casablanca-settat" {{ old('region', optional(auth()->user()->profile)->region) == 'casablanca-settat' ? 'selected' : '' }}>Casablanca-Settat</option>
                                 {{-- Ajouter d'autres régions --}}
                             </select>
                             @error('region') <span class="error-message">{{ $message }}</span> @enderror
                         </div>
                         {{-- Filière de Bac --}}
-                        <div>
+                        <div id ='PositionFilieres'>
                             <label for="filiere_bac" class="block text-sm font-medium text-gray-600 mb-1">Filière du Baccalauréat</label>
                             {{-- Idéalement un <select> --}}
-                            <select id="filiere_bac" name="filiere_bac" class="input-style">
-                                <option value="">Sélectionnez votre filière...</option>
-                                {{-- @foreach($filieres as $filiere)
-                                    <option value="{{ $filiere->code }}" {{ old('filiere_bac', $user->profile->filiere_bac ?? '') == $filiere->code ? 'selected' : '' }}>{{ $filiere->name }}</option>
-                                @endforeach --}}
-                                {{-- Exemple statique --}}
-                                <option value="sma" {{ old('filiere_bac', optional(auth()->user()->profile)->filiere_bac) == 'sma' ? 'selected' : '' }}>Sciences Maths A</option>
-                                <option value="smb" {{ old('filiere_bac', optional(auth()->user()->profile)->filiere_bac) == 'smb' ? 'selected' : '' }}>Sciences Maths B</option>
-                                <option value="pc" {{ old('filiere_bac', optional(auth()->user()->profile)->filiere_bac) == 'pc' ? 'selected' : '' }}>Sciences Physiques</option>
-                                <option value="svt" {{ old('filiere_bac', optional(auth()->user()->profile)->filiere_bac) == 'svt' ? 'selected' : '' }}>Sciences de la Vie et de la Terre</option>
-                                {{-- Ajouter d'autres filières --}}
-                            </select>
-                            @error('filiere_bac') <span class="error-message">{{ $message }}</span> @enderror
+
                         </div>
                     </div>
                 </div>
@@ -271,6 +259,29 @@
         </div>
 
     </div>
+
+    <script>
+
+        const FilieresBac = {!! $filieresBac  !!};
+
+
+  const filiereposition = document.createElement('select') ;
+ filiereposition.classList.add("input-style");
+ filiereposition.innerHTML =` <option value="">Sélectionnez votre région...</option>`;
+
+   FilieresBac.forEach(function(filierebac){
+            filiereposition.innerHTML += `
+            <option value = ${filierebac.id}>${filierebac.nom}</option>
+            `
+        });
+
+  document.getElementById('PositionFilieres').appendChild(filiereposition);
+
+
+
+
+
+    </script>
 @endsection
 
 @push('styles')
@@ -288,6 +299,7 @@
         .bg-custom-primary { background-color: #4F46E5; /* Example: Indigo 600 */ }
         .bg-custom-dark:hover { background-color: #4338CA; /* Example: Indigo 700 */ }
     </style>
+
 @endpush
 
 @push('scripts')
@@ -359,5 +371,7 @@
             {{--// Ici, on assume que le @forelse gère bien l'affichage initial.--}}
 
         });
+
+
     </script>
 @endpush
