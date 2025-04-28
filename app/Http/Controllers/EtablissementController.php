@@ -26,6 +26,8 @@ class EtablissementController extends Controller
         $villes = Ville::cases();
         $Domaines = Domaine::all();
 
+
+
         return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines'));
     }
 
@@ -124,17 +126,17 @@ class EtablissementController extends Controller
 
     public function show($id)
     {
-        // Récupérer l'établissement avec l'ID
-        $etablissement = Etablissement::find($id);
 
-        // Vérifier si l'établissement existe
+        $etablissement = Etablissement::with('filieres')->find($id);;
+
+
+
         if (!$etablissement) {
-            // Gérer le cas où l'établissement n'est pas trouvé (par exemple, afficher une erreur)
+
            to_route('404') ;
         }
 
-        // Si l'établissement existe, afficher les infos
-        return view('Backoffice.Etablissement.Infos', compact('etablissement'));
+        return view('Infos', compact('etablissement'));
     }
 
 

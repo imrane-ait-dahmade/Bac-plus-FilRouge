@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissementsAccesAdmin', [EtablissementController::class , 'index'])->name('etablissementsAccesAdmin');
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
-        Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
+
         Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
         Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 
     });
 
-
+    Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
     //etudiant
     Route::middleware('role:etudiant')->group(function () {
         Route::get('etudiant', function () {
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
         })->name('etudiant_dashboard');
         // Etablissement affichage
         Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
-        Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.show');
+
 
         // Profile Etudiant
         Route::get('/profile',function(){
