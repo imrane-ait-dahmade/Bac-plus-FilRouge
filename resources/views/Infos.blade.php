@@ -8,7 +8,7 @@
             <h1 class="text-3xl font-bold text-gray-800">Détails de l'Établissement</h1>
             <div class="flex flex-wrap gap-2"> {{-- Use gap for better spacing on wrap --}}
                 {{-- Back Button --}}
-                <a href="{{ route('etablissementsAccesAdmin') }}" {{-- Assuming you have an index route --}}
+                <a href="{{ route('Etablissements') }}" {{-- Assuming you have an index route --}}
                 class="px-3 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md text-sm font-medium transition duration-150 ease-in-out flex items-center shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" stroke-width="2">
@@ -172,17 +172,7 @@
                                                 Niveau: {{ $filiere->Niveau }}
                                             </span>
                                             @endif
-                                            @if($filiere->ConditionsAdmission)
-                                                {{-- Assuming 'duree' field exists --}}
-                                                <span class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                     class="h-3.5 w-3.5 mr-1 text-gray-400" viewBox="0 0 20 20"
-                                                     fill="currentColor"><path fill-rule="evenodd"
-                                                                               d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                                                               clip-rule="evenodd"/></svg>
-                                                Durée: {{ $filiere->ConsditionAdmission }}
-                                            </span>
-                                            @endif
+
                                             {{-- Add more details like domaine if available --}}
                                             {{-- @if($filiere->domaine)
                                                <span class="flex items-center">

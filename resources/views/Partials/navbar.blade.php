@@ -53,16 +53,16 @@
                     <a href="{{ route('admin_dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Dashboard
                     </a>
-                    <a href="{{ route('etablissementsAccesAdmin') }}" class="{{ request()->routeIs('admin.etablissements.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
+                    <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.etablissements.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Établissements
                     </a>
-                    <a href="{{ route('etablissementsAccesAdmin') }}" class="{{ request()->routeIs('admin.actualites.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
+                    <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.actualites.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Actualités
                     </a>
-                    <a href="{{ route('etablissementsAccesAdmin') }}" class="{{ request()->routeIs('admin.users.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
+                    <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.users.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Utilisateurs
                     </a>
-                    <a href="{{ route('etablissementsAccesAdmin') }}" class="{{ request()->routeIs('admin.domaines.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
+                    <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.domaines.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Domaines/Filières
                     </a>
                     @endif
