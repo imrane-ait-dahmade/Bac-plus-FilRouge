@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bac;
 use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Psy\Util\Json;
 
 class ProfileController extends Controller
 {
@@ -15,9 +17,16 @@ class ProfileController extends Controller
      */
     public function index()
     {
+    $filieresBac = $this->GetFilieresBac();
 
+    return view('Frontoffice.Profile', compact('filieresBac'));
     }
 
+public function GetFilieresBac(){
+        $filieresBac = Bac::all();
+
+        return Json::encode($filieresBac);
+}
 
     /**
      * Show the form for creating a new resource.
