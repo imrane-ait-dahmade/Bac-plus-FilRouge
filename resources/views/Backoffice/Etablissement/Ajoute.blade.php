@@ -25,7 +25,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="villeEtablissement" class="block text-sm font-medium text-gray-700">Ville</label>
-                                        <select name="Unversite" id="Universite"
+                                        <select name="villeEtablissement" id="villeEtablissement"
                                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50">
                                             <option value="">Sélectionnez Ville</option>
                                             @foreach($villes as $ville)

@@ -20,7 +20,10 @@ class Filiere extends Model
         $this->belongsTo(Domaine::class);
     }
 
-
+    public function etablissements()
+    {
+        return $this->belongsToMany(Etablissement::class, 'etablissments_filieres');
+    }
 
 
 }

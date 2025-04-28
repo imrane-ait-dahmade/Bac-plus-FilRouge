@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domaine;
 use App\Models\Etablissement;
 use App\Enums\Universite;
 use App\Enums\Ville;
@@ -22,8 +23,10 @@ class EtablissementController extends Controller
     public function index()
     {
         $etablissements = Etablissement::with('region')->get();
+        $villes = Ville::cases();
+        $Domaines = Domaine::all();
 
-        return view('Frontoffice.Etablissements', compact('etablissements'));
+        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines'));
     }
 
     /**
@@ -44,7 +47,6 @@ class EtablissementController extends Controller
     {
         $request->validate([
             'nometablissement' => 'required|string|max:255',
-//            'domaine' => 'nullable|string',
             'villeEtablissement' => 'nullable|string',
             'region_id' => 'nullable|exists:regions,id',
             'adresseEtablissement' => 'nullable|string',
