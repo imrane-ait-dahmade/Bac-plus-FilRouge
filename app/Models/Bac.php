@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bac extends Model
 {
-    //
+    protected $table = 'filieres_bac';
+
+
 }
