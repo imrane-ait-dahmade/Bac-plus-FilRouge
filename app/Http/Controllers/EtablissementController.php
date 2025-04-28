@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Universite;
+use App\Models\Domaine;
 use App\Models\Etablissement;
+use App\Enums\Universite;
+use App\Enums\Ville;
 
 use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Region;
@@ -21,8 +23,12 @@ class EtablissementController extends Controller
     public function index()
     {
         $etablissements = Etablissement::with('region')->get();
+        $villes = Ville::cases();
+        $Domaines = Domaine::all();
 
-        return view('Frontoffice.Etablissements', compact('etablissements'));
+
+
+        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines'));
     }
 
     /**
@@ -33,16 +39,16 @@ class EtablissementController extends Controller
         $regions = Region::all();
 
         $universites = Universite::cases();
+        $villes = Ville::cases();
         //        dd($universites);
         //        dd($regions->toArray());
-        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites'));
+        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites','villes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nometablissement' => 'required|string|max:255',
-//            'domaine' => 'nullable|string',
             'villeEtablissement' => 'nullable|string',
             'region_id' => 'nullable|exists:regions,id',
             'adresseEtablissement' => 'nullable|string',
@@ -120,17 +126,17 @@ class EtablissementController extends Controller
 
     public function show($id)
     {
-        // Récupérer l'établissement avec l'ID
-        $etablissement = Etablissement::find($id);
 
-        // Vérifier si l'établissement existe
+        $etablissement = Etablissement::with('filieres')->find($id);;
+
+
+
         if (!$etablissement) {
-            // Gérer le cas où l'établissement n'est pas trouvé (par exemple, afficher une erreur)
+
            to_route('404') ;
         }
 
-        // Si l'établissement existe, afficher les infos
-        return view('Backoffice.Etablissement.Infos', compact('etablissement'));
+        return view('Infos', compact('etablissement'));
     }
 
 
@@ -179,7 +185,7 @@ $etablissement = Etablissement::find($id);
 
  $etablissement->Update([$valideData]);
 
- return to_route('etablissement_infos', $etablissement);
+ return to_route('etablisement_infos', $etablissement);
 
 
 //        $modifs = $etablissement->getChanges();

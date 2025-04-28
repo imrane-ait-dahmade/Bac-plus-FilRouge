@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EtablissementController;
 use App\Http\Controllers\FilierController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UniversiteController;
 use Illuminate\http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +23,10 @@ Route::middleware('auth')->group(function () {
         Route::get('admin',[\App\Http\Controllers\Statistiques::class , 'StatistiquesAdmin'])->name('admin_dashboard');
 
         //Etablissement Crud
-        Route::get('/etablissementsAccesAdmin', [EtablissementController::class , 'index'])->name('etablissementsAccesAdmin');
+
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
-        Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
+
         Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
         Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
@@ -43,7 +44,8 @@ Route::middleware('auth')->group(function () {
 
     });
 
-
+    Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
+    Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
     //etudiant
     Route::middleware('role:etudiant')->group(function () {
         Route::get('etudiant', function () {
@@ -51,14 +53,29 @@ Route::middleware('auth')->group(function () {
 
         })->name('etudiant_dashboard');
         // Etablissement affichage
-        Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
-        Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablissement.show');
+
+
 
         // Profile Etudiant
-        Route::get('/profile',function(){
-            return view('Frontoffice.Profile');
-        })->name('profile') ;
+        Route::get('/profile',[ProfileController::class ,'index'])->name('profile') ;
+        Route::get('/profileupdate',[ProfileController::class , 'update'])->name('profile.update') ;
+        // change Password
+        Route::get('/Password',function(){})->name('password.change');
 
+        // setting
+        Route::get('/settings' , function (){})->name('account.settings');
+
+
+        //Historique
+
+        Route::get('/Historiques',function(){
+        view('Frontoffice.Historiques');
+        })->name('history.index');
+
+        // Favoirs
+        Route::get('/favorites',function(){
+            return view('Frontoffice.favorites');
+        })->name('favorites.index');
     });
 });
 

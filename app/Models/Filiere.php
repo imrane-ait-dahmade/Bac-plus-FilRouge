@@ -16,5 +16,14 @@ class Filiere extends Model
         'description'
     ];
 
+    public function Domaine(){
+        $this->belongsTo(Domaine::class);
+    }
+
+    public function etablissements()
+    {
+        return $this->belongsToMany(Etablissement::class, 'etablissments_filieres');
+    }
+
 
 }

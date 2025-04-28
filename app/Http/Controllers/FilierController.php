@@ -9,7 +9,8 @@ class FilierController extends Controller
 {
    public function index(){
      $filieres =  Filiere::all();
-            return view('Backoffice.Filiere.Filieres',compact('filieres'));
+       $domaines = $filieres->Domaine;
+            return view('Backoffice.Filiere.Filieres',compact('filieres' , 'domaines'));
    }
 
    public function create(){
@@ -33,7 +34,8 @@ class FilierController extends Controller
 
    public function show($id){
        $filiere = Filiere::find($id);
-       return view('Backoffice.Filiere.Filiere',compact('filiere'));
+       $domaine = $filiere->Domaine;
+       return view('Backoffice.Filiere.Filiere',compact('filiere','domaine'));
    }
 
    public function edit($id){
