@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/etablissementsUpdate/{id}', [EtablissementController::class, 'update'])->name('etablissement.update');
 
 
+
+// universite crud
+        Route::resource('universites', UniversiteController::class);
         //Filiere Crud
         Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
         Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
