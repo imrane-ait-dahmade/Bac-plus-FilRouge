@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bacs', function (Blueprint $table) {
+        Schema::create('filiere_matiere', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_bac')->unique();
-            $table->string('langue_bac');
+            $table->foreignId('filiere_id')->constrained();
+            $table->foreignId('matiere_id')->constrained();
+            $table->float('note_min');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bacs');
+        Schema::dropIfExists('filiere_matiere');
     }
 };

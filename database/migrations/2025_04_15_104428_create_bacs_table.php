@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('bacs', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_region');
-            $table->timestamps();
+            $table->string('nom')->unique();
+            $table->enum('type', ['science','economie','literraire'])->default('science');
+            $table->string('langue');
         });
-
     }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('bacs');
     }
 };

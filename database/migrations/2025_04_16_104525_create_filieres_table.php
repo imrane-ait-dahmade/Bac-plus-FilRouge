@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
-            $table->string('nomFiliere');
+            $table->string('nom');
             $table->foreignId('etablissement_id')->constrained()->onDelete('cascade');
             $table->enum('Niveau', [
                 'Prépa',
@@ -23,12 +23,17 @@ return new class extends Migration {
                 'Licence',
                 'Licence Pro',
                 'Master',
-                'Mastère Spécialisé',
+                'Mastere Specialise',
                 'Doctorat'
             ]);
             $table->string('ConditionsAdmission');
-
+            $table->text('debouches_metiers')->nullable();
+            $table->integer('duree')->nullable();
             $table->timestamps();
+            $table->foreignId('domaine_id')->constrained('domaines')->onDelete('cascade');
+
+
+
         });
     }
 
