@@ -9,6 +9,7 @@ use App\Enums\Ville;
 
 use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Region;
+use App\Models\Universite;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,11 +38,8 @@ class EtablissementController extends Controller
     public function create()
     {
         $regions = Region::all();
-
-        $universites = Universite::cases();
+        $universites = Universite::all();
         $villes = Ville::cases();
-        //        dd($universites);
-        //        dd($regions->toArray());
         return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites','villes'));
     }
 
