@@ -21,25 +21,17 @@
                                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div>
-                                    <label for="domaine" class="block text-sm font-medium text-gray-700">Domaine</label>
-                                    <input type="text" name="domaine" id="domaine"
-                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                           placeholder="Ex: Sciences, Ingénierie, Commerce, etc." value="{{ old('domaine') }}">
-                                    @error('domaine')
-                                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="villeEtablissement" class="block text-sm font-medium text-gray-700">Ville</label>
-                                        <input type="text" name="villeEtablissement" id="villeEtablissement"
-                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50"
-                                               placeholder="Entrez la ville" value="{{ old('villeEtablissement') }}">
-                                        @error('villeEtablissement')
-                                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                                        @enderror
+                                        <select name="villeEtablissement" id="villeEtablissement"
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-custom-primary focus:ring-custom-primary bg-gray-50">
+                                            <option value="">Sélectionnez Ville</option>
+                                            @foreach($villes as $ville)
+                                                <option value="{{$ville->name}}">{{$ville->value}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div>

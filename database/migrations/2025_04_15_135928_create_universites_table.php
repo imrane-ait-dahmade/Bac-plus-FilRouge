@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('universites', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_region');
-            $table->timestamps();
+            $table->string('nom');
+            $table->string('directeur');
+            $table->foreignId('region_id')->constrained('regions');
+            $table->enum('type' , ['public', 'prive'])->default('public');
         });
-
     }
 
     /**
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('universites');
     }
 };

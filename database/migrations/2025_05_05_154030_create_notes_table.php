@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('bac_id')->constrained('bacs');
-            $table->foreignId('region_id')->constrained('regions');
-            $table->text('Objectif')->nullable();
-            $table->string('Ville')->nullable();
+            $table->foreignId('profile_id')->constrained('profiles');
+            $table->foreignId('matiere_id')->constrained();
+            $table->float('note');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('notes');
     }
 };

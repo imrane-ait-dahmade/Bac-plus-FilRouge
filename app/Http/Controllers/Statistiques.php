@@ -18,6 +18,7 @@ class Statistiques extends Controller{
         $CountFilieres = Filiere::count();
 
         $data = [
+
             'CountEtudiants' => $CountEtudiants,
             'CountEtablissements' => $CountEtablissements,
             'CountFilieres' => $CountFilieres,
