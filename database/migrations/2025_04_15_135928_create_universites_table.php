@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('directeur');
             $table->foreignId('region_id')->constrained('regions');
+            $table->string('logo')->nullable();
             $table->enum('type' , ['public', 'prive'])->default('public');
         });
     }

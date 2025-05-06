@@ -10,8 +10,9 @@ class UniversiteController extends Controller
 
     public function index()
     {
-        $universites = Universite::all();
-        return view('universites.index', compact('universites'));
+        $universites = Universite::paginate(3);
+
+        return view('Backoffice.Universite.universites', compact('universites'));
     }
 
     public function create()

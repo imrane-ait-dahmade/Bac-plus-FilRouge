@@ -4,202 +4,182 @@ namespace App\Http\Controllers;
 
 use App\Models\Domaine;
 use App\Models\Etablissement;
-use App\Enums\Universite;
 use App\Enums\Ville;
-
-use App\Http\Requests\UpdateEtablissementRequest;
-use App\Models\Region;
 use App\Models\Universite;
-use App\Models\User;
+use App\Models\Region;
 use Illuminate\Http\Request;
-
-use Termwind\Components\Dd;
 
 class EtablissementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     public function index()
     {
         $etablissements = Etablissement::with('region')->get();
+        $universities = Universite::all();
         $villes = Ville::cases();
         $Domaines = Domaine::all();
 
-
-
-        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines'));
+        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines', 'universities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $regions = Region::all();
         $universites = Universite::all();
         $villes = Ville::cases();
-        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites','villes'));
+
+        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites', 'villes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nometablissement' => 'required|string|max:255',
-            'villeEtablissement' => 'nullable|string',
+            'nom' => 'required|string|max:255',
+            'ville' => 'nullable|string',
             'region_id' => 'nullable|exists:regions,id',
-            'adresseEtablissement' => 'nullable|string',
+            'adresse' => 'nullable|string',
             'telephone' => 'nullable|string',
             'fax' => 'nullable|string',
-            'siteWeb' => 'nullable|url',
-            'siteInscription' => 'nullable|url',
-            'universite' => 'nullable|string',
+            'site_web' => 'nullable|url',
+            'site_inscription' => 'nullable|url',
+            'universite_id' => 'nullable|exists:universites,id',
             'resau' => 'nullable|string',
             'email' => 'nullable|email',
-            'nombreEtudiant' => 'nullable|integer',
-            'TypeEcole' => 'nullable|string',
-            'descirptionetablissement' => 'nullable|string',
+            'nombre_etudiant' => 'nullable|integer',
+            'TypeEcole' => 'nullable|in:public,prive',
+            'description' => 'nullable|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'seuil_actif' => 'boolean',
+            'seuil' => 'nullable|numeric',
+            'date_ouverture_inscription' => 'nullable|date',
+            'date_limite_inscription' => 'nullable|date',
+            'diplome_type' => 'nullable|string',
+            'reputation' => 'nullable|numeric',
+            'frais_scolarite' => 'nullable|numeric',
+            'abreviation' => 'nullable|string|max:20',
         ]);
 
-        $logoName =null;
+        $logoName = null;
         $imageName = null;
 
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
-
-            $logoName = $logo->getClientOriginalName();
             $logoName = time() . '_' . $logo->getClientOriginalName();
             $logo->move(public_path('Images/LogoEcoles'), $logoName);
         }
+
         if ($request->hasFile('image')) {
-
-                $image = $request->file('image');
-
-//                 $imageName = $image->getClientOriginalName();
-
+            $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-//            dd($imageName);
-                 $image->move(public_path('/Images/PhotoEcoles'), $imageName);
+            $image->move(public_path('Images/PhotoEcoles'), $imageName);
         }
 
-      $etablissement =  Etablissement::create([
-            'nometablissement' => $request->nometablissement,
-//            'domaine' => $request->domaine,
-            'villeetablissement' => $request->villeEtablissement,
+        $etablissement = Etablissement::create([
+            'nom' => $request->nom,
+            'ville' => $request->ville,
             'region_id' => $request->region_id,
-            'adresseetablissement' => $request->adresseEtablissement,
+            'adresse' => $request->adresse,
             'telephone' => $request->telephone,
             'fax' => $request->fax,
-            'siteweb' => $request->siteWeb,
-            'siteinscription' => $request->siteInscription,
-            'universite' => $request->Unversite,
+            'site_web' => $request->site_web,
+            'site_inscription' => $request->site_inscription,
+            'universite_id' => $request->universite_id,
             'resau' => $request->resau,
             'email' => $request->email,
-            'nombreetudiant' => $request->nombreEtudiant,
-            'Typeecole' => $request->TypeEcole,
-            'descirptionetablissement' => $request->descirptionetablissement,
+            'nombre_etudiant' => $request->nombre_etudiant,
+            'TypeEcole' => $request->TypeEcole,
+            'description' => $request->description,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
             'linkedin' => $request->linkedin,
             'image' => $imageName,
             'logo' => $logoName,
+            'seuil_actif' => $request->seuil_actif,
+            'seuil' => $request->seuil,
+            'date_ouverture_inscription' => $request->date_ouverture_inscription,
+            'date_limite_inscription' => $request->date_limite_inscription,
+            'diplome_type' => $request->diplome_type,
+            'reputation' => $request->reputation,
+            'frais_scolarite' => $request->frais_scolarite,
+            'abreviation' => $request->abreviation,
         ]);
 
-
-               return to_route('etablisement_infos', $etablissement);
+        return to_route('etablisement_infos', $etablissement);
     }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-
 
     public function show($id)
     {
-
-        $etablissement = Etablissement::with('filieres')->find($id);;
-
-
-
-        if (!$etablissement) {
-
-           to_route('404') ;
-        }
-
+        $etablissement = Etablissement::with('filieres')->findOrFail($id);
         return view('Infos', compact('etablissement'));
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-       $etablissement = Etablissement::find($id);
-       $region = $etablissement->region;
-       $regions = Region::all();
-       $universites = Universite::cases();
-  return view('Backoffice.Etablissement.Modifier', compact('etablissement', 'regions','region', 'universites'));
+        $etablissement = Etablissement::findOrFail($id);
+        $regions = Region::all();
+        $universite = $etablissement->with('universite')->get();
+        return view('Backoffice.Etablissement.Modifier', compact('etablissement', 'regions', 'universite'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update($id ,request $request)
+    public function update($id, Request $request)
     {
-
-     $valideData =  $request->validate([
-            'nometablissement' => 'required|string|max:255',
-            'villeetablissement' => 'nullable|string',
+        $validatedData = $request->validate([
+            'nom' => 'required|string|max:255',
+            'ville' => 'nullable|string',
             'region_id' => 'nullable|exists:regions,id',
-            'adresseetablissement' => 'nullable|string',
+            'adresse' => 'nullable|string',
             'telephone' => 'nullable|string',
             'fax' => 'nullable|string',
             'site_web' => 'nullable|url',
             'site_inscription' => 'nullable|url',
-            'universite' => 'nullable|string',
+            'universite_id' => 'nullable|exists:universites,id',
             'resau' => 'nullable|string',
             'email' => 'nullable|email',
-            'nombreetudiant' => 'nullable|integer',
-            'eypeecole' => 'nullable|string',
-            'descirptionetablissement' => 'nullable|string',
+            'nombre_etudiant' => 'nullable|integer',
+            'TypeEcole' => 'nullable|in:public,prive',
+            'description' => 'nullable|string',
             'facebook' => 'nullable|url',
             'instagram' => 'nullable|url',
             'linkedin' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'seuil_actif' => 'boolean',
+            'seuil' => 'nullable|numeric',
+            'date_ouverture_inscription' => 'nullable|date',
+            'date_limite_inscription' => 'nullable|date',
+            'diplome_type' => 'nullable|string',
+            'reputation' => 'nullable|numeric',
+            'frais_scolarite' => 'nullable|numeric',
+            'abreviation' => 'nullable|string|max:20',
         ]);
 
-$etablissement = Etablissement::find($id);
+        $etablissement = Etablissement::findOrFail($id);
 
- $etablissement->Update([$valideData]);
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo');
+            $logoName = time() . '_' . $logo->getClientOriginalName();
+            $logo->move(public_path('Images/LogoEcoles'), $logoName);
+            $validatedData['logo'] = $logoName;
+        }
 
- return to_route('etablisement_infos', $etablissement);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('Images/PhotoEcoles'), $imageName);
+            $validatedData['image'] = $imageName;
+        }
 
+        $etablissement->update($validatedData);
 
-//        $modifs = $etablissement->getChanges();
-//        dd($modifs);
-
+        return to_route('etablisement_infos', $etablissement);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-
-        $etablissement = Etablissement::find($id);
-        $etablissement->delete();
-
-        return redirect('/etablissementsAccesAdmin');
+        Etablissement::destroy($id);
+        return redirect()->route('etablissementsAccesAdmin');
     }
 }

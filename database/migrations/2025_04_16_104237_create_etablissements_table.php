@@ -40,6 +40,7 @@ return new class extends Migration
             $table->date('date_limite_inscription')->nullable();
             $table->timestamps();
             $table->string('diplome_type')->nullable();
+            $table->string('email')->nullable();
         });
     }
 

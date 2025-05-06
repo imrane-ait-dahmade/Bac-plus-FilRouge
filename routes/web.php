@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
 
 
 // universite crud
+
         Route::resource('universites', UniversiteController::class);
+
         //Filiere Crud
         Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
         Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
@@ -80,6 +82,7 @@ Route::middleware('auth')->group(function () {
             return view('Frontoffice.favorites');
         })->name('favorites.index');
     });
+
 });
 
 
