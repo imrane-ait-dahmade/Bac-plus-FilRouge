@@ -79,12 +79,14 @@ class EtablissementController extends Controller
 
     public function show(Etablissement $etablissement)
     {
+
         $etablissement->loadMissing('filieres.domaine', 'region', 'universite');
         return view('Infos', compact('etablissement'));
     }
 
-    public function edit(Etablissement $etablissement)
+    public function edit( $etablissement)
     {
+        dd($etablissement);
         $regions = Region::orderBy('nom')->get();
         $universites = Universite::orderBy('nom')->get();
         $villes = Ville::cases();

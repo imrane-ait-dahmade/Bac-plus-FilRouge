@@ -18,7 +18,8 @@
                 </a>
                 @if(Auth::user()->role === 'admin')
                     {{-- Edit Button --}}
-                    <a href="{{ route('etablissement.FormEdit', $etablissement->id) }}"
+
+                    <a href="{{ route('etablissement.FormEdit', ['etablissement' => $etablissement->id]) }}"
                        class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm font-medium transition duration-150 ease-in-out flex items-center shadow-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" stroke-width="2">
