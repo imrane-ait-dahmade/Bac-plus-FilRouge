@@ -33,10 +33,11 @@ class FilierController extends Controller
        return to_route('filiere.show',$filiere->id);
    }
 
-   public function show($id){
-       $filiere = Filiere::find($id);
-       $domaine = $filiere->Domaine;
-       return view('Backoffice.Filiere.Filiere',compact('filiere','domaine'));
+   public function show($domaine,$filiere){
+
+       $filiere = Filiere::find($filiere);
+
+       return view('Filiere',compact('filiere','domaine'));
    }
 
    public function edit($id){
@@ -60,7 +61,9 @@ class FilierController extends Controller
    }
    public function destroy($id){
        $filiere = Filiere::find($id);
+       $domaine = $filiere->domaine;
+
        $filiere->delete();
-       return to_route('filieres');
+       return to_route('filieres.domaine',['domaine'=>$domaine->id]);
    }
 }

@@ -99,7 +99,7 @@
 
                         {{-- Action Button --}}
                         <div class="mt-auto pt-4 border-t border-gray-100">
-                            <a href="{{ route('filiere.show', $filiere->id) }}"
+                            <a href="{{ route('filiere.show', ['filiere' => $filiere->id , 'domaine' => $filiere->domaine_id]) }}"
                                class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-custom-dark border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-wider hover:bg-custom-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition ease-in-out duration-150 shadow-sm hover:shadow-md">
                                 <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -139,7 +139,7 @@
                             <div>
                                 <p class="font-bold text-lg">Aucune filière trouvée pour ce domaine</p>
                                 <p>Il semble qu'aucune filière spécifique n'ait été ajoutée pour le domaine <span class="font-semibold">"{{ $domaine->domaine }}"</span> pour le moment.</p>
-                                <p class="mt-2">Vous pouvez <a href="{{ route('filiere.create', ['domaine_id' => $domaine->id]) }}" class="font-medium text-yellow-800 hover:underline">ajouter une nouvelle filière</a> pour ce domaine, ou <a href="{{ route('domaines.index') }}" class="font-medium text-yellow-800 hover:underline">explorer d'autres domaines</a>.</p>
+                                <p class="mt-2">Vous pouvez <a href="{{ route('filiere.create', ['domaine_id' => $domaine->id]) }}" class="font-medium text-yellow-800 hover:underline">ajouter une nouvelle filière</a> pour ce domaine, ou <a href="{{ route('Domaines') }}" class="font-medium text-yellow-800 hover:underline">explorer d'autres domaines</a>.</p>
                             </div>
                         </div>
                     </div>

@@ -41,10 +41,10 @@ Route::middleware('auth')->group(function () {
 
         //Filiere Crud
         Route::get('/{domaine}/flieres',[FilierController::class , 'index'])->name('filieres.domaine');
-        Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
+        Route::get('/{domaine}/filieres/{filiere}',[FilierController::class , 'show'])->scopeBindings()->name('filiere.show');
         Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
         Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
-        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.delete');
+        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.destroy');
         Route::get('/filiere/create',[FilierController::class, 'create'])->name('filiere.create');
         Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
 
