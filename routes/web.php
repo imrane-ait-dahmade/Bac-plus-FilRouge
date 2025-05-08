@@ -40,13 +40,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('universites', UniversiteController::class);
 
         //Filiere Crud
-        Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
-        Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
-        Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
-        Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
-        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.delete');
-        Route::get('/filiere/create',[FilierController::class, 'create'])->name('filiere.create');
-        Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
+        Route::get('/{domaine}/flieres',[FilierController::class , 'index'])->name('filieres.domaine');
+//        Route::get('/{domaine}/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
+//        Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
+//        Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
+//        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.delete');
+//        Route::get('/filiere/create',[FilierController::class, 'create'])->name('filiere.create');
+//        Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
 
     });
     Route::get('/domaines' , [DomaineController::class , 'index'])->name('Domaines');

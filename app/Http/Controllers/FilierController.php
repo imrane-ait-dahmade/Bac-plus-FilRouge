@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domaine;
 use App\Models\Filiere;
 use Illuminate\Http\Request;
 
 class FilierController extends Controller
 {
-   public function index(){
-     $filieres =  Filiere::all();
-       $domaines = $filieres->Domaine;
-            return view('Backoffice.Filiere.Filieres',compact('filieres' , 'domaines'));
+   public function index( $domaine){
+     $filieres =  Filiere::where('domaine_id' , $domaine)->get();
+
+            return view('Filieres',compact('filieres' ));
    }
 
    public function create(){

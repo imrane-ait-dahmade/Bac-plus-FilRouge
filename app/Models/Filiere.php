@@ -4,20 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Filiere extends Model
 {
 
     use HasFactory;
     protected $fillable = [
-        'nomfiliere',
+        'nom',
+        'etablissement_id',
         'Niveau',
         'ConditionsAdmission',
-        'description'
+        'duree',
+        'domaine_id',
+        'debouches_metiers',
     ];
 
     public function Domaine(){
-        $this->belongsTo(Domaine::class);
+       return $this->belongsTo(Domaine::class);
     }
 
     public function etablissements()
