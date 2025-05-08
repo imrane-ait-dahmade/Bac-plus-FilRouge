@@ -12,7 +12,7 @@ class DomaineController extends Controller
      */
     public function index()
     {
-        $domaines = Domaine::all();
+        $domaines = Domaine::withCount('filieres')->get();
         return view('Domaines', compact('domaines'));
     }
 
