@@ -1,95 +1,146 @@
-@extends('Layouts.App')
+@extends('Layouts.App') {{-- Ou le nom de ton layout principal --}}
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
 
-        {{-- Header Row: Title + Add Button --}}
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800">Nos Filières</h1>
-            <a href="{{ route('filiere.create') }}"
-               class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150 shadow-md">
-                {{-- Icon for Add --}}
-                <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                Ajouter Filière
-            </a>
+        {{-- Header Row: Titre dynamique du Domaine + Lien retour + Bouton Ajout (optionnel ici) --}}
+        <div class="mb-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3">
+                <div>
+                    <a href="{{ route('Domaines') }}" class="text-sm text-blue-600 hover:text-custom-dark hover:underline flex items-center mb-2">
+                        <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                        Retour aux Domaines
+                    </a>
+                    <h1 class="text-4xl font-bold text-gray-800">
+                        Filières du Domaine : <span class="text-custom-dark">{{ $domaine->domaine }}</span>
+                    </h1>
+                </div>
+                {{-- Bouton "Ajouter Filière" spécifique à ce domaine ? --}}
+                {{-- Si la route 'filiere.create' peut prendre un 'domaine_id' en paramètre --}}
+                {{-- Sinon, le bouton général suffit sur la page de toutes les filières --}}
+                {{-- <a href="{{ route('filiere.create', ['domaine_id' => $domaine->id]) }}" --}}
+                <a href="{{ route('filiere.create') }}"
+                   class="mt-4 sm:mt-0 inline-flex items-center px-6 py-3 bg-custom-primary border border-transparent rounded-lg font-semibold text-sm text-white uppercase tracking-widest hover:bg-custom-light active:bg-custom-dark focus:outline-none focus:border-custom-dark focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150 shadow-md hover:shadow-lg">
+                    <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Ajouter une Filière
+                </a>
+            </div>
+            @if($domaine->description)
+                <p class="text-gray-600 mt-1 text-md">{{ $domaine->description }}</p>
+            @endif
         </div>
 
+        {{-- Affichage des messages de succès/erreur (si besoin ici) --}}
+        {{-- ... (comme dans les autres vues) ... --}}
+
+
         {{-- Grid for Filiere Cards --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
 
             @forelse ($filieres as $filiere)
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-xl duration-300 ease-in-out flex flex-col">
-                    {{-- Optional Header Image or Color Band --}}
-                    {{-- <div class="h-2 bg-indigo-500"></div> --}}
-
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-2xl flex flex-col border-t-4 border-custom-dark"> {{-- Couleur d'accent bleue pour les filières --}}
                     <div class="p-6 flex flex-col flex-grow">
-                        {{-- Title and Level --}}
+
+                        {{-- Titre et Niveau --}}
+                        <div class="mb-3">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-1 leading-tight">{{ $filiere->nom }}</h2>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-custom-dark">
+                         <svg class="w-3 h-3 mr-1.5 text-custom-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3.5a1 1 0 000 1.84L5.25 8.505V12a1 1 0 001 1h1.25a1 1 0 001-1v-3.495l1.75-.875V12a1 1 0 001 1h1.25a1 1 0 001-1v-3.495l3.071-1.536a1 1 0 000-1.84l-7-3.5zM6.25 9.53L3 7.995l3.25-1.626V9.53zM12 13.5h-1v-3.07l-1-1.01.01-.01V12a1 1 0 001 1h1V12a1 1 0 00-1-1V9.429l1-.501V13.5z"/>
+                            <path d="M3 15.25V15a1 1 0 00-1 1v.5a1 1 0 001 1h14a1 1 0 001-1v-.5a1 1 0 00-1-1H3z"/>
+                         </svg>
+                         Niveau: {{ $filiere->Niveau ?? 'Non spécifié' }}
+                     </span>
+                        </div>
+
+                        {{-- Établissement --}}
+                        @if($filiere->etablissement)
+                            <div class="mb-3 text-sm text-gray-500">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3v-4a1 1 0 00-1-1H9a1 1 0 00-1 1v4H5a1 1 0 110-2V4zm3 1a1 1 0 011-1h2a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="font-medium text-gray-700">{{ $filiere->etablissement->nom }}</span>
+                                    <span class="mx-1 text-gray-300">|</span>
+                                    <span>{{ $filiere->etablissement->ville }}</span>
+                                </div>
+                            </div>
+                        @endif
+
+
+                        {{-- Conditions d'admission --}}
                         <div class="mb-4">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-1">{{ $filiere->nomfiliere }}</h2>
-                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-                             {{-- Icon for Level --}}
-                             <svg class="w-4 h-4 mr-1.5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                             </svg>
-                             Niveau: {{ $filiere->Niveau ?? 'Non spécifié' }}
-                         </span>
+                            <h3 class="text-xs uppercase font-semibold text-gray-500 mb-1">Conditions d'admission</h3>
+                            <p class="text-gray-600 text-sm flex-grow">
+                                {{ Str::limit($filiere->ConditionsAdmission ?: 'Non spécifiées.', 100, '...') }}
+                            </p>
                         </div>
 
-                        {{-- Description --}}
-                        <p class="text-gray-600 text-sm mb-5 flex-grow">{{ Str::limit($filiere->description, 120, '...') }}</p> {{-- Limite la description pour la cohérence --}}
-
-                        {{-- Additional Info Section --}}
-                        <div class="border-t border-gray-200 pt-4 space-y-2 text-sm text-gray-500 mb-5">
-                            {{-- Example: Department (if relationship exists) --}}
-                            @if(isset($filiere->departement))
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                    </svg>
-                                    Département: <span class="font-medium text-gray-700 ml-1">{{ $filiere->departement->nom ?? 'N/A' }}</span>
-                                </div>
+                        {{-- Débouchés et Durée --}}
+                        <div class="mb-5 border-t border-gray-200 pt-4">
+                            <h3 class="text-xs uppercase font-semibold text-gray-500 mb-1">Débouchés & Durée</h3>
+                            <p class="text-gray-600 text-sm mb-2 flex-grow">
+                                {{ Str::limit($filiere->debouches_metiers ?: 'Non spécifiés.', 120, '...') }}
+                            </p>
+                            @if($filiere->duree)
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                            <svg class="w-3 h-3 mr-1 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Durée: {{ $filiere->duree }} an(s)
+                        </span>
                             @endif
-
-                            {{-- Example: Number of Modules (if attribute exists) --}}
-                            @if(isset($filiere->modules_count))
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                    </svg>
-                                    Modules: <span class="font-medium text-gray-700 ml-1">{{ $filiere->modules_count ?? 'N/A' }}</span> {{-- Assurez-vous d'avoir cet attribut --}}
-                                </div>
-                            @endif
-
                         </div>
+
 
                         {{-- Action Button --}}
-                        <div class="mt-auto pt-4 border-t border-gray-100"> {{-- mt-auto pousse ce bloc vers le bas --}}
+                        <div class="mt-auto pt-4 border-t border-gray-100">
                             <a href="{{ route('filiere.show', $filiere->id) }}"
-                               class="w-full inline-flex justify-center items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-25 transition ease-in-out duration-150">
-                                {{-- Icon for Details --}}
+                               class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-custom-dark border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-wider hover:bg-custom-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 transition ease-in-out duration-150 shadow-sm hover:shadow-md">
                                 <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
-                                Voir Détails
+                                Voir Détails Filière
                             </a>
+                            {{-- Ici, on pourrait aussi ajouter des boutons Modifier/Supprimer la filière si l'utilisateur a les droits --}}
+                            {{--
+                            <div class="flex space-x-2 mt-3 justify-end">
+                                 <a href="{{ route('filiere.edit', $filiere->id) }}" title="Modifier"
+                                   class="p-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded-md transition ease-in-out duration-150 shadow-sm hover:shadow-md">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                </a>
+                                <form action="{{ route('filiere.destroy', $filiere->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette filière ?');" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" title="Supprimer"
+                                           class="p-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition ease-in-out duration-150 shadow-sm hover:shadow-md">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                                    </button>
+                                </form>
+                            </div>
+                            --}}
                         </div>
                     </div>
                 </div>
             @empty
-                {{-- Message when no filieres are found --}}
-                <div class="col-span-1 md:col-span-2 lg:col-span-3 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-6 rounded-md shadow" role="alert">
-                    <div class="flex items-center">
-                        <svg class="w-6 h-6 mr-3 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        <div>
-                            <p class="font-bold text-lg">Aucune filière trouvée</p>
-                            <p>Il semble qu'aucune filière n'ait été ajoutée pour le moment. Cliquez sur "Ajouter Filière" pour commencer.</p>
+                <div class="col-span-1 md:col-span-2 lg:col-span-3">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-6 rounded-md shadow-sm" role="alert">
+                        <div class="flex">
+                            <div class="py-1">
+                                <svg class="w-6 h-6 text-yellow-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold text-lg">Aucune filière trouvée pour ce domaine</p>
+                                <p>Il semble qu'aucune filière spécifique n'ait été ajoutée pour le domaine <span class="font-semibold">"{{ $domaine->domaine }}"</span> pour le moment.</p>
+                                <p class="mt-2">Vous pouvez <a href="{{ route('filiere.create', ['domaine_id' => $domaine->id]) }}" class="font-medium text-yellow-800 hover:underline">ajouter une nouvelle filière</a> pour ce domaine, ou <a href="{{ route('domaines.index') }}" class="font-medium text-yellow-800 hover:underline">explorer d'autres domaines</a>.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,5 +151,5 @@
     </div> {{-- End Container --}}
 @endsection
 
-{{-- Utility needed in AppServiceProvider or similar for Str::limit --}}
-{{-- use Illuminate\Support\Str; --}}
+{{-- Assurez-vous que Str::limit est disponible, soit via un alias global, soit par import dans votre AppServiceProvider --}}
+{{-- `use Illuminate\Support\Str;` dans le contexte où vous en avez besoin --}}

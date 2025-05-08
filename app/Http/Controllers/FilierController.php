@@ -10,8 +10,8 @@ class FilierController extends Controller
 {
    public function index( $domaine){
      $filieres =  Filiere::where('domaine_id' , $domaine)->get();
-
-            return view('Filieres',compact('filieres' ));
+        $domaine = Domaine::find($domaine);
+            return view('Filieres',compact('filieres','domaine'));
    }
 
    public function create(){
