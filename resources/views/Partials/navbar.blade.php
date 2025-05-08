@@ -56,8 +56,8 @@
                     <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.etablissements.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Établissements
                     </a>
-                    <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.actualites.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
-                        Actualités
+                    <a href="{{ url('universites') }}" class="{{ request()->routeIs('admin.actualites.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
+                        Universites
                     </a>
                     <a href="{{ route('Etablissements') }}" class="{{ request()->routeIs('admin.users.*') ? 'border-custom-primary text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700' }} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition whitespace-nowrap">
                         Utilisateurs

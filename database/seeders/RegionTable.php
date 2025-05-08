@@ -26,7 +26,7 @@ class RegionTable extends Seeder
 
         foreach ($regions as $region) {
             DB::table('regions')->insert([
-                'nom_region' => $region,
+                'nom' => $region,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

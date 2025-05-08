@@ -29,9 +29,14 @@ Route::middleware('auth')->group(function () {
 
         Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
-        Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
+        Route::get('/etablissementEdit/{etablissement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
         Route::put('/etablissementsUpdate/{id}', [EtablissementController::class, 'update'])->name('etablissement.update');
 
+
+
+// universite crud
+
+        Route::resource('universites', UniversiteController::class);
 
         //Filiere Crud
         Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
@@ -45,7 +50,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
-    Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
+    Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
     //etudiant
     Route::middleware('role:etudiant')->group(function () {
         Route::get('etudiant', function () {
@@ -77,6 +82,7 @@ Route::middleware('auth')->group(function () {
             return view('Frontoffice.favorites');
         })->name('favorites.index');
     });
+
 });
 
 

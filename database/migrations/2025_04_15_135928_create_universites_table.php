@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bacs', function (Blueprint $table) {
+        Schema::create('universites', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_bac')->unique();
-            $table->string('langue_bac');
+            $table->string('nom');
+            $table->string('directeur');
+            $table->foreignId('region_id')->constrained('regions');
+            $table->string('logo')->nullable();
+            $table->enum('type' , ['public', 'prive'])->default('public');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bacs');
+        Schema::dropIfExists('universites');
     }
 };

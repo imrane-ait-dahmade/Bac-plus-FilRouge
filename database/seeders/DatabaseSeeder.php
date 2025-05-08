@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 //        ]);
         $this->call(RegionTable::class);
         $this->call(EtablissementSeeder::class);
+        $this->call(UniversiteSeeder::class);
 
     }
 }

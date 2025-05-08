@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filieres_bac', function (Blueprint $table) {
+        Schema::create('filiere_matiere', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('langue');
-            $table->enum('typefiliere',['science','economie','litterateur']);
+            $table->foreignId('filiere_id')->constrained();
+            $table->foreignId('matiere_id')->constrained();
+            $table->float('note_min');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filieres_bac');
+        Schema::dropIfExists('filiere_matiere');
     }
 };

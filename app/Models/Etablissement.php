@@ -11,25 +11,33 @@ class Etablissement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nometablissement',
-        'villeetablissement',
+        'nom',
+        'ville',
         'region_id',
-        'adresseetablissement',
+        'adresse',
         'telephone',
         'fax',
         'site_web',
         'site_inscription',
-        'universite',
+        'universite_id',
         'resau',
-        'nombreetudiant',
-        'typeecole',
+        'email',
+        'nombre_etudiant',
+        'type_ecole',
+        'description',
         'facebook',
         'instagram',
         'linkedin',
-        'descirptionetablissement',
         'image',
         'logo',
-
+        'abreviation',
+        'seuil_actif',
+        'seuil',
+        'date_ouverture_inscription',
+        'date_limite_inscription',
+        'diplome_type',
+        'reputation',
+        'frais_scolarite',
     ];
 
 
@@ -42,5 +50,8 @@ class Etablissement extends Model
     public function filieres()
     {
         return $this->belongsToMany(Filiere::class, 'etablissments_filieres');
+    }
+    public function universite(){
+        return $this->belongsTo(Universite::class , 'universite_id');
     }
 }

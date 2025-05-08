@@ -2,206 +2,140 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ville;
+use App\Http\Requests\StoreEtablissementRequest;
+use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Domaine;
 use App\Models\Etablissement;
-use App\Enums\Universite;
-use App\Enums\Ville;
-
-use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Region;
-use App\Models\User;
+use App\Models\Universite;
 use Illuminate\Http\Request;
-
-use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EtablissementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-    public function index()
+    public function index(Request $request)
     {
-        $etablissements = Etablissement::with('region')->get();
+        $query = Etablissement::query()->with(['region', 'universite']);
+
+        if ($request->filled('search')) {
+            $query->where('nom', 'like', '%' . $request->input('search') . '%');
+        }
+        if ($request->filled('ville')) {
+            $query->where('ville', $request->input('ville'));
+        }
+        if ($request->filled('domaine_id')) {
+            $query->whereHas('filieres', function ($q) use ($request) {
+                $q->where('domaine_id', $request->input('domaine_id'));
+            });
+        }
+        if ($request->filled('type_ecole') && is_array($request->input('type_ecole'))) {
+            $query->whereIn('type_ecole', $request->input('type_ecole'));
+        }
+
+        $sortBy = $request->input('sort_by', 'id');
+        $sortDirection = Str::endsWith($sortBy, '_desc') ? 'desc' : 'asc';
+        $sortColumn = Str::remove('_asc', Str::remove('_desc', $sortBy));
+
+        if (in_array($sortColumn, ['nom', 'id'])) { // Add other sortable columns
+            $query->orderBy($sortColumn, $sortDirection);
+        } else {
+            $query->orderBy('id', 'desc');
+        }
+
+        $etablissements = $query->paginate(15)->withQueryString();
+
+        $regions = Region::orderBy('nom')->get();
+        $universities = Universite::orderBy('nom')->get();
         $villes = Ville::cases();
-        $Domaines = Domaine::all();
+        $Domaines = Domaine::orderBy('domaine')->get();
 
-
-
-        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines'));
+        return view('Frontoffice.Etablissements', compact('etablissements', 'villes', 'Domaines', 'universities', 'regions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $regions = Region::all();
-
-        $universites = Universite::cases();
+        $regions = Region::orderBy('nom')->get();
+        $universites = Universite::orderBy('nom')->get();
         $villes = Ville::cases();
-        //        dd($universites);
-        //        dd($regions->toArray());
-        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites','villes'));
+        return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites', 'villes'));
     }
 
-    public function store(Request $request)
+    public function store(StoreEtablissementRequest $request)
     {
-        $request->validate([
-            'nometablissement' => 'required|string|max:255',
-            'villeEtablissement' => 'nullable|string',
-            'region_id' => 'nullable|exists:regions,id',
-            'adresseEtablissement' => 'nullable|string',
-            'telephone' => 'nullable|string',
-            'fax' => 'nullable|string',
-            'siteWeb' => 'nullable|url',
-            'siteInscription' => 'nullable|url',
-            'universite' => 'nullable|string',
-            'resau' => 'nullable|string',
-            'email' => 'nullable|email',
-            'nombreEtudiant' => 'nullable|integer',
-            'TypeEcole' => 'nullable|string',
-            'descirptionetablissement' => 'nullable|string',
-            'facebook' => 'nullable|url',
-            'instagram' => 'nullable|url',
-            'linkedin' => 'nullable|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        $validatedData = $request->validated();
 
-        $logoName =null;
-        $imageName = null;
-
-        if ($request->hasFile('logo')) {
-            $logo = $request->file('logo');
-
-            $logoName = $logo->getClientOriginalName();
-            $logoName = time() . '_' . $logo->getClientOriginalName();
-            $logo->move(public_path('Images/LogoEcoles'), $logoName);
-        }
-        if ($request->hasFile('image')) {
-
-                $image = $request->file('image');
-
-//                 $imageName = $image->getClientOriginalName();
-
-            $imageName = time() . '_' . $image->getClientOriginalName();
-//            dd($imageName);
-                 $image->move(public_path('/Images/PhotoEcoles'), $imageName);
-        }
-
-      $etablissement =  Etablissement::create([
-            'nometablissement' => $request->nometablissement,
-//            'domaine' => $request->domaine,
-            'villeetablissement' => $request->villeEtablissement,
-            'region_id' => $request->region_id,
-            'adresseetablissement' => $request->adresseEtablissement,
-            'telephone' => $request->telephone,
-            'fax' => $request->fax,
-            'siteweb' => $request->siteWeb,
-            'siteinscription' => $request->siteInscription,
-            'universite' => $request->Unversite,
-            'resau' => $request->resau,
-            'email' => $request->email,
-            'nombreetudiant' => $request->nombreEtudiant,
-            'Typeecole' => $request->TypeEcole,
-            'descirptionetablissement' => $request->descirptionetablissement,
-            'facebook' => $request->facebook,
-            'instagram' => $request->instagram,
-            'linkedin' => $request->linkedin,
-            'image' => $imageName,
-            'logo' => $logoName,
-        ]);
+        $validatedData['logo'] = $this->handleFileUpload($request, 'logo', 'etablissement_logos');
+        $validatedData['image'] = $this->handleFileUpload($request, 'image', 'etablissement_images');
+        $validatedData['seuil_actif'] = $request->boolean('seuil_actif');
 
 
-               return to_route('etablisement_infos', $etablissement);
+        $etablissement = Etablissement::create($validatedData);
+
+        return redirect()->route('etablissements.show', $etablissement->id)
+            ->with('success', 'Établissement créé avec succès.');
     }
 
-
-
-    /**
-     * Display the specified resource.
-     */
-
-
-    public function show($id)
+    public function show(Etablissement $etablissement)
     {
 
-        $etablissement = Etablissement::with('filieres')->find($id);;
-
-
-
-        if (!$etablissement) {
-
-           to_route('404') ;
-        }
-
+        $etablissement->loadMissing('filieres.domaine', 'region', 'universite');
         return view('Infos', compact('etablissement'));
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function edit( $etablissement)
     {
-       $etablissement = Etablissement::find($id);
-       $region = $etablissement->region;
-       $regions = Region::all();
-       $universites = Universite::cases();
-  return view('Backoffice.Etablissement.Modifier', compact('etablissement', 'regions','region', 'universites'));
+        dd($etablissement);
+        $regions = Region::orderBy('nom')->get();
+        $universites = Universite::orderBy('nom')->get();
+        $villes = Ville::cases();
+        return view('Backoffice.Etablissement.Modifier', compact('etablissement', 'regions', 'universites', 'villes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update($id ,request $request)
+    public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
     {
+        $validatedData = $request->validated();
 
-     $valideData =  $request->validate([
-            'nometablissement' => 'required|string|max:255',
-            'villeetablissement' => 'nullable|string',
-            'region_id' => 'nullable|exists:regions,id',
-            'adresseetablissement' => 'nullable|string',
-            'telephone' => 'nullable|string',
-            'fax' => 'nullable|string',
-            'site_web' => 'nullable|url',
-            'site_inscription' => 'nullable|url',
-            'universite' => 'nullable|string',
-            'resau' => 'nullable|string',
-            'email' => 'nullable|email',
-            'nombreetudiant' => 'nullable|integer',
-            'eypeecole' => 'nullable|string',
-            'descirptionetablissement' => 'nullable|string',
-            'facebook' => 'nullable|url',
-            'instagram' => 'nullable|url',
-            'linkedin' => 'nullable|url',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-$etablissement = Etablissement::find($id);
-
- $etablissement->Update([$valideData]);
-
- return to_route('etablisement_infos', $etablissement);
+        if ($request->hasFile('logo')) {
+            $validatedData['logo'] = $this->handleFileUpload($request, 'logo', 'etablissement_logos', $etablissement->logo);
+        }
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $this->handleFileUpload($request, 'image', 'etablissement_images', $etablissement->image);
+        }
+        $validatedData['seuil_actif'] = $request->boolean('seuil_actif');
 
 
-//        $modifs = $etablissement->getChanges();
-//        dd($modifs);
+        $etablissement->update($validatedData);
 
+        return redirect()->route('etablissements.show', $etablissement->id)
+            ->with('success', 'Établissement mis à jour avec succès.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+    public function destroy(Etablissement $etablissement)
     {
-
-        $etablissement = Etablissement::find($id);
+        if ($etablissement->logo) {
+            Storage::disk('public')->delete($etablissement->logo);
+        }
+        if ($etablissement->image) {
+            Storage::disk('public')->delete($etablissement->image);
+        }
         $etablissement->delete();
 
-        return redirect('/etablissementsAccesAdmin');
+        return redirect()->route('admin.etablissements.index') // Assuming an admin index route
+        ->with('success', 'Établissement supprimé avec succès.');
+    }
+
+    private function handleFileUpload(Request $request, string $fileKey, string $directory, ?string $existingFilePath = null): ?string
+    {
+        if ($request->hasFile($fileKey)) {
+            if ($existingFilePath) {
+                Storage::disk('public')->delete($existingFilePath);
+            }
+            $file = $request->file($fileKey);
+            $fileName = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            return $file->storeAs($directory, $fileName, 'public');
+        }
+        return $existingFilePath;
     }
 }
