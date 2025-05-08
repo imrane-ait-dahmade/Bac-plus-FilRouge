@@ -29,7 +29,7 @@
                         Modifier
                     </a>
                     {{-- Delete Button --}}
-                    <form action="{{ route('etablissement.destroy', $etablissement->id) }}" method="POST"
+                    <form action="{{ route('etablissement.destroy', ['etablissement' => $etablissement->id]) }}" method="POST"
                           onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet établissement ? Cette action est irréversible.');"
                           class="inline-block">
                         @csrf

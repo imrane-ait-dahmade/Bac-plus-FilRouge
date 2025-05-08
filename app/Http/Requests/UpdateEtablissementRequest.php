@@ -43,8 +43,8 @@ class UpdateEtablissementRequest extends FormRequest
             'facebook' => 'nullable|url|max:255',
             'instagram' => 'nullable|url|max:255',
             'linkedin' => 'nullable|url|max:255',
-            'logo' => 'nullable|string|max:255', // ou 'nullable|image' si c'est un fichier
-            'image' => 'nullable|string|max:255', // idem
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // ou 'nullable|image' si c'est un fichier
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // idem
             'abreviation' => 'nullable|string|max:20',
             'seuil_actif' => 'boolean',
             'seuil' => 'nullable|numeric|min:0',

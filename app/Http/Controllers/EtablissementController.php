@@ -73,7 +73,7 @@ class EtablissementController extends Controller
 
         $etablissement = Etablissement::create($validatedData);
 
-        return redirect()->route('etablissements.show', $etablissement->id)
+        return redirect()->route('etablisement_infos', $etablissement->id)
             ->with('success', 'Établissement créé avec succès.');
     }
 
@@ -102,6 +102,7 @@ class EtablissementController extends Controller
             $validatedData['logo'] = $this->handleFileUpload($request, 'logo', 'etablissement_logos', $etablissement->logo);
         }
         if ($request->hasFile('image')) {
+
             $validatedData['image'] = $this->handleFileUpload($request, 'image', 'etablissement_images', $etablissement->image);
         }
         $request['seuil_actif'] = $request->boolean('seuil_actif');
@@ -122,7 +123,7 @@ class EtablissementController extends Controller
         }
         $etablissement->delete();
 
-        return redirect()->route('etablisement_infos') // Assuming an admin index route
+        return redirect()->route('Etablissements') // Assuming an admin index route
         ->with('success', 'Établissement supprimé avec succès.');
     }
 
