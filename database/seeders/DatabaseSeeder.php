@@ -6,6 +6,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EtablissementSeeder::class);
         $this->call(UniversiteSeeder::class);
         $this->call(DomaineSeeder::class);
+        $this->call(FiliereSeeder::class);
 
     }
 }
