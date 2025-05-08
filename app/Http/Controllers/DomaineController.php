@@ -12,7 +12,8 @@ class DomaineController extends Controller
      */
     public function index()
     {
-        //
+        $domaines = Domaine::all();
+        return view('Domaines', compact('domaines'));
     }
 
     /**

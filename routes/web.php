@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\EtablissementController;
 use App\Http\Controllers\FilierController;
 use App\Http\Controllers\ProfileController;
@@ -48,7 +49,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
 
     });
-
+    Route::get('/domaines' , [DomaineController::class , 'index'])->name('Domaines');
     Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
     Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
     //etudiant
@@ -69,6 +70,7 @@ Route::middleware('auth')->group(function () {
 
         // setting
         Route::get('/settings' , function (){})->name('account.settings');
+
 
 
         //Historique
