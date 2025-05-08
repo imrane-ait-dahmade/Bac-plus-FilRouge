@@ -62,7 +62,7 @@ class EtablissementController extends Controller
         return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites', 'villes'));
     }
 
-    public function store(StoreEtablissementRequest $request)
+    public function store(UpdateEtablissementRequest $request)
     {
         $validatedData = $request->validated();
 
@@ -73,7 +73,7 @@ class EtablissementController extends Controller
 
         $etablissement = Etablissement::create($validatedData);
 
-        return redirect()->route('etablissements.show', $etablissement->id)
+        return redirect()->route('etablisement_infos', $etablissement->id)
             ->with('success', 'Établissement créé avec succès.');
     }
 
@@ -84,9 +84,9 @@ class EtablissementController extends Controller
         return view('Infos', compact('etablissement'));
     }
 
-    public function edit( $etablissement)
+    public function edit(Etablissement $etablissement)
     {
-        dd($etablissement);
+
         $regions = Region::orderBy('nom')->get();
         $universites = Universite::orderBy('nom')->get();
         $villes = Ville::cases();
@@ -95,21 +95,22 @@ class EtablissementController extends Controller
 
     public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
     {
+//        dd();
         $validatedData = $request->validated();
 
         if ($request->hasFile('logo')) {
             $validatedData['logo'] = $this->handleFileUpload($request, 'logo', 'etablissement_logos', $etablissement->logo);
         }
         if ($request->hasFile('image')) {
+
             $validatedData['image'] = $this->handleFileUpload($request, 'image', 'etablissement_images', $etablissement->image);
         }
-        $validatedData['seuil_actif'] = $request->boolean('seuil_actif');
+        $request['seuil_actif'] = $request->boolean('seuil_actif');
 
 
-        $etablissement->update($validatedData);
+        $etablissement->update($request->toArray());
 
-        return redirect()->route('etablissements.show', $etablissement->id)
-            ->with('success', 'Établissement mis à jour avec succès.');
+        return redirect()->route('etablisement_infos', $etablissement->id)->with('success', 'Établissement mis à jour avec succès.');
     }
 
     public function destroy(Etablissement $etablissement)
@@ -122,7 +123,7 @@ class EtablissementController extends Controller
         }
         $etablissement->delete();
 
-        return redirect()->route('admin.etablissements.index') // Assuming an admin index route
+        return redirect()->route('Etablissements') // Assuming an admin index route
         ->with('success', 'Établissement supprimé avec succès.');
     }
 

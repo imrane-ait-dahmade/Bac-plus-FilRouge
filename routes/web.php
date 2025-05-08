@@ -27,10 +27,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
 
-        Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
+        Route::Delete('/etablissements/{etablissement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
         Route::get('/etablissementEdit/{etablissement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
-        Route::put('/etablissementsUpdate/{id}', [EtablissementController::class, 'update'])->name('etablissement.update');
+        Route::put('/etablissementsUpdate/{etablissement}', [EtablissementController::class, 'update'])->name('etablissement.update');
 
 
 
