@@ -13,16 +13,34 @@ return new class extends Migration
     {
         Schema::create('etablissements', function (Blueprint $table) {
             $table->id();
-            $table->string('nomEtablissement');
-            $table->string('villeEtablissement');
-            $table->string('DescirptionEtablissement');
-            $table->string('adresseEtablissement');
-            $table->string('Universite');
+            $table->string('nom');
+            $table->string('ville');
+            $table->string('description');
+            $table->string('adresse');
+           $table->foreignId('universite_id')->constrained('universites');
             $table->string('resau');
-            $table->integer('nombreEtudiant');
+            $table->integer('nombre_etudiant');
             $table->foreignId('region_id')->constrained();
-            $table->enum('TypeEcole',['Public','Private'])->default('Public');
+            $table->enum('TypeEcole',['public','prive'])->default('public');
+            $table->string('telephone', 20)->nullable();
+            $table->string('fax', 20)->nullable();
+            $table->string('site_web')->nullable();
+            $table->string('site_inscription')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('image')->nullable();
+            $table->string('abreviation', 20)->nullable();
+            $table->boolean('seuil_actif')->default(false);
+            $table->float('seuil')->nullable();
+            $table->float('reputation');
+            $table->decimal('frais_scolarite', 8, 2)->nullable();
+            $table->date('date_ouverture_inscription')->nullable();
+            $table->date('date_limite_inscription')->nullable();
             $table->timestamps();
+            $table->string('diplome_type')->nullable();
+            $table->string('email')->nullable();
         });
     }
 

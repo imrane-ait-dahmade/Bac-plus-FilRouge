@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('filieres', function (Blueprint $table) {
-
-            $table->foreignId('domaine_id')->nullable()->constrained('domaines');
+        Schema::create('regions', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom');
+            $table->timestamps();
         });
+
     }
 
     /**
@@ -22,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('filieres', function (Blueprint $table) {
-
-            $table->dropColumn('domaine_id');
-        });
+        Schema::dropIfExists('region');
     }
 };

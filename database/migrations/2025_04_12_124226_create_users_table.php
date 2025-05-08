@@ -17,9 +17,7 @@ return  new class  extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->boolean('statut')->default(false);  // Utilise un booléen pour activer/désactiver le compte
             $table->timestamps();
-            $table->softDeletes();  // Permet la suppression douce
             $table->enum('role', ['admin', 'etudiant'])->default('etudiant');
         });
     }
@@ -29,6 +27,6 @@ return  new class  extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');  // Utiliser dropIfExists pour éviter l'erreur si la table n'existe pas
+        Schema::dropIfExists('users');
     }
 };

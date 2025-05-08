@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\EtablissementController;
 use App\Http\Controllers\FilierController;
 use App\Http\Controllers\ProfileController;
@@ -27,11 +28,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/etablissements/create', [EtablissementController::class, 'create'])->name('Etablissements.create');
         Route::post('/etablissements/store', [EtablissementController::class, 'store'])->name('etablissements.store');
 
-        Route::Delete('/etablissements/{etablisement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
+        Route::Delete('/etablissements/{etablissement}',[EtablissementController::class , 'destroy'])->name('etablissement.destroy');
 //        route::get('/Universite',[UniversiteController::class , 'RecupererListeUniversite'])->name('Universite');
-        Route::get('/etablissementEdit/{etablisement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
-        Route::put('/etablissementsUpdate/{id}', [EtablissementController::class, 'update'])->name('etablissement.update');
+        Route::get('/etablissementEdit/{etablissement}', [EtablissementController::class, 'edit'])->name('etablissement.FormEdit');
+        Route::put('/etablissementsUpdate/{etablissement}', [EtablissementController::class, 'update'])->name('etablissement.update');
 
+
+
+// universite crud
+
+        Route::resource('universites', UniversiteController::class);
 
         //Filiere Crud
         Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
@@ -43,9 +49,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
 
     });
-
+    Route::get('/domaines' , [DomaineController::class , 'index'])->name('Domaines');
     Route::get('/etablissements', [EtablissementController::class , 'index'])->name('Etablissements');
-    Route::get('/etablissements/{etablisement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
+    Route::get('/etablissements/{etablissement}',[EtablissementController::class , 'show'])->name('etablisement_infos');
     //etudiant
     Route::middleware('role:etudiant')->group(function () {
         Route::get('etudiant', function () {
@@ -66,6 +72,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/settings' , function (){})->name('account.settings');
 
 
+
         //Historique
 
         Route::get('/Historiques',function(){
@@ -77,6 +84,7 @@ Route::middleware('auth')->group(function () {
             return view('Frontoffice.favorites');
         })->name('favorites.index');
     });
+
 });
 
 
