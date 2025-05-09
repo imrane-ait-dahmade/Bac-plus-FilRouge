@@ -542,6 +542,7 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
             const openModalBtn = document.getElementById('openFiliereModalBtn');
             const closeModalBtn = document.getElementById('closeFiliereModalBtn');
             const cancelModalBtn = document.getElementById('cancelFiliereModalBtn');
@@ -549,6 +550,7 @@
             const modalOverlay = document.getElementById('filiereModalOverlay');
 
             function showFiliereModal() {
+                console.log('hel');
                 if (modal) modal.classList.remove('hidden');
             }
 
