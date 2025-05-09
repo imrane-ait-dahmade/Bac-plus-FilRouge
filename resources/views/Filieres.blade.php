@@ -21,7 +21,8 @@
                 {{-- Si la route 'filiere.create' peut prendre un 'domaine_id' en paramètre --}}
                 {{-- Sinon, le bouton général suffit sur la page de toutes les filières --}}
                 {{-- <a href="{{ route('filiere.create', ['domaine_id' => $domaine->id]) }}" --}}
-                <a href="{{ route('filiere.create') }}"
+
+                <a href="{{ route('filiere.create' ,['domaine' => $domaine->id]) }}"
                    class="mt-4 sm:mt-0 inline-flex items-center px-6 py-3 bg-custom-primary border border-transparent rounded-lg font-semibold text-sm text-white uppercase tracking-widest hover:bg-custom-light active:bg-custom-dark focus:outline-none focus:border-custom-dark focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150 shadow-md hover:shadow-lg">
                     <svg class="w-5 h-5 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilieresRequest;
 use App\Models\Domaine;
 use App\Models\Filiere;
+use http\Url;
 use Illuminate\Http\Request;
 
 class FilierController extends Controller
@@ -14,26 +16,23 @@ class FilierController extends Controller
             return view('Filieres',compact('filieres','domaine'));
    }
 
-   public function create(){
-       return view('Backoffice.Filiere.Ajoute');
-   }
-   public function store(Request $request){
-       $request->validate([
-           'nomfiliere'=>'required',
-           'Niveau'=>'required',
-           'ConditionsAdmission'=>'required',
-           'description'=>'required',
-       ]);
-       $filiere = Filiere::create([
-           'nomfiliere' =>$request->input('nomfiliere'),
-           'Niveau' => $request->input('Niveau'),
-           'ConditionsAdmission' => $request->input('ConditionsAdmission'),
-           'description' => $request->input('description'),
-       ]);
-       return to_route('filiere.show',$filiere->id);
-   }
+   public function create($domaine){
 
-   public function show($domaine,$filiere){
+       return view('Backoffice.Filiere.Ajoute',compact('domaine'));
+   }
+    public function store(FilieresRequest $request, $domaine)
+    {
+        $validated = $request->validated();
+
+        $validated['domaine_id'] = $domaine;
+
+        $filiere = Filiere::create($validated);
+
+        return to_route('filiere.show', compact('filiere' ,'domaine'));
+    }
+
+
+    public function show($domaine,$filiere){
 
        $filiere = Filiere::find($filiere);
 

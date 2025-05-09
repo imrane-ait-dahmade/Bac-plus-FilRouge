@@ -15,7 +15,8 @@
                 </a>
             </div>
 
-            <form action="{{ route('filiere.store') }}" method="POST" class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 space-y-6">
+
+            <form action="{{ route('filiere.store' ,['domaine'=>$domaine])}}" method="POST" class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 space-y-6">
                 @csrf
                 {{-- Pas besoin de @method('POST') car c'est la méthode par défaut pour les formulaires --}}
                 {{-- Mais si vous l'utilisez par convention, c'est OK. method="POST" dans <form> suffit. --}}
@@ -25,7 +26,6 @@
                 @if(request()->has('domaine_id') || isset($domaine_id_from_controller))
                     <input type="hidden" name="domaine_id" value="{{ request()->get('domaine_id', $domaine_id_from_controller ?? '') }}">
                 @endif
-
 
                 <div class="flex items-center space-x-3 mb-8 border-b border-gray-200 pb-6">
                     <div class="bg-custom-primary p-3 rounded-full">
@@ -97,24 +97,7 @@
                     </div>
                 </div>
 
-                {{-- Champ Établissement --}}
-                <div>
-                    <label for="etablissement_id" class="block text-sm font-medium text-gray-700 mb-1">Établissement <span class="text-red-500">*</span></label>
-                    <select
-                        id="etablissement_id"
-                        name="etablissement_id"
-                        class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm p-3 focus:border-custom-dark focus:ring focus:ring-custom-light focus:ring-opacity-50 @error('etablissement_id') border-red-500 @enderror"
-                        required
-                    >
-                        <option value="" disabled {{ old('etablissement_id') ? '' : 'selected' }}>Sélectionner un établissement</option>
-                        @foreach ($etablissements as $etablissement) {{-- Assurez-vous de passer $etablissements à la vue --}}
-                        <option value="{{ $etablissement->id }}" {{ old('etablissement_id') == $etablissement->id ? 'selected' : '' }}>
-                            {{ $etablissement->nom }} ({{ $etablissement->ville }})
-                        </option>
-                        @endforeach
-                    </select>
-                    @error('etablissement_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
+
 
                 {{-- Champ ConditionsAdmission --}}
                 <div class="sm:col-span-2">
