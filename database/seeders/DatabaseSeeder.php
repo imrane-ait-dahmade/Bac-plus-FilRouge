@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UniversiteSeeder::class);
         $this->call(DomaineSeeder::class);
         $this->call(FiliereSeeder::class);
+        $this->call(EtablissementFilierePivotSeeder::class);
 
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEtablissementRequest;
 use App\Http\Requests\UpdateEtablissementRequest;
 use App\Models\Domaine;
 use App\Models\Etablissement;
+use App\Models\Filiere;
 use App\Models\Region;
 use App\Models\Universite;
 use Illuminate\Http\Request;
@@ -62,6 +63,7 @@ class EtablissementController extends Controller
         return view('Backoffice.Etablissement.Ajoute', compact('regions', 'universites', 'villes'));
     }
 
+
     public function store(UpdateEtablissementRequest $request)
     {
         $validatedData = $request->validated();
@@ -81,7 +83,12 @@ class EtablissementController extends Controller
     {
 
         $etablissement->loadMissing('filieres.domaine', 'region', 'universite');
-        return view('Infos', compact('etablissement'));
+        $filiereEtablissement = $etablissement->filieres();
+        $filieres = Filiere::orderBy('nom')->get();
+
+        // ICI EST LA DÉFINITION IMPORTANTE
+        $associatedFiliereIds = $etablissement->filieres->pluck('id')->toArray();
+        return view('Infos', compact('etablissement','filiereEtablissement','filieres','associatedFiliereIds'));
     }
 
     public function edit(Etablissement $etablissement)

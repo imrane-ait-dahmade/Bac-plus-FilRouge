@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{domaine}/{filiere}/update',[FilierController::class , 'edit'])->scopeBindings()->name('filiere.edit');
         Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
         Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.destroy');
-
+        Route::get('/')->name('etablissement.filieres.attach');
 
     });
     Route::get('/domaines' , [DomaineController::class , 'index'])->name('Domaines');
