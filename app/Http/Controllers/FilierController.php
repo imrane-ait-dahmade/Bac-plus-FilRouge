@@ -39,23 +39,22 @@ class FilierController extends Controller
        return view('Filiere',compact('filiere','domaine'));
    }
 
-   public function edit($id){
-       $filiere = Filiere::find($id);
-       return view('Backoffice.Filiere.Modifier',compact('filiere'));
-   }
-   public function update(Request $request, $id){
-     $request->validate([
-           'nomfiliere'=> 'max:40',
-           'description'=> 'max:255',
-           'Niveau'=>'max:40',
-           'ConditionsAdmission'=> 'max:100',
-       ]);
+   public function edit($filiere){
 
-     $filiere = Filiere::find($id);
-//        dd($filiere);
-//       dd($request->all());
-     $filiere->update($request->all());
-     return to_route('filieres');
+$filiere = Filiere::find($filiere);
+$domaines = Domaine::all();
+$domaine = $filiere->domaine;
+       return view('Backoffice.Filiere.Modifier',compact('filiere','domaine','domaines'));
+   }
+   public function update(FilieresRequest $request,$filiere){
+
+$validated = $request->validated();
+
+     $filiere = Filiere::find($filiere);
+$domaine = $filiere->domaine;
+
+     $filiere->update($validated);
+       return to_route('filiere.show', compact('filiere' ,'domaine'));
 
    }
    public function destroy($id){
