@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->foreignId('etablissement_id')->constrained()->onDelete('cascade');
             $table->enum('Niveau', [
                 'Prépa',
                 'Mise à niveau',

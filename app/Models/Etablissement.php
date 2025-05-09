@@ -49,7 +49,7 @@ class Etablissement extends Model
 
     public function filieres()
     {
-        return $this->hasMany(Filiere::class, 'etablissments_filieres');
+        return $this->belongsToMany(Filiere::class, 'etablissments_filieres');
     }
     public function universite(){
         return $this->belongsTo(Universite::class , 'universite_id');
