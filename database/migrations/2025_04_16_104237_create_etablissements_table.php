@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ville');
             $table->string('description');
             $table->string('adresse');
-           $table->foreignId('universite_id')->constrained('universites');
+            $table->foreignId('universite_id')->constrained('universites');
             $table->string('resau');
             $table->integer('nombre_etudiant');
             $table->foreignId('region_id')->constrained();

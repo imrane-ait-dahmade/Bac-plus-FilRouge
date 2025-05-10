@@ -51,10 +51,7 @@
                         {{-- Title --}}
                         <h2 class="text-2xl font-semibold text-gray-800 mb-2 leading-tight">{{ $domaine->domaine }}</h2>
 
-                        {{-- Description (Optionnelle) --}}
-                        <p class="text-gray-600 text-sm mb-5 flex-grow">
-                            {{ Str::limit($domaine->description ?: 'Aucune description pour ce domaine.', 130, '...') }}
-                        </p>
+
 
                         {{-- Additional Info Section --}}
                         <div class="border-t border-gray-200 pt-4 mb-5">
@@ -69,7 +66,7 @@
                         {{-- Action Buttons --}}
                         <div class="mt-auto pt-4">
                             <div class="flex space-x-3">
-                                <a href=""
+                                <a href="{{route('filieres.domaine',['domaine'=>$domaine->id])}}"
                                    class="flex-1 inline-flex justify-center items-center px-4 py-2.5 bg-custom-dark border border-transparent rounded-lg font-semibold text-xs text-white uppercase tracking-wider hover:bg-custom-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition ease-in-out duration-150 shadow-sm hover:shadow-md">
                                     <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

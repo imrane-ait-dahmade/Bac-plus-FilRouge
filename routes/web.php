@@ -16,6 +16,10 @@ use App\Http\Controllers\GoogleAuthController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/di', function () {
+    return view('FormulaireDiplome');
+});
+
 Route::middleware('auth')->group(function () {
 
 
@@ -40,13 +44,14 @@ Route::middleware('auth')->group(function () {
         Route::resource('universites', UniversiteController::class);
 
         //Filiere Crud
-        Route::get('/filieres',[FilierController::class , 'index'])->name('filieres');
-        Route::get('/filieres/{id}',[FilierController::class , 'show'])->name('filiere.show');
-        Route::get('/filieredit/{id}',[FilierController::class , 'edit'])->name('filiere.edit');
+        Route::get('/{domaine}/flieres',[FilierController::class , 'index'])->name('filieres.domaine');
+        Route::get('/{domaine}/filieres/{filiere}',[FilierController::class , 'show'])->scopeBindings()->name('filiere.show');
+        Route::get('/{domaine}/filiere/create',[FilierController::class, 'create'])->name('filiere.create');
+        Route::post('/{domaine}/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
+        Route::get('/{domaine}/{filiere}/update',[FilierController::class , 'edit'])->scopeBindings()->name('filiere.edit');
         Route::put('/filiereupdate/{id}',[FilierController::class , 'update'])->name('filiere.update');
-        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.delete');
-        Route::get('/filiere/create',[FilierController::class, 'create'])->name('filiere.create');
-        Route::post('/filiere/store',[FilierController::class, 'Store'])->name('filiere.store');
+        Route::delete('/filieredelete/{id}',[FilierController::class , 'destroy'])->name('filiere.destroy');
+        Route::get('/')->name('etablissement.filieres.attach');
 
     });
     Route::get('/domaines' , [DomaineController::class , 'index'])->name('Domaines');
