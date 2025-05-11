@@ -16,7 +16,7 @@ use App\Http\Controllers\RecommendationController;
 // home page first for visitor
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 Route::get('/di', function () {
     return view('FormulaireDiplome');
 });
@@ -99,3 +99,11 @@ Route::middleware(['auth'])->group(function () {
 Route::get('404', function () {
     return view('404');
 })->name('404');
+
+Route::get('/sur-bac-plus', function () {
+    return view('Frontoffice.sur-bac-plus');
+})->name('sur-bac-plus');
+
+Route::get('/aide-faq', function () {
+    return view('Frontoffice.aide-faq');
+})->name('aide-faq');
