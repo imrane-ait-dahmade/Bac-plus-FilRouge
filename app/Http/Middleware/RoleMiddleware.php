@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class RoleMiddleware
 {
@@ -17,10 +16,21 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        $user = Auth::user();
-        if(Auth::check() && $user->role === $role ){
-            return $next($request);
+        if (!Auth::check()) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Non authentifié.'], 401);
+            }
+            return redirect()->route('login');
         }
-        throw new UnauthorizedHttpException("Unauthorized");
+
+        $user = Auth::user();
+        if ($user->role !== $role) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Accès non autorisé.'], 403);
+            }
+            return redirect()->route('404');
+        }
+
+        return $next($request);
     }
 }

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +12,10 @@
         body {
             background: #F5F8F3;
         }
-
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
@@ -66,11 +67,48 @@
         }
     </style>
 </head>
+
 <body>
 
-@include('Partials.navbar')
+    @include('Partials.navbar')
 
-@yield('content')
-@include('Partials.footer')
+    @auth
+        @if(auth()->user()->role === 'student')
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <a href="{{ route('student.favorites') }}"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <i class="fas fa-heart mr-1"></i> Favoris
+                </a>
+                <a href="{{ route('student.history') }}"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                    <i class="fas fa-history mr-1"></i> Historique
+                </a>
+            </div>
+        @endif
+    @endauth
+
+    @yield('content')
+    @include('Partials.footer')
+    @stack('scripts')
+
+    <script>
+        // Gestion du menu déroulant du profil
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+
+        if (userMenuButton && userMenu) {
+            userMenuButton.addEventListener('click', () => {
+                userMenu.classList.toggle('hidden');
+            });
+
+            // Fermer le menu quand on clique en dehors
+            document.addEventListener('click', (event) => {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

@@ -54,4 +54,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role;
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function viewHistory()
+    {
+        return $this->hasMany(ViewHistory::class);
+    }
 }

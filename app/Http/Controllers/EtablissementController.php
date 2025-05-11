@@ -13,6 +13,7 @@ use App\Models\Universite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class EtablissementController extends Controller
 {
@@ -125,22 +126,20 @@ class EtablissementController extends Controller
 
     public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
     {
-        //        dd();
         $validatedData = $request->validated();
 
         if ($request->hasFile('logo')) {
             $validatedData['logo'] = $this->handleFileUpload($request, 'logo', 'etablissement_logos', $etablissement->logo);
         }
         if ($request->hasFile('image')) {
-
             $validatedData['image'] = $this->handleFileUpload($request, 'image', 'etablissement_images', $etablissement->image);
         }
-        $request['seuil_actif'] = $request->boolean('seuil_actif');
+        $validatedData['seuil_actif'] = $request->boolean('seuil_actif');
 
+        $etablissement->update($validatedData);
 
-        $etablissement->update($request->toArray());
-
-        return redirect()->route('etablisement_infos', $etablissement->id)->with('success', 'Établissement mis à jour avec succès.');
+        return redirect()->route('etablisement_infos', $etablissement->id)
+            ->with('success', 'Établissement mis à jour avec succès.');
     }
 
     public function destroy(Etablissement $etablissement)
@@ -155,6 +154,18 @@ class EtablissementController extends Controller
 
         return redirect()->route('Etablissements') // Assuming an admin index route
             ->with('success', 'Établissement supprimé avec succès.');
+    }
+
+    public function attachFilieres(Request $request, Etablissement $etablissement)
+    {
+        $request->validate([
+            'filiere_ids' => 'required|array',
+            'filiere_ids.*' => 'exists:filieres,id'
+        ]);
+
+        $etablissement->filieres()->sync($request->filiere_ids);
+
+        return redirect()->back()->with('success', 'Les filières ont été mises à jour avec succès.');
     }
 
     private function handleFileUpload(Request $request, string $fileKey, string $directory, ?string $existingFilePath = null): ?string

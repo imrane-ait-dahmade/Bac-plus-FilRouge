@@ -207,7 +207,7 @@
                         @if($etablissement->relationLoaded('filieres') && $etablissement->filieres->isNotEmpty())
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 @foreach($etablissement->filieres as $filiere)
-                                    <a href="{{ route('filiere.show',  ['filiere' => $filiere->id , 'domaine' => $filiere->domaine_id]) }}"
+                                    <a href="{{ route('student.filiere.show', $filiere->id) }}"
                                        class="group block bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out overflow-hidden border-l-4 border-custom-primary hover:border-custom-dark transform hover:-translate-y-1">
                                         <div class="p-5 flex flex-col h-full">
                                             <h4 class="text-lg font-semibold text-gray-800 group-hover:text-custom-dark transition-colors duration-200 line-clamp-2 leading-tight mb-1">
@@ -404,7 +404,7 @@
                                         <span class="sr-only">Instagram</span>
                                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             <path fill-rule="evenodd"
-                                                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.48 2.525c.636-.247 1.363-.416 2.427-.465C8.93 2.013 9.284 2 11.715 2h.6zm-.004 2.176h-.63c-2.403 0-2.729.01-3.662.056a3.522 3.522 0 00-1.29.273 3.512 3.512 0 00-1.243.884 3.512 3.512 0 00-.884 1.243 3.522 3.522 0 00-.273 1.29c-.046.933-.056 1.259-.056 3.662s.01 2.729.056 3.662c.017.443.095.87.273 1.29a3.512 3.512 0 00.884 1.243 3.512 3.512 0 001.243.884 3.522 3.522 0 001.29.273c.933.046 1.259.056 3.662.056h.63c2.403 0 2.729-.01 3.662-.056a3.522 3.522 0 001.29-.273 3.512 3.512 0 001.243-.884 3.512 3.512 0 00.884-1.243 3.522 3.522 0 00.273-1.29c.046-.933.056-1.259.056-3.662s-.01-2.729-.056-3.662a3.522 3.522 0 00-.273-1.29 3.512 3.512 0 00-.884-1.243 3.512 3.512 0 00-1.243-.884 3.522 3.522 0 00-1.29-.273c-.933-.046-1.259-.056-3.662-.056zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 8.176a3.02 3.02 0 110-6.04 3.02 3.02 0 010 6.04zm3.896-7.618a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z"
+                                                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.48 2.525c.636-.247 1.363-.416 2.427-.465C8.93 2.013 9.284 2 11.715 2h.6zm-.004 2.176h-.63c-2.403 0-2.729.01-3.662.056a3.522 3.522 0 00-1.29.273 3.512 3.512 0 00-1.243.884 3.512 3.512 0 00-.884 1.243 3.522 3.522 0 00-.273 1.29c-.046.933-.056 1.259-.056 3.662s.01 2.729.056 3.662c.017.443.095.87.273 1.29a3.512 3.512 0 00.884 1.243 3.512 3.512 0 001.243.884 3.522 3.522 0 001.29.273c.933.046 1.259.056 3.662.056h.63c2.403 0 2.729-.01 3.662-.056a3.522 3.522 0 001.29-.273 3.512 3.512 0 001.243-.884 3.512 3.512 0 00.884-1.243 3.522 3.522 0 00.273-1.29c.046-.933.056-1.259.056-3.662s-.01-2.729-.056-3.662a3.522 3.522 0 00-.273-1.29 3.512 3.512 0 00-.884-1.243 3.512 3.512 0 00-1.243-.884 3.522 3.522 0 00-1.29-.273c-.933-.046-1.259-.056-3.662-.056zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 8.176a3.02 3.02 0 110-6.04 3.02 3.02 0 010 6.04zm3.896-7.618a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z"
                                                   clip-rule="evenodd"/>
                                         </svg>
                                     </a>
@@ -444,29 +444,57 @@
                             </button>
                         </div>
 
-                        {{-- Les variables $filieres et $associatedFiliereIds sont passées par le contrôleur --}}
-                        <form action="{{ route('etablissement.filieres.attach', $etablissement->id) }}" method="POST">
+                        <form id="filiereForm" action="{{ route('etablissement.filieres.attach', $etablissement->id) }}" method="POST">
                             @csrf
                             <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
-                                @if(isset($filieres) && $filieres->isNotEmpty()) {{-- Utiliser la variable $filieres (pour la modale) --}}
-                                @foreach($filieres as $filiere)
-                                    <label for="filiere_modal_{{ $filiere->id }}" class="flex items-center p-3 space-x-3 bg-gray-50 hover:bg-gray-100 rounded-md cursor-pointer transition-colors">
-                                        <input type="checkbox" name="filiere_ids[]" id="filiere_modal_{{ $filiere->id }}" value="{{ $filiere->id }}"
-                                               class="w-5 h-5 text-custom-primary bg-gray-100 border-gray-300 rounded focus:ring-custom-primary focus:ring-2"
-                                               @if(isset($associatedFiliereIds) && in_array($filiere->id, $associatedFiliereIds)) checked @endif>
-                                        <span class="text-sm font-medium text-gray-700">{{ $filiere->nom }}
-                                            @if($filiere->Niveau) <span class="text-xs text-gray-500"> ({{ $filiere->Niveau }})</span> @endif
-                                            </span>
-                                    </label>
-                                @endforeach
+                                @if(isset($filieres) && $filieres->isNotEmpty())
+                                    <div class="mb-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <label class="text-sm font-medium text-gray-700">Sélectionner les filières</label>
+                                            <div class="flex items-center space-x-2">
+                                                <button type="button" id="selectAllBtn" class="text-xs text-custom-primary hover:text-custom-dark">Tout sélectionner</button>
+                                                <span class="text-gray-300">|</span>
+                                                <button type="button" id="deselectAllBtn" class="text-xs text-custom-primary hover:text-custom-dark">Tout désélectionner</button>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 gap-2">
+                                            @foreach($filieres as $filiere)
+                                                <label for="filiere_modal_{{ $filiere->id }}" class="flex items-center p-3 space-x-3 bg-gray-50 hover:bg-gray-100 rounded-md cursor-pointer transition-colors">
+                                                    <input type="checkbox" name="filiere_ids[]" id="filiere_modal_{{ $filiere->id }}" value="{{ $filiere->id }}"
+                                                           class="w-5 h-5 text-custom-primary bg-gray-100 border-gray-300 rounded focus:ring-custom-primary focus:ring-2"
+                                                           @if(isset($associatedFiliereIds) && in_array($filiere->id, $associatedFiliereIds)) checked @endif>
+                                                    <div class="flex-grow">
+                                                        <span class="text-sm font-medium text-gray-700">{{ $filiere->nom }}</span>
+                                                        @if($filiere->Niveau)
+                                                            <span class="text-xs text-gray-500 ml-2">({{ $filiere->Niveau }})</span>
+                                                        @endif
+                                                        @if($filiere->relationLoaded('domaine') && $filiere->domaine)
+                                                            <span class="text-xs text-gray-500 ml-2">- {{ $filiere->domaine->nomDomaine }}</span>
+                                                        @endif
+                                                    </div>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 @else
-                                    <p class="text-gray-600">Aucune filière n'est disponible dans la base de données pour le moment.</p>
+                                    <div class="text-center py-4">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <p class="mt-2 text-sm text-gray-600">Aucune filière n'est disponible dans la base de données pour le moment.</p>
+                                    </div>
                                 @endif
                             </div>
 
                             <div class="pt-6 mt-6 border-t sm:flex sm:flex-row-reverse">
-                                <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-custom-primary text-base font-medium text-white hover:bg-custom-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-primary sm:ml-3 sm:w-auto sm:text-sm">
-                                    Enregistrer les modifications
+                                <button type="submit" id="saveFiliereBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-custom-primary text-base font-medium text-white hover:bg-custom-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-primary sm:ml-3 sm:w-auto sm:text-sm">
+                                    <span class="inline-flex items-center">
+                                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white hidden" id="saveSpinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Enregistrer les modifications
+                                    </span>
                                 </button>
                                 <button type="button" id="cancelFiliereModalBtn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
                                     Annuler
@@ -542,22 +570,83 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
             const openModalBtn = document.getElementById('openFiliereModalBtn');
             const closeModalBtn = document.getElementById('closeFiliereModalBtn');
             const cancelModalBtn = document.getElementById('cancelFiliereModalBtn');
             const modal = document.getElementById('filiereModal');
             const modalOverlay = document.getElementById('filiereModalOverlay');
+            const filiereForm = document.getElementById('filiereForm');
+            const selectAllBtn = document.getElementById('selectAllBtn');
+            const deselectAllBtn = document.getElementById('deselectAllBtn');
+            const saveFiliereBtn = document.getElementById('saveFiliereBtn');
+            const saveSpinner = document.getElementById('saveSpinner');
 
             function showFiliereModal() {
-                console.log('hel');
-                if (modal) modal.classList.remove('hidden');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Empêche le défilement de la page
+                }
             }
 
             function hideFiliereModal() {
-                if (modal) modal.classList.add('hidden');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = ''; // Réactive le défilement
+                }
             }
 
+            // Gestion des boutons de sélection
+            if (selectAllBtn) {
+                selectAllBtn.addEventListener('click', () => {
+                    const checkboxes = modal.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => checkbox.checked = true);
+                });
+            }
+
+            if (deselectAllBtn) {
+                deselectAllBtn.addEventListener('click', () => {
+                    const checkboxes = modal.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => checkbox.checked = false);
+                });
+            }
+
+            // Gestion de la soumission du formulaire
+            if (filiereForm) {
+                filiereForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    // Afficher le spinner
+                    if (saveSpinner) saveSpinner.classList.remove('hidden');
+                    if (saveFiliereBtn) saveFiliereBtn.disabled = true;
+
+                    try {
+                        const formData = new FormData(filiereForm);
+                        const response = await fetch(filiereForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+
+                        if (response.ok) {
+                            // Recharger la page pour afficher les changements
+                            window.location.reload();
+                        } else {
+                            throw new Error('Erreur lors de la sauvegarde');
+                        }
+                    } catch (error) {
+                        console.error('Erreur:', error);
+                        alert('Une erreur est survenue lors de la sauvegarde des filières.');
+                    } finally {
+                        // Cacher le spinner
+                        if (saveSpinner) saveSpinner.classList.add('hidden');
+                        if (saveFiliereBtn) saveFiliereBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Gestion des événements de la modale
             if (openModalBtn) {
                 openModalBtn.addEventListener('click', showFiliereModal);
             }
@@ -571,6 +660,7 @@
                 modalOverlay.addEventListener('click', hideFiliereModal);
             }
 
+            // Fermer la modale avec la touche Escape
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
                     hideFiliereModal();

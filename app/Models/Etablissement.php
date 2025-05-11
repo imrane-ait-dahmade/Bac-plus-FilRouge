@@ -43,15 +43,17 @@ class Etablissement extends Model
 
 
 
-    public function region(){
-        return $this->belongsTo(Region::class , 'region_id');
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
     }
 
     public function filieres()
     {
-        return $this->belongsToMany(Filiere::class, 'etablissments_filieres');
+        return $this->belongsToMany(Filiere::class, 'etablissements_filieres');
     }
-    public function universite(){
-        return $this->belongsTo(Universite::class , 'universite_id');
+    public function universite()
+    {
+        return $this->belongsTo(Universite::class, 'universite_id');
     }
 }
