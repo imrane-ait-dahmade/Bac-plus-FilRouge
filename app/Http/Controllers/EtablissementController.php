@@ -20,9 +20,17 @@ class EtablissementController extends Controller
     {
         $query = Etablissement::query()->with(['region', 'universite']);
 
+        // Recherche améliorée
         if ($request->filled('search')) {
-            $query->where('nom', 'like', '%' . $request->input('search') . '%');
+            $searchTerm = $request->input('search');
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('nom', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('abreviation', 'like', '%' . $searchTerm . '%');
+            });
         }
+
+        // Filtres de base
         if ($request->filled('ville')) {
             $query->where('ville', $request->input('ville'));
         }
@@ -35,11 +43,26 @@ class EtablissementController extends Controller
             $query->whereIn('type_ecole', $request->input('type_ecole'));
         }
 
+        // Nouveaux filtres
+        if ($request->filled('universite_id')) {
+            $query->where('universite_id', $request->input('universite_id'));
+        }
+        if ($request->filled('region_id')) {
+            $query->where('region_id', $request->input('region_id'));
+        }
+        if ($request->filled('frais_min')) {
+            $query->where('frais_scolarite', '>=', $request->input('frais_min'));
+        }
+        if ($request->filled('frais_max')) {
+            $query->where('frais_scolarite', '<=', $request->input('frais_max'));
+        }
+
+        // Tri amélioré
         $sortBy = $request->input('sort_by', 'id');
         $sortDirection = Str::endsWith($sortBy, '_desc') ? 'desc' : 'asc';
         $sortColumn = Str::remove('_asc', Str::remove('_desc', $sortBy));
 
-        if (in_array($sortColumn, ['nom', 'id'])) { // Add other sortable columns
+        if (in_array($sortColumn, ['nom', 'id', 'reputation', 'frais_scolarite'])) {
             $query->orderBy($sortColumn, $sortDirection);
         } else {
             $query->orderBy('id', 'desc');
@@ -88,7 +111,7 @@ class EtablissementController extends Controller
 
         // ICI EST LA DÉFINITION IMPORTANTE
         $associatedFiliereIds = $etablissement->filieres->pluck('id')->toArray();
-        return view('Infos', compact('etablissement','filiereEtablissement','filieres','associatedFiliereIds'));
+        return view('Infos', compact('etablissement', 'filiereEtablissement', 'filieres', 'associatedFiliereIds'));
     }
 
     public function edit(Etablissement $etablissement)
@@ -102,7 +125,7 @@ class EtablissementController extends Controller
 
     public function update(UpdateEtablissementRequest $request, Etablissement $etablissement)
     {
-//        dd();
+        //        dd();
         $validatedData = $request->validated();
 
         if ($request->hasFile('logo')) {
@@ -131,7 +154,7 @@ class EtablissementController extends Controller
         $etablissement->delete();
 
         return redirect()->route('Etablissements') // Assuming an admin index route
-        ->with('success', 'Établissement supprimé avec succès.');
+            ->with('success', 'Établissement supprimé avec succès.');
     }
 
     private function handleFileUpload(Request $request, string $fileKey, string $directory, ?string $existingFilePath = null): ?string

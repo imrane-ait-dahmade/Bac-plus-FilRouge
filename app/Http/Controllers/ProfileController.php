@@ -17,9 +17,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-    $filieresBac = $this->GetFilieresBac();
 
-    return view('Frontoffice.Profile', compact('filieresBac'));
+
+    return view('Frontoffice.Profile');
     }
 
 public function GetFilieresBac(){
