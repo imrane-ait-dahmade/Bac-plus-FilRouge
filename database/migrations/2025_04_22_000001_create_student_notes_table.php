@@ -6,23 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('student_notes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('matiere_id')->constrained()->onDelete('cascade');
+            $table->decimal('note', 4, 2);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('student_notes');
     }
 };

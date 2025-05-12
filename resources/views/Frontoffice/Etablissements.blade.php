@@ -18,7 +18,7 @@
                         <div class="md:col-span-2 lg:col-span-1">
                             <label for="search_etablissement" class="block text-sm font-medium text-gray-700 mb-1">Rechercher</label>
                             <div class="relative">
-                                <input type="text" id="search_etablissement" name="search" value="{{ request('search') }}" placeholder="Nom de l'établissement..." class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                <input type="text" id="search_etablissement" name="search" value="{{ request('search') }}" placeholder="Nom, description ou abréviation..." class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
                                 <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -36,14 +36,49 @@
                             </select>
                         </div>
 
+                        <!-- Filtre Université -->
+                        <div>
+                            <label for="filter_universite" class="block text-sm font-medium text-gray-700 mb-1">Université</label>
+                            <select id="filter_universite" name="universite_id" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                <option value="">Toutes</option>
+                                @foreach($universities as $university)
+                                    <option value="{{ $university->id }}" {{ request('universite_id') == $university->id ? 'selected' : '' }}>{{ $university->nom }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Filtre Région -->
+                        <div>
+                            <label for="filter_region" class="block text-sm font-medium text-gray-700 mb-1">Région</label>
+                            <select id="filter_region" name="region_id" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                <option value="">Toutes</option>
+                                @foreach($regions as $region)
+                                    <option value="{{ $region->id }}" {{ request('region_id') == $region->id ? 'selected' : '' }}>{{ $region->nom }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <!-- Filtre Domaine -->
                         <div>
                             <label for="filter_domaine" class="block text-sm font-medium text-gray-700 mb-1">Domaine d'études</label>
                             <select id="filter_domaine" name="domaine_id" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
                                 <option value="">Tout</option>
-                                @foreach($Domaines as $domaine) {{-- Assuming $Domaines is passed from controller --}}
-                                <option value="{{ $domaine->id }}" {{ request('domaine_id') == $domaine->id ? 'selected' : '' }}>{{ $domaine->domaine }}</option>
+                                @foreach($Domaines as $domaine)
+                                    <option value="{{ $domaine->id }}" {{ request('domaine_id') == $domaine->id ? 'selected' : '' }}>{{ $domaine->domaine }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Tri -->
+                        <div>
+                            <label for="sort_by" class="block text-sm font-medium text-gray-700 mb-1">Trier par</label>
+                            <select id="sort_by" name="sort_by" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                <option value="nom_asc" {{ request('sort_by') == 'nom_asc' ? 'selected' : '' }}>Nom (A-Z)</option>
+                                <option value="nom_desc" {{ request('sort_by') == 'nom_desc' ? 'selected' : '' }}>Nom (Z-A)</option>
+                                <option value="reputation_desc" {{ request('sort_by') == 'reputation_desc' ? 'selected' : '' }}>Réputation (↓)</option>
+                                <option value="reputation_asc" {{ request('sort_by') == 'reputation_asc' ? 'selected' : '' }}>Réputation (↑)</option>
+                                <option value="frais_scolarite_asc" {{ request('sort_by') == 'frais_scolarite_asc' ? 'selected' : '' }}>Frais (↓)</option>
+                                <option value="frais_scolarite_desc" {{ request('sort_by') == 'frais_scolarite_desc' ? 'selected' : '' }}>Frais (↑)</option>
                             </select>
                         </div>
 
@@ -58,7 +93,7 @@
                         </div>
                     </div>
 
-                    <!-- Section Filtres Avancés (Initialement cachée) -->
+                    <!-- Section Filtres Avancés -->
                     <div id="advanced-filters" class="mt-6 pt-4 border-t border-gray-200 hidden">
                         <p class="text-lg font-semibold text-gray-800 mb-4">Affiner votre recherche</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -76,7 +111,21 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- Accréditation (Exemple) -->
+
+                            <!-- Frais de scolarité -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Frais de scolarité</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <input type="number" name="frais_min" value="{{ request('frais_min') }}" placeholder="Min" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                    </div>
+                                    <div>
+                                        <input type="number" name="frais_max" value="{{ request('frais_max') }}" placeholder="Max" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accréditation -->
                             <div>
                                 <label for="filter_accreditation" class="block text-sm font-medium text-gray-700 mb-1">Accréditation</label>
                                 <select id="filter_accreditation" name="accreditation" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
@@ -85,17 +134,8 @@
                                     <option value="non" {{ request('accreditation') == 'non' ? 'selected' : '' }}>Non accrédité / En cours</option>
                                 </select>
                             </div>
-                            <!-- Langue d'enseignement -->
-                            <div>
-                                <label for="filter_langue" class="block text-sm font-medium text-gray-700 mb-1">Langue d'enseignement</label>
-                                <select id="filter_langue" name="langue" class="w-full bg-white border border-gray-300 text-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-custom-primary focus:border-transparent shadow-sm">
-                                    <option value="">Toutes</option>
-                                    <option value="fr" {{ request('langue') == 'fr' ? 'selected' : '' }}>Français</option>
-                                    <option value="en" {{ request('langue') == 'en' ? 'selected' : '' }}>Anglais</option>
-                                    <option value="ar" {{ request('langue') == 'ar' ? 'selected' : '' }}>Arabe</option>
-                                </select>
-                            </div>
                         </div>
+
                         <div class="mt-6 flex justify-end gap-3">
                             <button type="button" id="reset-advanced-filters" class="py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                 Réinitialiser Avancés
@@ -174,9 +214,13 @@
                             </div>
 
                             <div class="mt-auto flex justify-between items-center pt-4 border-t border-gray-100">
-                                <span class="text-sm font-medium text-custom-primary">{{ ucfirst($etablissement->TypeEcole) ?: 'Type non spécifié' }}</span>
-                                <a href="{{ route('etablisement_infos', ['etablissement' =>$etablissement->id] ) }}" {{-- Standardized route --}}
-                                class="inline-flex items-center text-sm font-medium text-white bg-custom-primary hover:bg-custom-dark px-4 py-2 rounded-lg transition duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-primary">
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-medium text-custom-primary">{{ ucfirst($etablissement->TypeEcole) ?: 'Type non spécifié' }}</span>
+                                    @if($etablissement->frais_scolarite)
+                                        <span class="text-xs text-gray-500">{{ number_format($etablissement->frais_scolarite, 0, ',', ' ') }} DH/an</span>
+                                    @endif
+                                </div>
+                                <a href="{{ route('etablisement_infos', ['etablissement' => $etablissement->id]) }}" class="inline-flex items-center text-sm font-medium text-white bg-custom-primary hover:bg-custom-dark px-4 py-2 rounded-lg transition duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom-primary">
                                     Voir détails
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -214,9 +258,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const advancedFilterToggle = document.getElementById('advanced-filter-toggle');
-            const advancedFiltersDiv = document.getElementById('advanced-filters'); // Renamed for clarity
-            const resetAdvancedFiltersButton = document.getElementById('reset-advanced-filters'); // Specific reset button
-            // const applyFiltersButton = document.getElementById('apply-filters'); // This is now the submit button of the form
+            const advancedFiltersDiv = document.getElementById('advanced-filters');
+            const resetAdvancedFiltersButton = document.getElementById('reset-advanced-filters');
             const clearAllFiltersButton = document.getElementById('clear-all-filters');
             const filterForm = document.getElementById('filter-form');
 
@@ -228,30 +271,26 @@
 
             if(resetAdvancedFiltersButton && advancedFiltersDiv){
                 resetAdvancedFiltersButton.addEventListener('click', () => {
-                    const advancedFormElements = advancedFiltersDiv.querySelectorAll('input[type="checkbox"], select');
+                    const advancedFormElements = advancedFiltersDiv.querySelectorAll('input[type="checkbox"], select, input[type="number"]');
                     advancedFormElements.forEach(el => {
                         if (el.type === 'checkbox') {
                             el.checked = false;
                         } else {
-                            el.value = ''; // Reset select to default (empty value option)
+                            el.value = '';
                         }
                     });
-                    // Optionally, you might want to immediately submit the form or prompt the user
-                    // filterForm.submit(); // or alert("Filtres avancés réinitialisés. Cliquez sur 'Appliquer'.");
                 });
             }
 
             if(clearAllFiltersButton){
                 clearAllFiltersButton.addEventListener('click', () => {
-                    // Clear all inputs in the main form
-                    filterForm.querySelectorAll('input[type="text"], select').forEach(el => {
-                        if(el.id !== 'sort_by') { // Don't reset sort_by if you want to keep it
+                    filterForm.querySelectorAll('input[type="text"], select, input[type="number"]').forEach(el => {
+                        if(el.id !== 'sort_by') {
                             el.value = '';
                         }
                     });
-                    // Clear advanced filters as well
                     if (advancedFiltersDiv) {
-                        advancedFiltersDiv.querySelectorAll('input[type="checkbox"], select').forEach(el => {
+                        advancedFiltersDiv.querySelectorAll('input[type="checkbox"], select, input[type="number"]').forEach(el => {
                             if (el.type === 'checkbox') {
                                 el.checked = false;
                             } else {
@@ -259,7 +298,7 @@
                             }
                         });
                     }
-                    filterForm.submit(); // Submit the form to reload with cleared filters
+                    filterForm.submit();
                 });
             }
 

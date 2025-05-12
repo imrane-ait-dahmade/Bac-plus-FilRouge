@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Filiere extends Model
 {
 
@@ -17,14 +18,13 @@ class Filiere extends Model
         'debouches_metiers',
     ];
 
-    public function Domaine(){
-       return $this->belongsTo(Domaine::class);
+    public function Domaine()
+    {
+        return $this->belongsTo(Domaine::class);
     }
 
     public function etablissements()
     {
-        return $this->belongsToMany(Etablissement::class, 'etablissments_filieres');
+        return $this->belongsToMany(Etablissement::class, 'etablissements_filieres');
     }
-
-
 }
