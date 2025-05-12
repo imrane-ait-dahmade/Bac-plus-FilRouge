@@ -16,16 +16,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-//        User::factory()->create([
-//            'name' => 'Test User',
-//            'email' => 'test@example.com',
-//        ]);
+        //        User::factory()->create([
+        //            'name' => 'Test User',
+        //            'email' => 'test@example.com',
+        //        ]);
+
+        // 1. D'abord les tables de base sans dépendances
         $this->call(RegionTable::class);
-        $this->call(EtablissementSeeder::class);
         $this->call(UniversiteSeeder::class);
         $this->call(DomaineSeeder::class);
-        $this->call(FiliereSeeder::class);
-        $this->call(EtablissementFilierePivotSeeder::class);
 
+        // 2. Ensuite les tables qui dépendent des tables de base
+        $this->call(EtablissementSeeder::class);
+        $this->call(FiliereSeeder::class);
+
+        // 3. Enfin les tables pivot qui dépendent des autres tables
+        $this->call(EtablissementFilierePivotSeeder::class);
     }
 }

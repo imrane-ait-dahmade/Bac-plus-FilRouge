@@ -29,7 +29,9 @@ class EtablissementFilierePivotSeeder extends Seeder
 
         // Vider la table pivot avant de la remplir (si vous exécutez le seeder plusieurs fois)
         // Attention avec les clés étrangères si elles ne sont pas en cascade
-        DB::table('etablissments_filieres')->truncate(); // Simple truncate si pas de soucis de FK, sinon gestion PostgreSQL
+        DB::statement("SET session_replication_role = 'replica';");
+        DB::table('etablissements_filieres')->truncate();
+        DB::statement("SET session_replication_role = 'origin';");
 
         $pivotData = [];
         $combinations = []; // Pour éviter les doublons (etablissement_id, filiere_id)
@@ -77,7 +79,7 @@ class EtablissementFilierePivotSeeder extends Seeder
 
         // Insérer les données par lots
         foreach (array_chunk($pivotData, 100) as $chunk) { // Par lots de 100
-            DB::table('etablissments_filieres')->insert($chunk);
+            DB::table('etablissements_filieres')->insert($chunk);
         }
 
         $this->command->info(count($pivotData) . ' associations établissement-filière ont été créées.');
