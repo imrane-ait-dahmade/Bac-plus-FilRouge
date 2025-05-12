@@ -29,7 +29,7 @@ Route::prefix('auth')->group(function () {
         Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
         Route::post('/register', [AuthController::class, 'register'])->name('register_post');
     });
-    Route::get('/logout', [AuthController::class, 'logout'])->name('Deconnexion');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('Deconnexion');
 });
 
 // Authentification Google
