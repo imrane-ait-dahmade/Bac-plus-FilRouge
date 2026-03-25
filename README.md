@@ -1,53 +1,291 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Bac Plus - Fil Rouge
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Guide d'installation et de configuration du projet Bac Plus.
 
-## About Laravel
+## 📋 Prérequis
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Avant de commencer, assurez-vous d'avoir installé:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP** >= 8.2
+- **Composer** (gestionnaire de dépendances PHP)
+- **Node.js** et **NPM** (pour les dépendances frontend)
+- **PostgreSQL** >= 12 (base de données)
+- **Git** (pour le contrôle de version)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Installation
 
-## Learning Laravel
+### Étape 1 : Cloner le projet
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone [URL du repository]
+cd Bac-plus-FilRouge
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Étape 2 : Installer les dépendances PHP
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+composer install
+```
 
-## Laravel Sponsors
+### Étape 3 : Configurer le fichier .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Copiez le fichier `.env.example` en `.env`:
 
-### Premium Partners
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Ensuite, modifiez les variables d'environnement dans `.env`:
+
+```env
+APP_NAME="Bac Plus"
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=bacplus
+DB_USERNAME=votre_utilisateur_postgres
+DB_PASSWORD=votre_mot_de_passe_postgres
+```
+
+### Étape 4 : Générer la clé d'application
+
+```bash
+php artisan key:generate
+```
+
+### Étape 5 : Créer la base de données PostgreSQL
+
+Connectez-vous à PostgreSQL:
+
+```bash
+psql -U postgres
+```
+
+Créez la base de données:
+
+```sql
+CREATE DATABASE bacplus;
+```
+
+Quittez pour continuer:
+
+```sql
+\q
+```
+
+### Étape 6 : Exécuter les migrations
+
+Cette commande crée les tables nécessaires:
+
+```bash
+php artisan migrate
+```
+
+### Étape 7 : Remplir la base de données avec les données de test (optionnel)
+
+```bash
+php artisan db:seed
+```
+
+### Étape 8 : Installer les dépendances Node.js
+
+```bash
+npm install
+```
+
+## 🔨 Démarrage du projet
+
+### Option 1 : Démarrage simultané (recommandé)
+
+Dans un terminal, lancez les deux serveurs:
+
+```bash
+npm run dev
+```
+
+Dans un autre terminal:
+
+```bash
+php artisan serve
+```
+
+L'application sera disponible sur: **http://localhost:8000**
+
+### Option 2 : Serveur de développement Laravel uniquement
+
+```bash
+php artisan serve
+```
+
+## 📦 Commandes utiles
+
+### Migrations
+
+```bash
+# Exécuter les migrations
+php artisan migrate
+
+# Annuler la dernière migration
+php artisan migrate:rollback
+
+# Annuler toutes les migrations
+php artisan migrate:reset
+
+# Réinitialiser et remplir les données
+php artisan migrate:refresh --seed
+```
+
+### Seeders (données de test)
+
+```bash
+# Remplir la base de données
+php artisan db:seed
+
+# Remplir avec un seeder spécifique
+php artisan db:seed --class=DatabaseSeeder
+```
+
+### Tests
+
+```bash
+# Exécuter tous les tests
+php artisan test
+
+# Exécuter les tests avec verbose
+php artisan test --verbose
+
+# Exécuter une classe de test spécifique
+php artisan test tests/Feature/ExampleTest.php
+```
+
+### Tinker (console interactive)
+
+```bash
+php artisan tinker
+```
+
+### Cache et optimisation
+
+```bash
+# Vider le cache
+php artisan cache:clear
+
+# Vider toutes les caches
+php artisan optimize:clear
+
+# Optimiser le projet
+php artisan optimize
+```
+
+## 🗃️ Structure du projet
+
+```
+app/
+├── Enums/              # Énumérations (RoleUser, Ville)
+├── Http/
+│   ├── Controllers/    # Contrôleurs
+│   ├── Middleware/     # Middlewares
+│   └── Requests/       # Formulaire requests
+├── Models/             # Modèles Eloquent
+├── Policies/           # Policies d'autorisation
+├── Services/           # Services métier
+└── Providers/          # Service providers
+
+database/
+├── factories/          # Factories pour les tests
+├── migrations/         # Migrations de base de données
+└── seeders/           # Seeders pour les données de test
+
+resources/
+├── views/             # Vues Blade
+└── css/               # Styles CSS/Tailwind
+
+routes/
+├── web.php            # Routes web
+└── console.php        # Commandes Artisan
+
+tests/
+├── Feature/           # Tests fonctionnels
+└── Unit/              # Tests unitaires
+```
+
+## 🔐 Variables d'environnement importantes
+
+| Variable | Description | Défaut |
+|----------|-------------|--------|
+| `APP_NAME` | Nom de l'application | Laravel |
+| `APP_DEBUG` | Mode debug | false |
+| `APP_URL` | URL de l'application | http://localhost |
+| `DB_CONNECTION` | Type de base de données | pgsql |
+| `DB_DATABASE` | Nom de la base de données | bacplus |
+| `SESSION_DRIVER` | Stockage des sessions | database |
+| `CACHE_STORE` | Type de cache | database |
+
+## 🐛 Dépannage
+
+### Erreur : "Class not found"
+
+Régénérez l'autoloader Composer:
+
+```bash
+composer dump-autoload
+```
+
+### Erreur : "SQLSTATE[HY000]"
+
+Vérifiez que PostgreSQL est en cours d'exécution et que les identifiants DB sont corrects dans `.env`.
+
+### Le port 8000 est utilisé
+
+Utilisez un autre port:
+
+```bash
+php artisan serve --port=8001
+```
+
+### Nodes modules manquent
+
+Réinstallez les dépendances:
+
+```bash
+npm install
+```
+
+### Erreur : "SQLSTATE[42P01]: Undefined table: sessions"
+
+La table `sessions` n'existe pas. Exécutez:
+
+```bash
+php artisan session:table
+php artisan migrate
+```
+
+### Erreur : "SQLSTATE[HY000]: General error" ou tables manquantes
+
+Réinitialiser toutes les migrations et recommencer:
+
+```bash
+php artisan migrate:reset
+php artisan migrate
+php artisan db:seed
+```
+
+## 📝 Notes importantes
+
+- Ne committez jamais le fichier `.env` dans le repository
+- Utilisez `.env.example` pour les variables par défaut
+- Assurez-vous que PostgreSQL est installé et en cours d'exécution
+- Pour la première installation, exécutez `php artisan migrate` après la configuration
+
+## 📚 Documentation utile
+
+- [Laravel Documentation](https://laravel.com/docs)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite Documentation](https://vitejs.dev/)
 
 ## Contributing
 
